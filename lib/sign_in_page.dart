@@ -245,16 +245,11 @@ class _SignInPageState extends State<SignInPage> {
   Widget buildSignInButton() {
     return
       new GestureDetector(
-          child: new Container(
-            padding: EdgeInsets.only(left: 42, right: 42, top: 10, bottom: 10),
-            decoration: new BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              gradient: theme.Theme.primaryGradient,
-            ),
-            child: new Text(
-              "LOGIN", style: new TextStyle(fontSize: 25, color: Colors.white),
-            ),
-
+        child: new Container(
+          padding: EdgeInsets.only(left: 42, right: 42, top: 10, bottom: 10),
+          decoration: new BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            gradient: theme.Theme.primaryGradient,
           ),
           child: new Text(
             "LOGIN", style: new TextStyle(fontSize: 25, color: Colors.white),),
@@ -283,16 +278,6 @@ class _SignInPageState extends State<SignInPage> {
 //          debugDumpApp();
         },
 
-              Navigator.push(
-                  context, MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new HomePage());
-                  }
-              )
-              );
-            }
-          }
       );
   }
-
 }
