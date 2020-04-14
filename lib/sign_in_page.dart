@@ -6,6 +6,7 @@ import 'home_page.dart';
 import 'package:handsound/firstpage.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
+import 'stayfit-health-clone/stayfit-health-home.dart';
 /**
  *注册界面
  */
@@ -269,7 +270,7 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new HomePage());
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new StayfitHealthPage());
                 }
             )
             );
