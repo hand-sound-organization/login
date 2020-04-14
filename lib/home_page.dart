@@ -1,9 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/login_page.dart';
 
 class HomePage extends StatefulWidget {
+//  HomePage(Key key ,this.user):super(key:key);
+//  final String user;
   @override
   _HomePageState createState() => new _HomePageState();
 }
@@ -23,6 +26,7 @@ class _HomePageState extends State<HomePage> {
         body: new Container(
           child: new Center(
             child: new Text("用户已登录\n用户名:${user.username}\n密码：${user.password}"),
+            //child: new Text('66data'),
           ),
         ),
       );
