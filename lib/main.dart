@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handsound/home_page.dart';
 import 'package:handsound/sign_in_page.dart';
 import 'package:handsound/user_provider.dart';
-import 'home_page.dart';
-import 'sign_in_page.dart';
-
+import 'package:handsound/user.dart';
 
 
 void main() {
