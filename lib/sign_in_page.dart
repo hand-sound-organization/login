@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:handsound/theme.dart' as theme;
-
+import 'package:handsound/firstpage.dart';
+import 'home_page.dart';
+import 'package:handsound/firstpage.dart';
+import 'package:handsound/user_provider.dart';
+import 'package:handsound/user.dart';
 /**
  *注册界面
  */
@@ -19,7 +23,8 @@ class _SignInPageState extends State<SignInPage> {
   FocusNode emailFocusNode = new FocusNode();
   FocusNode passwordFocusNode = new FocusNode();
   FocusScopeNode focusScopeNode = new FocusScopeNode();
-
+  TextEditingController EtextEditingController = new TextEditingController();
+  TextEditingController PtextEditingController = new TextEditingController();
   GlobalKey<FormState> _SignInFormKey = new GlobalKey();
 
   bool isShowPassWord = false;
@@ -117,7 +122,7 @@ class _SignInPageState extends State<SignInPage> {
 
             ],
           ),
-          new Positioned(child: buildSignInButton(), top: 170,)
+          new Positioned(child: buildSignInButton(), top: 200,)
         ],
       ),
     );
@@ -143,7 +148,7 @@ class _SignInPageState extends State<SignInPage> {
           , color: Colors.white
       ),
       width: 300,
-      height: 190,
+      height: 220,
       /**
        * Flutter提供了一个Form widget，它可以对输入框进行分组，
        * 然后进行一些统一操作，如输入内容校验、输入框重置以及输入内容保存。
@@ -161,6 +166,7 @@ class _SignInPageState extends State<SignInPage> {
                     left: 25, right: 25, top: 20, bottom: 20),
                 child: new TextFormField(
                   //关联焦点
+                  controller: EtextEditingController,
                   focusNode: emailFocusNode,
                   onEditingComplete: () {
                     if (focusScopeNode == null) {
@@ -195,8 +201,9 @@ class _SignInPageState extends State<SignInPage> {
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 25, right: 25, top: 20),
+                    left: 25, right: 25, top: 20,bottom: 20),
                 child: new TextFormField(
+                  controller: PtextEditingController,
                   focusNode: passwordFocusNode,
                   decoration: new InputDecoration(
                       icon: new Icon(Icons.lock, color: Colors.black,),
@@ -219,6 +226,11 @@ class _SignInPageState extends State<SignInPage> {
                   },
                 ),
               ),
+            ),
+            new Container(
+              height: 1,
+              width: 250,
+              color: Colors.grey[400],
             ),
 
 
@@ -248,10 +260,20 @@ class _SignInPageState extends State<SignInPage> {
            */
           if (_SignInFormKey.currentState.validate()) {
             //如果输入都检验通过，则进行登录操作
+
             Scaffold.of(context).showSnackBar(
-                new SnackBar(content: new Text("执行登录操作")));
+                new SnackBar(content: new Text("登录成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
+
+            Navigator.push(
+                context, MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new HomePage());
+                }
+            )
+            );
+
           }
 //          debugDumpApp();
         },

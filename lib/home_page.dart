@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
         body: new Container(
           child: new Center(
             child: new Text("用户已登录\n用户名:${user.username}\n密码：${user.password}"),
+//            child:new Text('666666')
           ),
         ),
       );
