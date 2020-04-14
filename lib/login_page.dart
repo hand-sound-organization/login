@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                             curve: Curves.decelerate);
                                       },
                                       child: new Text(
-                                        "Existing",
+                                        "登录",
                                         style: TextStyle(fontSize: 16),
                                       ),
                                     ),
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                             curve: Curves.decelerate);
                                       },
                                       child: new Text(
-                                        "New",
+                                        "注册",
                                         style: TextStyle(fontSize: 16),
                                       ),
                                     ),

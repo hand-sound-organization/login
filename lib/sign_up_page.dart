@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 gradient: theme.Theme.primaryGradient,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              child: new Text("SignUp",
+              child: new Text("注册",
                 style: new TextStyle(fontSize: 25, color: Colors.white),),
             ),), top: 340,)
 
@@ -57,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: new TextFormField(
               decoration: new InputDecoration(
                   icon: new Icon(FontAwesomeIcons.user, color: Colors.black,),
-                  hintText: "Name",
+                  hintText: "用户名",
                   border: InputBorder.none
               ),
               style: new TextStyle(fontSize: 16, color: Colors.black),
@@ -77,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: new TextFormField(
               decoration: new InputDecoration(
                   icon: new Icon(Icons.email, color: Colors.black,),
-                  hintText: "Email Address",
+                  hintText: "邮箱地址",
                   border: InputBorder.none
               ),
               style: new TextStyle(fontSize: 16, color: Colors.black),
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: new TextFormField(
               decoration: new InputDecoration(
                 icon: new Icon(Icons.lock, color: Colors.black,),
-                hintText: "Password",
+                hintText: "密码",
                 border: InputBorder.none,
                 suffixIcon: new IconButton(
                     icon: new Icon(Icons.remove_red_eye, color: Colors.black,),
@@ -121,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: new TextFormField(
               decoration: new InputDecoration(
                 icon: new Icon(Icons.lock, color: Colors.black,),
-                hintText: "Confirm Passowrd",
+                hintText: "确认密码",
                 border: InputBorder.none,
                 suffixIcon: new IconButton(
                     icon: new Icon(Icons.remove_red_eye, color: Colors.black,),

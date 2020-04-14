@@ -48,7 +48,7 @@ class _SignInPageState extends State<SignInPage> {
 
               Padding(
                 padding: const EdgeInsets.only(top: 50),
-                child: new Text("Forgot Password?",
+                child: new Text("忘记密码？",
                   style: new TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -58,66 +58,66 @@ class _SignInPageState extends State<SignInPage> {
               /**
                * Or所在的一行
                */
-              Padding(padding: EdgeInsets.only(top: 10),
-                child: new Row(
-//                          mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    new Container(height: 1,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          gradient: new LinearGradient(
-                              colors: [ Colors.white10,
-                                Colors.white,
-                              ])
-                      ),
-                    ),
-                    new Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: new Text("Or", style: new TextStyle(
-                          fontSize: 16, color: Colors.white),),),
-                    new Container(height: 1,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          gradient: new LinearGradient(
-                              colors: [ Colors.white,
-                                Colors.white10,
-                              ])
-                      ),
-                    ),
-                  ],
-                ),),
-
-              /**
-               * 显示第三方登录的按钮
-               */
-              new SizedBox(height: 10,),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: new IconButton(icon: Icon(
-                      FontAwesomeIcons.facebookF, color: Color(0xFF0084ff),),
-                        onPressed: null),
-                  ),
-                  new SizedBox(width: 40,),
-                  new Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: new IconButton(icon: Icon(
-                      FontAwesomeIcons.google, color: Color(0xFF0084ff),),
-                        onPressed: null),
-                  ),
-                ],
-              )
+//              Padding(padding: EdgeInsets.only(top: 10),
+//                child: new Row(
+////                          mainAxisSize: MainAxisSize.max,
+//                  mainAxisAlignment: MainAxisAlignment.center,
+//                  children: <Widget>[
+//                    new Container(height: 1,
+//                      width: 100,
+//                      decoration: BoxDecoration(
+//                          gradient: new LinearGradient(
+//                              colors: [ Colors.white10,
+//                                Colors.white,
+//                              ])
+//                      ),
+//                    ),
+//                    new Padding(
+//                      padding: EdgeInsets.only(left: 15, right: 15),
+//                      child: new Text("Or", style: new TextStyle(
+//                          fontSize: 16, color: Colors.white),),),
+//                    new Container(height: 1,
+//                      width: 100,
+//                      decoration: BoxDecoration(
+//                          gradient: new LinearGradient(
+//                              colors: [ Colors.white,
+//                                Colors.white10,
+//                              ])
+//                      ),
+//                    ),
+//                  ],
+//                ),),
+//
+//              /**
+//               * 显示第三方登录的按钮
+//               */
+//              new SizedBox(height: 10,),
+//              new Row(
+//                mainAxisAlignment: MainAxisAlignment.center,
+//                children: <Widget>[
+//                  new Container(
+//                    padding: EdgeInsets.all(10),
+//                    decoration: BoxDecoration(
+//                      shape: BoxShape.circle,
+//                      color: Colors.white,
+//                    ),
+//                    child: new IconButton(icon: Icon(
+//                      FontAwesomeIcons.facebookF, color: Color(0xFF0084ff),),
+//                        onPressed: null),
+//                  ),
+//                  new SizedBox(width: 40,),
+//                  new Container(
+//                    padding: EdgeInsets.all(10),
+//                    decoration: BoxDecoration(
+//                      shape: BoxShape.circle,
+//                      color: Colors.white,
+//                    ),
+//                    child: new IconButton(icon: Icon(
+//                      FontAwesomeIcons.google, color: Color(0xFF0084ff),),
+//                        onPressed: null),
+//                  ),
+//                ],
+//              )
 
 
             ],
@@ -176,15 +176,15 @@ class _SignInPageState extends State<SignInPage> {
                   },
 
                   decoration: new InputDecoration(
-                      icon: new Icon(Icons.email, color: Colors.black,),
-                      hintText: "Email Address",
+                      icon: new Icon(FontAwesomeIcons.user, color: Colors.black,),
+                      hintText: "用户名",
                       border: InputBorder.none
                   ),
                   style: new TextStyle(fontSize: 16, color: Colors.black),
                   //验证
                   validator: (value) {
                     if (value.isEmpty) {
-                      return "Email can not be empty!";
+                      return "用户名不能为空！";
                     }
                   },
                   onSaved: (value) {
@@ -207,7 +207,7 @@ class _SignInPageState extends State<SignInPage> {
                   focusNode: passwordFocusNode,
                   decoration: new InputDecoration(
                       icon: new Icon(Icons.lock, color: Colors.black,),
-                      hintText: "Password",
+                      hintText: "密码",
                       border: InputBorder.none,
                       suffixIcon: new IconButton(icon: new Icon(
                         Icons.remove_red_eye, color: Colors.black,),
@@ -218,7 +218,7 @@ class _SignInPageState extends State<SignInPage> {
                   style: new TextStyle(fontSize: 16, color: Colors.black),
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 6) {
-                      return "Password'length must longer than 6!";
+                      return "密码需要大于6位！";
                     }
                   },
                   onSaved: (value) {
@@ -252,7 +252,7 @@ class _SignInPageState extends State<SignInPage> {
             gradient: theme.Theme.primaryGradient,
           ),
           child: new Text(
-            "LOGIN", style: new TextStyle(fontSize: 25, color: Colors.white),),
+            "登录", style: new TextStyle(fontSize: 25, color: Colors.white),),
         ),
         onTap: () {
           /**利用key来获取widget的状态FormState
