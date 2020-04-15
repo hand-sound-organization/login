@@ -183,7 +183,7 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                     fit: StackFit.expand,
                     children: <Widget>[
                       new FlareActor(
-                        "assets/demo.flr",
+                        "assets/beacon.flr",
                         alignment: Alignment.center,
                         fit: BoxFit.contain,
                         animation: "record",
@@ -192,11 +192,13 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                         width: size.width,
                         height: size.height - size.height * .28,
                         alignment: Alignment.center,
-                        child: Icon(
-                          Icons.favorite,
-                          size: 100,
-                          color: Colors.white,
-                        ),
+                        child:
+                        new Image(image: AssetImage("assets/sound.png"))
+//                        Icon(
+//                          Icons.favorite,
+//                          size: 100,
+//                          color: Colors.black,
+//                        ),
                       )
                     ],
                   ),
