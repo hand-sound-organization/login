@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:handsound/theme.dart' as theme;
@@ -48,11 +49,11 @@ class _SignInPageState extends State<SignInPage> {
               buildSignInTextForm(),
 
               Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 100),
                 child: new Text("忘记密码？",
                   style: new TextStyle(
                       fontSize: 16,
-                      color: Colors.white,
+                      color: Colors.black,
                       decoration: TextDecoration.underline),),
               ),
 
@@ -111,7 +112,7 @@ class _SignInPageState extends State<SignInPage> {
 //                    padding: EdgeInsets.all(10),
 //                    decoration: BoxDecoration(
 //                      shape: BoxShape.circle,
-//                      color: Colors.white,
+//                      color: Colors.black,
 //                    ),
 //                    child: new IconButton(icon: Icon(
 //                      FontAwesomeIcons.google, color: Color(0xFF0084ff),),
@@ -149,7 +150,7 @@ class _SignInPageState extends State<SignInPage> {
           , color: Colors.white
       ),
       width: 300,
-      height: 220,
+      height: 190,
       /**
        * Flutter提供了一个Form widget，它可以对输入框进行分组，
        * 然后进行一些统一操作，如输入内容校验、输入框重置以及输入内容保存。
@@ -178,7 +179,9 @@ class _SignInPageState extends State<SignInPage> {
 
                   decoration: new InputDecoration(
                       icon: new Icon(FontAwesomeIcons.user, color: Colors.black,),
+                      hintStyle: new TextStyle(color: Colors.black),
                       hintText: "用户名",
+                      hoverColor: Colors.black,
                       border: InputBorder.none
                   ),
                   style: new TextStyle(fontSize: 16, color: Colors.black),
@@ -208,7 +211,9 @@ class _SignInPageState extends State<SignInPage> {
                   focusNode: passwordFocusNode,
                   decoration: new InputDecoration(
                       icon: new Icon(Icons.lock, color: Colors.black,),
+                      hintStyle: new TextStyle(color: Colors.black),
                       hintText: "密码",
+                      hoverColor: Colors.black,
                       border: InputBorder.none,
                       suffixIcon: new IconButton(icon: new Icon(
                         Icons.remove_red_eye, color: Colors.black,),
@@ -247,13 +252,17 @@ class _SignInPageState extends State<SignInPage> {
     return
       new GestureDetector(
         child: new Container(
-          padding: EdgeInsets.only(left: 42, right: 42, top: 10, bottom: 10),
+          padding: EdgeInsets.only(left: 50, right: 50, top: 2, bottom: 2),
           decoration: new BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            gradient: theme.Theme.primaryGradient,
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+            //gradient: theme.Theme.primaryGradient,
+            color: Colors.white
           ),
-          child: new Text(
-            "登录", style: new TextStyle(fontSize: 25, color: Colors.white),),
+          child: new IconButton(icon: Icon(Icons.arrow_forward,color: Color(0x90000000),),
+                        iconSize: 35,
+                        onPressed: null),
+//          new Text(
+//            "登录", style: new TextStyle(fontSize: 25, color: Colors.black),),
         ),
         onTap: () {
           /**利用key来获取widget的状态FormState

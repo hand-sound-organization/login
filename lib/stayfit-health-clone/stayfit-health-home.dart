@@ -1,4 +1,4 @@
-//import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import '../bloc/theme.bloc.dart';
 import '../configs/themes.dart';
@@ -182,12 +182,12 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
-//                      new FlareActor(
-//                        "assets/demo.flr",
-//                        alignment: Alignment.center,
-//                        fit: BoxFit.contain,
-//                        animation: "record",
-//                      ),
+                      new FlareActor(
+                        "assets/demo.flr",
+                        alignment: Alignment.center,
+                        fit: BoxFit.contain,
+                        animation: "record",
+                      ),
                       Container(
                         width: size.width,
                         height: size.height - size.height * .28,
