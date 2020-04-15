@@ -1,8 +1,14 @@
+import 'dart:io';
+import 'dart:async';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:handsound/login_page.dart';
+import 'package:handsound/sign_in_page.dart';
 import '../bloc/theme.bloc.dart';
 import '../configs/themes.dart';
 import 'progress_bar.dart';
+import 'package:handsound/user_provider.dart';
+import 'package:handsound/user.dart';
 
 class StayfitHealthPage extends StatefulWidget {
   StayfitHealthPage({Key key}) : super(key: key);
@@ -11,15 +17,51 @@ class StayfitHealthPage extends StatefulWidget {
 }
 
 class _StayfitHealthPageState extends State<StayfitHealthPage> {
+var nownumber = 0;
+Timer _timer;
+
   @override
   void initState() {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
+
   }
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
+
+  void f1111(){
+    _timer = Timer.periodic(Duration(seconds: 1),(timer){
+
+        if(nownumber<5){
+          setState(() {
+            nownumber++;
+          });
+        }
+        else {
+          timer.cancel();
+          //timer=null;
+          print(nownumber);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(
+              builder: (BuildContext context) {
+                return UserContainer(
+                    user: User('1', '1'), child: new LoginPage());
+              }
+          )
+          );
+        }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    f1111();
 
     return Scaffold(
       body: Column(
@@ -61,7 +103,8 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                           ),
                         ),
                         Text(
-                          'StayFit',
+                          '门锁注册',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -70,38 +113,38 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                         ),
                         Row(
                           children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  width: 50,
-                                  child: Icon(
-                                    Icons.new_releases,
-                                    size: 30,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 0,
-                                  right: 0,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      '7',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+//                            Stack(
+//                              children: <Widget>[
+//                                Container(
+//                                  width: 50,
+//                                  child: Icon(
+//                                    Icons.new_releases,
+//                                    size: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+//                                Positioned(
+//                                  top: 0,
+//                                  right: 0,
+//                                  child: Container(
+//                                    height: 20,
+//                                    width: 20,
+//                                    alignment: Alignment.center,
+//                                    child: Text(
+//                                      '7',
+//                                      style: TextStyle(
+//                                        color: Colors.white,
+//                                        fontWeight: FontWeight.bold,
+//                                      ),
+//                                    ),
+//                                    decoration: BoxDecoration(
+//                                      color: Colors.blue,
+//                                      borderRadius: BorderRadius.circular(50),
+//                                    ),
+//                                  ),
+//                                )
+//                              ],
+//                            ),
                             SizedBox(width: 10),
                             Icon(
                               Icons.edit,
@@ -129,12 +172,12 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                             textBaseline: TextBaseline.alphabetic,
                             children: <Widget>[
                               Icon(
-                                Icons.favorite,
+                                Icons.vpn_key,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 10),
                               Text(
-                                'HEART RATE',
+                                '已注册CPR',
                                 style: TextStyle(
                                   fontSize: 22,
                                   color: Colors.white,
@@ -151,9 +194,9 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                             textBaseline: TextBaseline.alphabetic,
                             children: <Widget>[
                               Text(
-                                '84',
+                                '$nownumber/100',
                                 style: TextStyle(
-                                  fontSize: 70,
+                                  fontSize: 35,
                                   letterSpacing: 0.2,
                                   color: Color(0xFFF83B6D),
                                   fontWeight: FontWeight.bold,
@@ -161,7 +204,7 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                               ),
                               SizedBox(width: 10),
                               Text(
-                                'BPM',
+                                '对',
                                 style: TextStyle(
                                   fontSize: 22,
                                   color: Colors.grey,
@@ -206,39 +249,39 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
               ],
             ),
           ),
-          Container(
-            width: size.width,
-            height: size.height * .28,
-            child: Row(
-              children: <Widget>[
-                _buildDashboardItem(
-                  Color(0xFF23BFFF),
-                  Icons.local_drink,
-                  70,
-                  '0.58',
-                  'LTRS',
-                  'DRINK',
-                ),
-                _buildDashboardItem(
-                  Color(0xFF9CDD5D),
-                  Icons.fastfood,
-                  50,
-                  '458',
-                  'GRMS.',
-                  'FOOD',
-                  true,
-                ),
-                _buildDashboardItem(
-                  Color(0xFFEF453C),
-                  Icons.hotel,
-                  30,
-                  '7.30',
-                  'HRS',
-                  'SLEEP',
-                ),
-              ],
-            ),
-          ),
+//          Container(
+//            width: size.width,
+//            height: size.height * .28,
+//            child: Row(
+//              children: <Widget>[
+//                _buildDashboardItem(
+//                  Color(0xFF23BFFF),
+//                  Icons.local_drink,
+//                  70,
+//                  '0.58',
+//                  'LTRS',
+//                  'DRINK',
+//                ),
+//                _buildDashboardItem(
+//                  Color(0xFF9CDD5D),
+//                  Icons.fastfood,
+//                  50,
+//                  '458',
+//                  'GRMS.',
+//                  'FOOD',
+//                  true,
+//                ),
+//                _buildDashboardItem(
+//                  Color(0xFFEF453C),
+//                  Icons.hotel,
+//                  30,
+//                  '7.30',
+//                  'HRS',
+//                  'SLEEP',
+//                ),
+//              ],
+//            ),
+//          ),
         ],
       ),
     );
