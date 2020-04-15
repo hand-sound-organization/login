@@ -10,13 +10,13 @@ import 'progress_bar.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 
-class StayfitHealthPage extends StatefulWidget {
-  StayfitHealthPage({Key key}) : super(key: key);
+class LockSignUpPage extends StatefulWidget {
+  LockSignUpPage({Key key}) : super(key: key);
 
-  _StayfitHealthPageState createState() => _StayfitHealthPageState();
+  _LockSignUpPageState createState() => _LockSignUpPageState();
 }
 
-class _StayfitHealthPageState extends State<StayfitHealthPage> {
+class _LockSignUpPageState extends State<LockSignUpPage> {
 var nownumber = 0;
 Timer _timer;
 
@@ -36,7 +36,7 @@ Timer _timer;
   void f1111(){
     _timer = Timer.periodic(Duration(seconds: 1),(timer){
 
-        if(nownumber<5){
+        if(nownumber<100){
           setState(() {
             nownumber++;
           });
