@@ -11,13 +11,13 @@ import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
 
-class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+class BingdingSearchPage extends StatefulWidget {
+  BingdingSearchPage({Key key}) : super(key: key);
 
-  _SearchPage createState() => _SearchPage();
+  _BingdingSearchPage createState() => _BingdingSearchPage();
 }
 
-class _SearchPage extends State<SearchPage> {
+class _BingdingSearchPage extends State<BingdingSearchPage> {
 
   @override
   void initState() {
