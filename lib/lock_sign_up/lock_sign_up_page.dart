@@ -79,8 +79,8 @@ Timer _timer;
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0xFF422479).withOpacity(0.95),
-                        Color(0xFF1C0746).withOpacity(0.75),
+                        Color(0xFFa06f9c).withOpacity(0.95),
+                        Color(0xFF1610a6).withOpacity(0.75),
                       ],
                       begin: FractionalOffset.topCenter,
                       end: FractionalOffset.bottomCenter,
@@ -178,7 +178,7 @@ Timer _timer;
                               ),
                               SizedBox(width: 10),
                               Text(
-                                '已注册CPR',
+                                '已注册CRP',
                                 style: TextStyle(
                                   fontSize: 22,
                                   color: Colors.white,
@@ -208,7 +208,7 @@ Timer _timer;
                                 '对',
                                 style: TextStyle(
                                   fontSize: 22,
-                                  color: Colors.grey,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
                               )

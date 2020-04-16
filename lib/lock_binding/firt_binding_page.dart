@@ -53,11 +53,11 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0xFF422479).withOpacity(0.95),
-                        Color(0xFF1C0746).withOpacity(0.75),
+                        Color(0xFFa06f9c).withOpacity(0.95),//原色(0xFF422479)
+                        Color(0xFF1610a6).withOpacity(0.75),//原色(0xFF1C0746)
                       ],
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter,
+                      begin: FractionalOffset.topLeft,
+                      end: FractionalOffset.bottomRight,
                     ),
                   ),
                 ),
@@ -250,14 +250,17 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                                     height: size.height/4.1,
                                     width: size.width/2.5,
                                     alignment: Alignment.center,
-                                    child:  Text(
-                                      '门锁绑定',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xee222222),
-                                        fontSize: 55,
-                                      ),
-                                    ),
+                                    child:  Icon(
+                                      Icons.vpn_key,
+                                    size: 60,)
+//                                    Text(
+//                                      '门锁绑定',
+//                                      textAlign: TextAlign.center,
+//                                      style: TextStyle(
+//                                        color: Color(0xee222222),
+//                                        fontSize: 55,
+//                                      ),
+//                                    ),
                                   ),
                                   onPressed: (){
                                     Navigator.push(
@@ -292,7 +295,8 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                     new Text('请先绑定门锁再使用完整功能',
                       textAlign:TextAlign.center,
                       style: TextStyle(
-                        fontSize: 30,
+                        color: Colors.white,
+                        fontSize: 20,
                       ),)
                 )
 

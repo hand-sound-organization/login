@@ -58,7 +58,7 @@ class _SignInPageState extends State<SignInPage> {
                 child: new Text("忘记密码？",
                   style: new TextStyle(
                       fontSize: 16,
-                      color: Colors.black,
+                      color: Color(0xaaffffff),
                       decoration: TextDecoration.underline),),
               ),
 

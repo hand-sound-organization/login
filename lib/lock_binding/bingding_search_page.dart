@@ -43,8 +43,8 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0xFF422479).withOpacity(0.95),
-                        Color(0xFF1C0746).withOpacity(0.75),
+                        Color(0xFFa06f9c).withOpacity(0.95),
+                        Color(0xFF1610a6).withOpacity(0.75),
                       ],
                       begin: FractionalOffset.topCenter,
                       end: FractionalOffset.bottomCenter,
