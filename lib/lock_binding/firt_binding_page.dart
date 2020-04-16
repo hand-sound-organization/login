@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:handsound/home_page.dart';
+import 'package:handsound/lock_binding/bingding_search_page.dart';
 import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
 import 'package:handsound/login_page.dart';
 import 'package:handsound/sign_in_page.dart';
@@ -10,7 +11,6 @@ import '../bloc/theme.bloc.dart';
 import '../configs/themes.dart';
 import 'progress_bar.dart';
 import 'bingding_search_page.dart';
-
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 
@@ -28,11 +28,6 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
     themeBloc.changeTheme(Themes.stayfit);
 
   }
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -199,6 +194,34 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                   width: size.width/1.5,
                   height: size.height/2.5,
 
+//                  child: Stack(
+//                    fit:StackFit.expand,
+//                    children: <Widget>[
+                  child: ClipOval(
+                    child: new RaisedButton(
+                    color: Color(0x9F0000),
+                    child:Container(
+                      width: size.width/3,
+                      child:  Text(
+                        '门锁绑定',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 60,
+                        ),
+                      ),
+                    ),
+                    onPressed: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return UserContainer(user: User('1','1'), child: new SearchPage());
+                          }
+                      )
+                      );
+                    },
+                  ),
+                  ),
 
                   child: Stack(
                     fit:StackFit.expand,
