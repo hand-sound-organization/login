@@ -10,6 +10,7 @@ import 'progress_bar.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 
+
 class LockSignUpPage extends StatefulWidget {
   LockSignUpPage({Key key}) : super(key: key);
 

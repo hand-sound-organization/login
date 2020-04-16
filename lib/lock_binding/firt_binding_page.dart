@@ -215,7 +215,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                       Navigator.push(
                           context, MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return UserContainer(user: User('1','1'), child: new SearchPage());
+                            return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
                           }
                       )
                       );
@@ -223,87 +223,87 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                   ),
                   ),
 
-                  child: Stack(
-                    fit:StackFit.expand,
-                    children: <Widget>[
-//                  child: ClipOval(
-//                    child: new RaisedButton(
-//                    color: Color(0x9F0000),
-//                    child:Container(
-//                      width: size.width/3,
-//                      child:  Text(
-//                        '门锁绑定',
-//                        textAlign: TextAlign.center,
-//                        style: TextStyle(
-//                          color: Colors.grey,
-//                          fontSize: 60,
-//                        ),
+//                  child: Stack(
+//                    fit:StackFit.expand,
+//                    children: <Widget>[
+////                  child: ClipOval(
+////                    child: new RaisedButton(
+////                    color: Color(0x9F0000),
+////                    child:Container(
+////                      width: size.width/3,
+////                      child:  Text(
+////                        '门锁绑定',
+////                        textAlign: TextAlign.center,
+////                        style: TextStyle(
+////                          color: Colors.grey,
+////                          fontSize: 60,
+////                        ),
+////                      ),
+////                    ),
+////                    onPressed: (){
+////                      Navigator.push(
+////                          context, MaterialPageRoute(
+////                          builder: (BuildContext context) {
+////                            return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
+////                          }
+////                      )
+////                      );
+////                    },
+////                  ),
+////                  ),
+//
+////                    ],
+////                  ),
+//                      new FlareActor(
+//                        "assets/ButtonAnimation.flr",
+//                        alignment: Alignment.center,
+//                        fit: BoxFit.none,
+//                        animation: "record",
+//
 //                      ),
-//                    ),
-//                    onPressed: (){
-//                      Navigator.push(
-//                          context, MaterialPageRoute(
-//                          builder: (BuildContext context) {
-//                            return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
-//                          }
-//                      )
-//                      );
-//                    },
+//                      Container(
+//                          width: size.width,
+//                          height: size.height - size.height * .28,
+//                          alignment: Alignment.center,
+//                          color: Color(0x000000),
+//                          child:ClipOval(
+//                              child: new RaisedButton(
+//                                  color: Color(0xbbffffff),
+//                                  child:Container(
+//                                    height: size.height/4.1,
+//                                    width: size.width/2.5,
+//                                    alignment: Alignment.center,
+//                                    child:  Text(
+//                                      '门锁绑定',
+//                                      textAlign: TextAlign.center,
+//                                      style: TextStyle(
+//                                        color: Color(0xee222222),
+//                                        fontSize: 55,
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  onPressed: (){
+//                                    Navigator.push(
+//                                        context, MaterialPageRoute(
+//                                        builder: (BuildContext context) {
+//                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
+//                                        }
+//                                    )
+//                                    );
+//                              },
+//                            ),
 //                  ),
-//                  ),
-
+//
+////                          new Image(image: AssetImage("assets/sound.png"))
+////                        Icon(
+////                          Icons.favorite,
+////                          size: 100,
+////                          color: Colors.black,
+////                        ),
+//                      ),
+//
 //                    ],
 //                  ),
-                      new FlareActor(
-                        "assets/ButtonAnimation.flr",
-                        alignment: Alignment.center,
-                        fit: BoxFit.none,
-                        animation: "record",
-
-                      ),
-                      Container(
-                          width: size.width,
-                          height: size.height - size.height * .28,
-                          alignment: Alignment.center,
-                          color: Color(0x000000),
-                          child:ClipOval(
-                              child: new RaisedButton(
-                                  color: Color(0xbbffffff),
-                                  child:Container(
-                                    height: size.height/4.1,
-                                    width: size.width/2.5,
-                                    alignment: Alignment.center,
-                                    child:  Text(
-                                      '门锁绑定',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xee222222),
-                                        fontSize: 55,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: (){
-                                    Navigator.push(
-                                        context, MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
-                                        }
-                                    )
-                                    );
-                              },
-                            ),
-                  ),
-
-//                          new Image(image: AssetImage("assets/sound.png"))
-//                        Icon(
-//                          Icons.favorite,
-//                          size: 100,
-//                          color: Colors.black,
-//                        ),
-                      ),
-
-                    ],
-                  ),
                 ),
                 Positioned(
                     top:600,
