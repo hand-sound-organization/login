@@ -4,19 +4,19 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:handsound/login_page.dart';
 import 'package:handsound/sign_in_page.dart';
-import 'bloc/theme.bloc.dart';
-import 'configs/themes.dart';
-import 'package:handsound/stayfit-health-clone/progress_bar.dart';
+import '../bloc/theme.bloc.dart';
+import '../configs/themes.dart';
+import 'progress_bar.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 
-class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+class BingdingSearchPage extends StatefulWidget {
+  BingdingSearchPage({Key key}) : super(key: key);
 
-  _SearchPage createState() => _SearchPage();
+  _BingdingSearchPage createState() => _BingdingSearchPage();
 }
 
-class _SearchPage extends State<SearchPage> {
+class _BingdingSearchPage extends State<BingdingSearchPage> {
 
 
   @override

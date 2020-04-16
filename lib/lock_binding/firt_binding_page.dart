@@ -9,6 +9,7 @@ import 'package:handsound/sign_in_page.dart';
 import '../bloc/theme.bloc.dart';
 import '../configs/themes.dart';
 import 'progress_bar.dart';
+import 'bingding_search_page.dart';
 
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
@@ -195,66 +196,106 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                 Positioned(
                   top:250,
                   left: 70,
-                  //alignment: Alignment.center,
                   width: size.width/1.5,
                   height: size.height/2.5,
-                  //margin: EdgeInsets.only(left:10,right:10,top:10,bottom: 10),
 
-//                  child: Stack(
-//                    fit:StackFit.expand,
-//                    children: <Widget>[
-                  child: ClipOval(
-                    child: new RaisedButton(
-                    color: Color(0x9F0000),
-                    child:Container(
-                      width: size.width/3,
-                      child:  Text(
-                        '门锁绑定',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 60,
-                        ),
-                      ),
-                    ),
-                    onPressed: (){
-                      Navigator.push(
-                          context, MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return UserContainer(user: User('1','1'), child: new HomePage());
-                          }
-                      )
-                      );
-                    },
-                  ),
-                  ),
 
-//                    ],
-//                  ),
-//                  child: Stack(
-//                    fit: StackFit.expand,
-//                    children: <Widget>[
-//                      new FlareActor(
-//                        "assets/beacon.flr",
-//                        alignment: Alignment.center,
-//                        fit: BoxFit.contain,
-//                        animation: "record",
+                  child: Stack(
+                    fit:StackFit.expand,
+                    children: <Widget>[
+//                  child: ClipOval(
+//                    child: new RaisedButton(
+//                    color: Color(0x9F0000),
+//                    child:Container(
+//                      width: size.width/3,
+//                      child:  Text(
+//                        '门锁绑定',
+//                        textAlign: TextAlign.center,
+//                        style: TextStyle(
+//                          color: Colors.grey,
+//                          fontSize: 60,
+//                        ),
 //                      ),
-//                      Container(
-//                          width: size.width,
-//                          height: size.height - size.height * .28,
-//                          alignment: Alignment.center,
-//                          child:
-//                          new Image(image: AssetImage("assets/sound.png"))
-////                        Icon(
-////                          Icons.favorite,
-////                          size: 100,
-////                          color: Colors.black,
-////                        ),
+//                    ),
+//                    onPressed: (){
+//                      Navigator.push(
+//                          context, MaterialPageRoute(
+//                          builder: (BuildContext context) {
+//                            return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
+//                          }
 //                      )
+//                      );
+//                    },
+//                  ),
+//                  ),
+
 //                    ],
 //                  ),
+                      new FlareActor(
+                        "assets/ButtonAnimation.flr",
+                        alignment: Alignment.center,
+                        fit: BoxFit.none,
+                        animation: "record",
+
+                      ),
+                      Container(
+                          width: size.width,
+                          height: size.height - size.height * .28,
+                          alignment: Alignment.center,
+                          color: Color(0x000000),
+                          child:ClipOval(
+                              child: new RaisedButton(
+                                  color: Color(0xbbffffff),
+                                  child:Container(
+                                    height: size.height/4.1,
+                                    width: size.width/2.5,
+                                    alignment: Alignment.center,
+                                    child:  Text(
+                                      '门锁绑定',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Color(0xee222222),
+                                        fontSize: 55,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: (){
+                                    Navigator.push(
+                                        context, MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
+                                        }
+                                    )
+                                    );
+                              },
+                            ),
+                  ),
+
+//                          new Image(image: AssetImage("assets/sound.png"))
+//                        Icon(
+//                          Icons.favorite,
+//                          size: 100,
+//                          color: Colors.black,
+//                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+                Positioned(
+                    top:600,
+                    left: 75,
+                    width: size.width/1.5,
+                    height: size.height - size.height * .28,
+
+                    child:
+                    new Text('请先绑定门锁再使用完整功能',
+                      textAlign:TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),)
                 )
+
               ],
             ),
           ),
