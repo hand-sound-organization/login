@@ -4,11 +4,12 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:handsound/login_page.dart';
 import 'package:handsound/sign_in_page.dart';
-import 'bloc/theme.bloc.dart';
-import 'configs/themes.dart';
-import 'package:handsound/stayfit-health-clone/progress_bar.dart';
+import '../bloc/theme.bloc.dart';
+import '../configs/themes.dart';
+import 'progress_bar.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
+import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
@@ -18,15 +19,12 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPage extends State<SearchPage> {
 
-
   @override
   void initState() {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
 
   }
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -80,38 +78,6 @@ class _SearchPage extends State<SearchPage> {
                         ),
                         Row(
                           children: <Widget>[
-//                            Stack(
-//                              children: <Widget>[
-//                                Container(
-//                                  width: 50,
-//                                  child: Icon(
-//                                    Icons.new_releases,
-//                                    size: 30,
-//                                    color: Colors.white,
-//                                  ),
-//                                ),
-//                                Positioned(
-//                                  top: 0,
-//                                  right: 0,
-//                                  child: Container(
-//                                    height: 20,
-//                                    width: 20,
-//                                    alignment: Alignment.center,
-//                                    child: Text(
-//                                      '7',
-//                                      style: TextStyle(
-//                                        color: Colors.white,
-//                                        fontWeight: FontWeight.bold,
-//                                      ),
-//                                    ),
-//                                    decoration: BoxDecoration(
-//                                      color: Colors.blue,
-//                                      borderRadius: BorderRadius.circular(50),
-//                                    ),
-//                                  ),
-//                                )
-//                              ],
-//                            ),
                             SizedBox(width: 10),
                             Icon(
                               Icons.edit,
@@ -137,18 +103,6 @@ class _SearchPage extends State<SearchPage> {
                         fit: BoxFit.none,
                         animation: "wifi",
                       ),
-//                      Container(
-//                          width: size.width,
-//                          height: size.height - size.height * .28,
-//                          alignment: Alignment.center,
-//                          child:
-//                          new Image(image: AssetImage("assets/sound.png"))
-////                        Icon(
-////                          Icons.favorite,
-////                          size: 100,
-////                          color: Colors.black,
-////                        ),
-//                      )
                     ],
                   ),
                 ),
@@ -167,7 +121,6 @@ class _SearchPage extends State<SearchPage> {
                             bottomLeft: Radius.circular(5.0),
                             bottomRight: Radius.circular(5.0)),
                       ),
-                      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
                       clipBehavior: Clip.antiAlias,
                       semanticContainer: false,
                       child: getChild(),
@@ -319,22 +272,31 @@ class _SearchPage extends State<SearchPage> {
 
 
 
-
-
-
   getChild() {
     return Container(
-
-      color: Colors.white,
       width:300,
       height: 140,
       alignment: Alignment.center,
-
-      child: Text(
-        "Card",
-        style: TextStyle(fontSize: 28, color: Colors.grey),
-      ),
-    );
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(
+              builder: (BuildContext context) {
+                return UserContainer(user: User('1','1'), child: new LockSignUpPage());
+              }
+          )
+          );
+        },
+        // Generally, material cards use onSurface with 12% opacity for the pressed state.
+//        splashColor:
+//        Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+//        // Generally, material cards do not have a highlight overlay.
+//        highlightColor: Colors.transparent,),
+        child: new Container(
+        //设置child 居中
+        alignment: Alignment(0, 0),
+        child: Text("开始注册",style: TextStyle(color: Colors.white,fontSize: 16.0),),
+      ),),);
   }
 }
 

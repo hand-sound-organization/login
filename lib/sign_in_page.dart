@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:handsound/lock_binding/bingding_search_page.dart';
 import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/theme.dart' as theme;
 import 'package:handsound/firstpage.dart';
@@ -9,6 +10,7 @@ import 'package:handsound/firstpage.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'lock_sign_up/lock_sign_up_page.dart';
+
 /**
  *注册界面
  */
@@ -280,7 +282,7 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new SearchPage());
                 }
             )
             );

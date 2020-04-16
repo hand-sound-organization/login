@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:handsound/home_page.dart';
+import 'package:handsound/lock_binding/bingding_search_page.dart';
 import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
 import 'package:handsound/login_page.dart';
 import 'package:handsound/sign_in_page.dart';
 import '../bloc/theme.bloc.dart';
 import '../configs/themes.dart';
 import 'progress_bar.dart';
-
+import 'bingding_search_page.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 
@@ -27,11 +28,6 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
     themeBloc.changeTheme(Themes.stayfit);
 
   }
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -221,7 +217,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                       Navigator.push(
                           context, MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return UserContainer(user: User('1','1'), child: new HomePage());
+                            return UserContainer(user: User('1','1'), child: new SearchPage());
                           }
                       )
                       );
