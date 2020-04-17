@@ -12,7 +12,8 @@ import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'lock_sign_up/lock_sign_up_page.dart';
 import 'firstpage.dart';
-
+import 'bottomsheet.dart';
+import 'bottom2.dart';
 /**
  *注册界面
  */
@@ -284,7 +285,7 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new BottomSheetDemo());
                 }
             )
             );
