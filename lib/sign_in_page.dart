@@ -284,7 +284,7 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new BingdingLockPage());
                 }
             )
             );
