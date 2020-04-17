@@ -12,7 +12,8 @@ import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'lock_sign_up/lock_sign_up_page.dart';
 import 'firstpage.dart';
-
+import 'bottomsheet.dart';
+import 'bottom2.dart';
 /**
  *注册界面
  */
