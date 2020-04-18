@@ -3,6 +3,8 @@ import 'package:handsound/home_page.dart';
 import 'package:handsound/sign_in_page.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
+import 'user management/main_user_management.dart';
+import 'lock_sign_up/lock_sign_up_page.dart';
 
 
 void main() {
@@ -20,6 +22,11 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        "main_user_management_page":(context)=>MainUserManage(),
+        "sign_in_page":(context)=>SignInPage(),
+        "lock_sign_up_page":(context)=>LockSignUpPage(),
+      },
       home:
       /**
        * 将用户数据共享给子控件，任何地方的子控件都可以获取到父控件所保存的用户信息

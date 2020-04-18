@@ -12,7 +12,8 @@ import 'package:handsound/user.dart';
 
 
 class LockSignUpPage extends StatefulWidget {
-  LockSignUpPage({Key key}) : super(key: key);
+//  final parentContext;
+  LockSignUpPage({Key key} ) : super(key: key);
 
   _LockSignUpPageState createState() => _LockSignUpPageState();
 }
@@ -20,49 +21,44 @@ class LockSignUpPage extends StatefulWidget {
 class _LockSignUpPageState extends State<LockSignUpPage> {
 var nownumber = 0;
 Timer _timer;
+Timer _timer2;
 
   @override
   void initState() {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
-
-  }
-  @override
-  void dispose() {
-    super.dispose();
-    _timer.cancel();
+    settime();
   }
 
+  void back() async{
+    bool delete = await showDeleteConfirmDialog1();
+    if (delete != null) {
+      Navigator.of(context).pop();
+    }
+  }
 
-  void f1111(){
-    _timer = Timer.periodic(Duration(seconds: 1),(timer){
-
+  void settime()async{
+    _timer = Timer.periodic(Duration(milliseconds: 50),(timer){
         if(nownumber<100){
           setState(() {
             nownumber++;
           });
         }
         else {
-          timer.cancel();
-          //timer=null;
+          _timer.cancel();
+          _timer=null;
           print(nownumber);
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(
-              builder: (BuildContext context) {
-                return UserContainer(
-                    user: User('1', '1'), child: new LoginPage());
-              }
-          )
-          );
+          back();
         }
+
     });
+
   }
 
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    f1111();
 
     return Scaffold(
       body: Column(
@@ -71,6 +67,7 @@ Timer _timer;
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
+
                 Image.network(
                   'https://www.debuda.net/wp-content/uploads/2017/11/como-decorar-una-habitacion-para-meditar.jpg',
                   fit: BoxFit.cover,
@@ -246,7 +243,7 @@ Timer _timer;
                       )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -382,4 +379,25 @@ Timer _timer;
       ),
     );
   }
+
+Future<bool> showDeleteConfirmDialog1() {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("提示"),
+        content: Text("您已完成注册，将返回页面"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("好的"),
+            onPressed: () {
+              //关闭对话框并返回true
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 }

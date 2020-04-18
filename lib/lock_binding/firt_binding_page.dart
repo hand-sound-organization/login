@@ -263,13 +263,14 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
 //                                    ),
                                   ),
                                   onPressed: (){
-                                    Navigator.push(
-                                        context, MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
-                                        }
-                                    )
-                                    );
+                                    Navigator.of(context).pop();
+//                                    Navigator.push(
+//                                        context, MaterialPageRoute(
+//                                        builder: (BuildContext context) {
+//                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
+//                                        }
+//                                    )
+//                                    );
                               },
                             ),
                   ),

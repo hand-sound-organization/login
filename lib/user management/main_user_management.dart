@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:handsound/lock_binding/firt_binding_page.dart';
+import 'package:handsound/user_provider.dart';
+import 'package:handsound/user.dart';
+import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
 //import '../Ads.dart';
 
 
-class AnimatedListWidget extends StatefulWidget {
+class MainUserManage extends StatefulWidget {
   @override
-  _AnimatedListWidgetState createState() => _AnimatedListWidgetState();
+  _MainUserManageState createState() => _MainUserManageState();
 }
 
-class _AnimatedListWidgetState extends State<AnimatedListWidget> {
+class _MainUserManageState extends State<MainUserManage> {
   // the GlobalKey is needed to animate the list
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
@@ -49,7 +51,22 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
         child: Icon(Icons.add),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        onPressed: () => _insertSingleItem(),
+        onPressed: () async {
+
+          bool delete = await showDeleteConfirmDialog1();
+          if (delete != null) {
+            Navigator.pushNamed( context,"lock_sign_up_page");
+          }
+          _insertSingleItem();
+//          Navigator.push(
+//              context, MaterialPageRoute(
+//              builder: (BuildContext context) {
+//                return UserContainer(user: User('1','1'), child: new LockSignUpPage());
+//              }
+//          )
+//          );
+
+        },
       ),
     );
   }
@@ -66,8 +83,8 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
           ),
           trailing: GestureDetector(
             child: Icon(
-              Icons.remove_circle,
-              color: Colors.red,
+              Icons.settings,
+              color: Colors.grey,
             ),
             onTap: () {
               _removeSingleItems(index);
@@ -86,7 +103,7 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
     } else {
       insertIndex = 0;
     }
-    String item = "Item ${insertIndex + 1}";
+    String item = "成员 ${insertIndex + 1}";
     _data.insert(insertIndex, item);
     _listKey.currentState.insertItem(insertIndex);
   }
@@ -101,7 +118,18 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
 //      _listKey.currentState.insertItem(insertIndex + offset);
 //    }
 //  }
-
+  void _rename(int removeAt){
+    int removeIndex = removeAt;
+    String removedItem = _data.removeAt(removeIndex);
+    // This builder is just so that the animation has something
+    // to work with before it disappears from view since the original
+    // has already been deleted.
+    AnimatedListRemovedItemBuilder builder = (context, animation) {
+      // A method to build the Card widget.
+      return _buildItem(removedItem, animation, removeAt);
+    };
+    _listKey.currentState.removeItem(removeIndex, builder);
+  }
   /// Method to remove an item at an index from the list
   void _removeSingleItems(int removeAt) {
     int removeIndex = removeAt;
@@ -127,4 +155,29 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
 //      _listKey.currentState.removeItem(removeIndex, builder);
 //    }
 //  }
+  Future<bool> showDeleteConfirmDialog1() {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("提示"),
+          content: Text("您希望添加一个新用户么?"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("取消"),
+              onPressed: () => Navigator.of(context).pop(), // 关闭对话框
+            ),
+            FlatButton(
+              child: Text("确定"),
+              onPressed: () {
+                //关闭对话框并返回true
+                Navigator.of(context).pop(true);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+

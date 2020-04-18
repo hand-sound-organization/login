@@ -14,6 +14,7 @@ import 'lock_sign_up/lock_sign_up_page.dart';
 import 'firstpage.dart';
 import 'bottomsheet.dart';
 import 'bottom2.dart';
+import 'user management/main_user_management.dart';
 /**
  *注册界面
  */
@@ -281,14 +282,18 @@ class _SignInPageState extends State<SignInPage> {
                 new SnackBar(content: new Text("登录成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-
-            Navigator.push(
-                context, MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new BingdingLockPage());
-                }
-            )
-            );
+            Navigator.of(context).pushNamed("main_user_management_page");
+//            Navigator.push( context,
+//                MaterialPageRoute(builder: (context) {
+//                  return LockSignUpPage();
+//                }));
+//            Navigator.push(
+//                context, MaterialPageRoute(
+//                builder: (BuildContext context) {
+//                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new MainUserManage());
+//                }
+//            )
+//            );
 
           }
 //          debugDumpApp();
