@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:async';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:handsound/login_page.dart';
 import 'package:handsound/sign_in_page.dart';
@@ -10,6 +11,7 @@ import 'progress_bar.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
+import 'binging_lock_page.dart';
 
 class BingdingSearchPage extends StatefulWidget {
   BingdingSearchPage({Key key}) : super(key: key);
@@ -23,6 +25,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
   void initState() {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
+    _openModalBottomSheet();
 
   }
   @override
@@ -107,24 +110,65 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                   ),
                 ),
                 Positioned(
-                  bottom: 100,
-                  left: 40,
-                    child:Card(
-                      color: Colors.blueAccent,
-                      //z轴的高度，设置card的阴影
-                      elevation: 20.0,
-                      //设置shape，这里设置成了R角
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5.0),
-                            topRight: Radius.circular(40.0),
-                            bottomLeft: Radius.circular(5.0),
-                            bottomRight: Radius.circular(5.0)),
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      semanticContainer: false,
-                      child: getChild(),
-                    )
+//                  bottom: 100,
+//                  left: 40,
+//                    child:Card(
+//                      color: Colors.blueAccent,
+//                      //z轴的高度，设置card的阴影
+//                      elevation: 20.0,
+//                      //设置shape，这里设置成了R角
+//                      shape: RoundedRectangleBorder(
+//                        borderRadius: BorderRadius.only(
+//                            topLeft: Radius.circular(5.0),
+//                            topRight: Radius.circular(40.0),
+//                            bottomLeft: Radius.circular(5.0),
+//                            bottomRight: Radius.circular(5.0)),
+//                      ),
+//                      clipBehavior: Clip.antiAlias,
+//                      semanticContainer: false,
+//                      child: getChild(),
+//                    )
+
+                child: Container(
+//                  padding: EdgeInsets.all(16),
+//                  child: Center(
+//                    child: Row(
+//                      mainAxisAlignment: MainAxisAlignment.center,
+//                      children: <Widget>[
+//                        FlatButton(
+//                          child: Text('Modal BottomSheet'),
+//                          onPressed: _openModalBottomSheet,
+////                  onPressed: () {
+////                    showDialog<Null>(
+////                      context: context,
+////                      builder: (BuildContext context) {
+////                        return new SimpleDialog(
+////                          title: new Text('选择'),
+////                          children: <Widget>[
+////                            new SimpleDialogOption(
+////                              child: new Text('选项 1'),
+////                              onPressed: () {
+////                                Navigator.of(context).pop();
+////                              },
+////                            ),
+////                            new SimpleDialogOption(
+////                              child: new Text('选项 2'),
+////                              onPressed: () {
+////                                Navigator.of(context).pop();
+////                              },
+////                            ),
+////                          ],
+////                        );
+////                      },
+////                    ).then((val) {
+////                      print(val);
+////                    });
+////                  },
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+                ),
                 ),
               ],
             ),
@@ -270,7 +314,111 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
     );
   }
 
+  _openModalBottomSheet(){
+//    showModalBottomSheet(
+//        context: context,
+//        builder: (BuildContext context){
+//          return Container(
+//            decoration: BoxDecoration(
+//              boxShadow: [
+//                BoxShadow(
+//                  color: Colors.white,
+//                  offset: Offset(0.0, -2.0),
+//                  blurRadius: 4.0,
+//                ),
+//              ],
+//              borderRadius: BorderRadius.only(
+//                topLeft: Radius.circular(24.0),
+//                topRight: Radius.circular(24.0),
+//              ),
+//
+//            ),
+//            height: 100,
+////            child: Column(
+////              children: <Widget>[
+////                ListTile(
+////                  title: Text('Option A'),
+////                ),
+////                ListTile(
+////                  title: Text('Option B'),
+////                ),
+////                ListTile(
+////                  title: Text('Option C'),
+////                ),
+////              ],
+////            ),
+////              child:Card(
+////                color: Colors.blueAccent,
+////                //z轴的高度，设置card的阴影
+////                elevation: 20.0,
+////                //设置shape，这里设置成了R角
+////                shape: RoundedRectangleBorder(
+////                  borderRadius: BorderRadius.only(
+////                      topLeft: Radius.circular(40.0),
+////                      topRight: Radius.circular(40.0),
+////                      bottomLeft: Radius.circular(5.0),
+////                      bottomRight: Radius.circular(5.0)),
+////                ),
+////                clipBehavior: Clip.antiAlias,
+////                semanticContainer: false,
+////                child: getChild(),
+////              )
+//          );
+//        }
+//    );
+    Future.delayed(Duration(seconds: 2), (){
+//      Navigator.of(context).pop();
+//      print('延时1s执行');
+      showModalBottomSheet(
+          backgroundColor: Color(0x000000),
+          context: context,
+          builder: (BuildContext bc) {
+            return Stack(
+              children: <Widget>[
+//              Container(
+//                height: 30.0,
+//                width: double.infinity,
+////                color: Colors.black54,
+//              color: Color(0xFF382d4f),
+//              ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
+                      )),
+                ),
+                Container(
+                  child: FlatButton(
+//                  color: Colors.red,
+                    child: Container(
+//                    color: Colors.white,
+                      alignment: Alignment.center,
+                      padding:
+                      EdgeInsets.only(top: 20.0, bottom: 20.0),
+                      child: Text(
+                        "bottomSheet的内容",
+                      ),
+                    ),
+                    onPressed: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return UserContainer(user: User('1','1'), child: new BingdingLockPage());
+                          }
+                      )
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          });
+    });
 
+
+  }
 
   getChild() {
     return Container(
