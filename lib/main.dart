@@ -5,6 +5,7 @@ import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'user management/main_user_management.dart';
 import 'lock_sign_up/lock_sign_up_page.dart';
+import 'user management/rename_or_delete_page.dart';
 
 
 void main() {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         "main_user_management_page":(context)=>MainUserManage(),
         "sign_in_page":(context)=>SignInPage(),
         "lock_sign_up_page":(context)=>LockSignUpPage(),
+        "rename_or_delete_page":(context)=>RenameOrDeletePage()
       },
       home:
       /**

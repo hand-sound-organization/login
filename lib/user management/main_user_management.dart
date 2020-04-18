@@ -56,8 +56,9 @@ class _MainUserManageState extends State<MainUserManage> {
           bool delete = await showDeleteConfirmDialog1();
           if (delete != null) {
             Navigator.pushNamed( context,"lock_sign_up_page");
+            _insertSingleItem();
           }
-          _insertSingleItem();
+
 //          Navigator.push(
 //              context, MaterialPageRoute(
 //              builder: (BuildContext context) {
@@ -86,7 +87,8 @@ class _MainUserManageState extends State<MainUserManage> {
               Icons.settings,
               color: Colors.grey,
             ),
-            onTap: () {
+            onTap: () async{
+              var result = Navigator.of(context).pushNamed("rename_or_delete_page");
               _removeSingleItems(index);
             },
           ),
