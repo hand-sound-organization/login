@@ -89,7 +89,7 @@ class _MainUserManageState extends State<MainUserManage> {
             ),
             onTap: () async{
               var result = Navigator.of(context).pushNamed("rename_or_delete_page",arguments: "$item");
-              _removeSingleItems(index);
+              //_removeSingleItems(index);
             },
           ),
         ),

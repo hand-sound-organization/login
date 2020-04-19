@@ -254,7 +254,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                onPressed: showHasInputDialog(name)
+                                onPressed: showHasInputDialog
                                 ,
                               ),
                             ),
@@ -445,7 +445,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
       },
     );
   }
-  showHasInputDialog(String name) {
+  showHasInputDialog() {
     var widget = Center(
         child:Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -482,7 +482,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                          ),
                          child: TextField(
                            decoration: InputDecoration(
-                             hintText: "$name",
+                             hintText: "111",
                            ),
                          ),
                        )

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         "main_user_management_page":(context)=>MainUserManage(),
         "sign_in_page":(context)=>SignInPage(),
         "lock_sign_up_page":(context)=>LockSignUpPage(),
-        "rename_or_delete_page":(context)=>RenameOrDeletePage()
+        "rename_or_delete_page":(context)=>RenameOrDeletePage(),
       },
       home:
       /**
