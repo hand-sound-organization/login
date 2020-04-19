@@ -379,7 +379,6 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                               onPressed: ()async{
                                 bool result = await showDeleteConfirmDialog1();
                                 if(result==null){
-
                                 }else{
                                   Navigator.of(context).pop("delete");
                                 }
