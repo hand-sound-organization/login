@@ -53,7 +53,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
     });
 
 
-    print(name);
+    //print(name);
 
     return Scaffold(
       body: Column(
@@ -353,7 +353,8 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
                                       )
                                   ));
-                                  if(newname!=null&&newname!=name){
+                                  //print(newname);
+                                  if(newname!=null){
                                     Navigator.of(context).pop(newname);
                                   }
                                 }
@@ -382,7 +383,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                 ),
                               ),
                               onPressed: (){
-                                Navigator.of(context).pop();
+                                Navigator.of(context).pop("delete");
                               },
                             ),
                           ),

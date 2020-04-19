@@ -88,8 +88,17 @@ class _MainUserManageState extends State<MainUserManage> {
               color: Colors.grey,
             ),
             onTap: () async{
-              var result = Navigator.of(context).pushNamed("rename_or_delete_page",arguments: "$item");
-              //_removeSingleItems(index);
+              var result = await Navigator.of(context).pushNamed("rename_or_delete_page",arguments: "$item");
+              print("$result");
+              if(result==null){
+              }
+              else if("$result"=="delete"){
+                _removeSingleItems(index);
+              }
+              else{
+                _data[index]="$result";
+              }
+
             },
           ),
         ),
