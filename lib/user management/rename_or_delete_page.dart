@@ -21,8 +21,7 @@ class RenameOrDeletePage extends StatefulWidget {
 }
 
 class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
-  var nownumber = 0;
-
+  TextEditingController _selectionController =  TextEditingController();
 
   @override
   void initState() {
@@ -42,8 +41,14 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     String name = ModalRoute.of(context).settings.arguments;
+//    _selectionController.text="$name";
+//    _selectionController.selection=TextSelection(
+//        baseOffset: 0,
+//        extentOffset: _selectionController.text.length
+//    );
     print(name);
 
     return Scaffold(
@@ -254,7 +259,93 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                onPressed: showHasInputDialog
+                                onPressed: (){
+                                  showDialog(context: context, builder: (context) => Center(
+                                      child:Dialog(
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+                                        child: Container(
+                                            height: 180,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(Radius.circular(25)),
+                                              color: Colors.white,
+                                            ),
+
+                                            child: Column(
+                                              children: <Widget>[
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment:MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Text("重命名",
+                                                      style: TextStyle(
+                                                          fontSize: 40
+                                                      ),)
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.min,
+
+                                                  children: <Widget>[
+                                                    Container(
+                                                      width: 300,
+                                                      padding: EdgeInsets.only(
+                                                        left: 10, right: 10, ),
+                                                      decoration: BoxDecoration(
+                                                        color: Color(0x000000),
+                                                        borderRadius: BorderRadius.all(Radius.circular(25)),
+                                                      ),
+                                                      child: TextField(
+                                                        //autofocus: true,
+                                                        controller: _selectionController,
+                                                        decoration: InputDecoration(
+                                                          border: InputBorder.none,
+                                                          //hintText: _selectionController.text,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                Container(
+                                                  height: 20,
+                                                  color: Color(0x000000),
+                                                ),
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      width:150,
+                                                      child: RaisedButton(
+                                                        onPressed: (){},
+                                                        color: Colors.white,
+                                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+                                                        child: Text('确定'),
+                                                      ),
+                                                    ),
+
+                                                    Container(
+                                                      width: 20,
+                                                      color: Color(0x000000),
+                                                    ),
+                                                    Container(
+                                                      width:150,
+                                                      child: RaisedButton(
+                                                        onPressed: (){},
+                                                        color: Colors.white,
+                                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+                                                        child: Text('取消'),
+                                                      ),
+                                                    ),
+                                                  ],
+
+                                                )
+                                              ],
+                                            )
+                                        ),
+
+                                      )
+                                  ));
+                                }
                                 ,
                               ),
                             ),
@@ -292,39 +383,6 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
               ],
             ),
           ),
-//          Container(
-//            width: size.width,
-//            height: size.height * .28,
-//            child: Row(
-//              children: <Widget>[
-//                _buildDashboardItem(
-//                  Color(0xFF23BFFF),
-//                  Icons.local_drink,
-//                  70,
-//                  '0.58',
-//                  'LTRS',
-//                  'DRINK',
-//                ),
-//                _buildDashboardItem(
-//                  Color(0xFF9CDD5D),
-//                  Icons.fastfood,
-//                  50,
-//                  '458',
-//                  'GRMS.',
-//                  'FOOD',
-//                  true,
-//                ),
-//                _buildDashboardItem(
-//                  Color(0xFFEF453C),
-//                  Icons.hotel,
-//                  30,
-//                  '7.30',
-//                  'HRS',
-//                  'SLEEP',
-//                ),
-//              ],
-//            ),
-//          ),
         ],
       ),
     );
@@ -445,77 +503,78 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
       },
     );
   }
-  showHasInputDialog() {
-    var widget = Center(
-        child:Dialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-            child: Container(
-              height: 300,
-               decoration: BoxDecoration(
-                 borderRadius: BorderRadius.all(Radius.circular(25)),
-                 color: Colors.blueAccent,
-               ),
-
-               child: Column(
-                 children: <Widget>[
-                   Row(
-                     mainAxisSize: MainAxisSize.max,
-                     mainAxisAlignment:MainAxisAlignment.center,
-                     children: <Widget>[
-                       Text("重命名",
-                         style: TextStyle(
-                             fontSize: 40
-                         ),)
-                     ],
-                   ),
-                   Row(
-                     mainAxisSize: MainAxisSize.min,
-//                  mainAxisAlignment:MainAxisAlignment.center,
-                     children: <Widget>[
-                       Container(
-                         width: 250,
-                         padding: EdgeInsets.only(
-                           left: 10, right: 10, ),
-                         decoration: BoxDecoration(
-                           color: Colors.grey,
-                           borderRadius: BorderRadius.all(Radius.circular(25)),
-                         ),
-                         child: TextField(
-                           decoration: InputDecoration(
-                             hintText: "111",
-                           ),
-                         ),
-                       )
-                     ],
-                   ),
-                   Container(
-                     height: 100,
-                     color: Colors.white,
-                   ),
-                   Row(
-                     mainAxisSize: MainAxisSize.max,
-                     children: <Widget>[
-                       RaisedButton(
-                         onPressed: (){},
-                         color: Colors.white,
-                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-                         child: Text('确定'),
-                       ),
-                       RaisedButton(
-                         onPressed: (){},
-                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-                         child: Text('取消'),
-                       )
-                     ],
-
-                   )
-                 ],
-               )
-           ),
-
-        )
-    );
-    showDialog(context: context, builder: (context) => widget);
-  }
+//  showHasInputDialog({@required String name1}) {
+//
+//    var widget = Center(
+//        child:Dialog(
+//            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+//            child: Container(
+//              height: 300,
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.all(Radius.circular(25)),
+//                 color: Colors.blueAccent,
+//               ),
+//
+//               child: Column(
+//                 children: <Widget>[
+//                   Row(
+//                     mainAxisSize: MainAxisSize.max,
+//                     mainAxisAlignment:MainAxisAlignment.center,
+//                     children: <Widget>[
+//                       Text("重命名",
+//                         style: TextStyle(
+//                             fontSize: 40
+//                         ),)
+//                     ],
+//                   ),
+//                   Row(
+//                     mainAxisSize: MainAxisSize.min,
+////                  mainAxisAlignment:MainAxisAlignment.center,
+//                     children: <Widget>[
+//                       Container(
+//                         width: 250,
+//                         padding: EdgeInsets.only(
+//                           left: 10, right: 10, ),
+//                         decoration: BoxDecoration(
+//                           color: Colors.grey,
+//                           borderRadius: BorderRadius.all(Radius.circular(25)),
+//                         ),
+//                         child: TextField(
+//                           decoration: InputDecoration(
+//                             hintText: "$name1",
+//                           ),
+//                         ),
+//                       )
+//                     ],
+//                   ),
+//                   Container(
+//                     height: 100,
+//                     color: Colors.white,
+//                   ),
+//                   Row(
+//                     mainAxisSize: MainAxisSize.max,
+//                     children: <Widget>[
+//                       RaisedButton(
+//                         onPressed: (){},
+//                         color: Colors.white,
+//                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+//                         child: Text('确定'),
+//                       ),
+//                       RaisedButton(
+//                         onPressed: (){},
+//                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+//                         child: Text('取消'),
+//                       )
+//                     ],
+//
+//                   )
+//                 ],
+//               )
+//           ),
+//
+//        )
+//    );
+//    showDialog(context: context, builder: (context) => widget);
+//  }
 }
 
