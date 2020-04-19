@@ -44,11 +44,15 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
     Size size = MediaQuery.of(context).size;
     String name = ModalRoute.of(context).settings.arguments;
-//    _selectionController.text="$name";
-//    _selectionController.selection=TextSelection(
-//        baseOffset: 0,
-//        extentOffset: _selectionController.text.length
-//    );
+    setState(() {
+      _selectionController.text="$name";
+      _selectionController.selection=TextSelection(
+          baseOffset: 0,
+          extentOffset: _selectionController.text.length
+      );
+    });
+
+
     print(name);
 
     return Scaffold(
@@ -259,8 +263,8 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                onPressed: (){
-                                  showDialog(context: context, builder: (context) => Center(
+                                onPressed: () async {
+                                  String newname = await showDialog(context: context, builder: (context) => Center(
                                       child:Dialog(
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
                                         child: Container(
@@ -291,11 +295,11 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                       padding: EdgeInsets.only(
                                                         left: 10, right: 10, ),
                                                       decoration: BoxDecoration(
-                                                        color: Color(0x000000),
+                                                        color: Color(0xffededed),
                                                         borderRadius: BorderRadius.all(Radius.circular(25)),
                                                       ),
                                                       child: TextField(
-                                                        //autofocus: true,
+                                                        autofocus: true,
                                                         controller: _selectionController,
                                                         decoration: InputDecoration(
                                                           border: InputBorder.none,
@@ -316,8 +320,10 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                     Container(
                                                       width:150,
                                                       child: RaisedButton(
-                                                        onPressed: (){},
-                                                        color: Colors.white,
+                                                        onPressed: (){
+                                                          Navigator.of(context).pop(_selectionController.text);
+                                                        },
+                                                        color: Color(0xfff5f5f5),
                                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
                                                         child: Text('确定'),
                                                       ),
@@ -330,8 +336,10 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                     Container(
                                                       width:150,
                                                       child: RaisedButton(
-                                                        onPressed: (){},
-                                                        color: Colors.white,
+                                                        onPressed: (){
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                        color: Color(0xfff5f5f5),
                                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
                                                         child: Text('取消'),
                                                       ),
@@ -345,6 +353,9 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
                                       )
                                   ));
+                                  if(newname!=null&&newname!=name){
+                                    Navigator.of(context).pop(newname);
+                                  }
                                 }
                                 ,
                               ),
