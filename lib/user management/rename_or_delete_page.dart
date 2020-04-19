@@ -29,12 +29,6 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
     themeBloc.changeTheme(Themes.stayfit);
   }
 
-  void back() async{
-    bool delete = await showDeleteConfirmDialog1();
-    if (delete != null) {
-      Navigator.of(context).pop();
-    }
-  }
 
 
 
@@ -382,8 +376,13 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                   fontSize: 20,
                                 ),
                               ),
-                              onPressed: (){
-                                Navigator.of(context).pop("delete");
+                              onPressed: ()async{
+                                bool result = await showDeleteConfirmDialog1();
+                                if(result==null){
+
+                                }else{
+                                  Navigator.of(context).pop("delete");
+                                }
                               },
                             ),
                           ),
@@ -501,10 +500,16 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
       builder: (context) {
         return AlertDialog(
           title: Text("提示"),
-          content: Text("您已完成注册，将返回页面"),
+          content: Text("您确认删除该用户吗"),
           actions: <Widget>[
             FlatButton(
-              child: Text("好的"),
+              child: Text("取消"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text("确认"),
               onPressed: () {
                 //关闭对话框并返回true
                 Navigator.of(context).pop(true);
