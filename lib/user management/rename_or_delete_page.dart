@@ -22,7 +22,7 @@ class RenameOrDeletePage extends StatefulWidget {
 
 class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
   var nownumber = 0;
-  TextEditingController _selectionController =  TextEditingController();
+
 
   @override
   void initState() {
@@ -481,7 +481,6 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                            borderRadius: BorderRadius.all(Radius.circular(25)),
                          ),
                          child: TextField(
-                           controller: _selectionController,
                            decoration: InputDecoration(
                              hintText: "$name",
                            ),
