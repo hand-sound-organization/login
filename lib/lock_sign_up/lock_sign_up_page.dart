@@ -84,76 +84,7 @@ Timer _timer2;
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 40,
-                  width: size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: 65,
-                          alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '门锁注册',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-//                            Stack(
-//                              children: <Widget>[
-//                                Container(
-//                                  width: 50,
-//                                  child: Icon(
-//                                    Icons.new_releases,
-//                                    size: 30,
-//                                    color: Colors.white,
-//                                  ),
-//                                ),
-//                                Positioned(
-//                                  top: 0,
-//                                  right: 0,
-//                                  child: Container(
-//                                    height: 20,
-//                                    width: 20,
-//                                    alignment: Alignment.center,
-//                                    child: Text(
-//                                      '7',
-//                                      style: TextStyle(
-//                                        color: Colors.white,
-//                                        fontWeight: FontWeight.bold,
-//                                      ),
-//                                    ),
-//                                    decoration: BoxDecoration(
-//                                      color: Colors.blue,
-//                                      borderRadius: BorderRadius.circular(50),
-//                                    ),
-//                                  ),
-//                                )
-//                              ],
-//                            ),
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+
                 Positioned(
                   bottom: 10,
                   width: size.width,
@@ -216,6 +147,7 @@ Timer _timer2;
                     ),
                   ),
                 ),
+
                 Positioned(
                   top: 0,
                   width: size.width,
@@ -242,6 +174,80 @@ Timer _timer2;
 //                        ),
                       )
                     ],
+                  ),
+                ),
+                Positioned(
+                  top: 40,
+                  width: size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 65,
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            iconSize: 30,
+                            icon:Icon(Icons.arrow_back),
+                            color: Colors.white,
+                            onPressed: (){
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                        Text(
+                          '门锁注册',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+//                            Stack(
+//                              children: <Widget>[
+//                                Container(
+//                                  width: 50,
+//                                  child: Icon(
+//                                    Icons.new_releases,
+//                                    size: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+//                                Positioned(
+//                                  top: 0,
+//                                  right: 0,
+//                                  child: Container(
+//                                    height: 20,
+//                                    width: 20,
+//                                    alignment: Alignment.center,
+//                                    child: Text(
+//                                      '7',
+//                                      style: TextStyle(
+//                                        color: Colors.white,
+//                                        fontWeight: FontWeight.bold,
+//                                      ),
+//                                    ),
+//                                    decoration: BoxDecoration(
+//                                      color: Colors.blue,
+//                                      borderRadius: BorderRadius.circular(50),
+//                                    ),
+//                                  ),
+//                                )
+//                              ],
+//                            ),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],

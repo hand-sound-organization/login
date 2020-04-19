@@ -54,44 +54,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 40,
-                  width: size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: 65,
-                          alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '门锁注册',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+
                 Positioned(
                   top: 0,
                   width: size.width,
@@ -169,6 +132,48 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
 //                    ),
 //                  ),
                 ),
+                ),
+                Positioned(
+                  top: 40,
+                  width: size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 65,
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            iconSize: 30,
+                            icon:Icon(Icons.arrow_back),
+                            color: Colors.white,
+                            onPressed: (){
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                        Text(
+                          '门锁注册',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

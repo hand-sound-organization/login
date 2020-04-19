@@ -29,6 +29,7 @@ class _MainUserManageState extends State<MainUserManage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF5b3fa1),
         centerTitle: true,
         title: Text(
           '用户管理',

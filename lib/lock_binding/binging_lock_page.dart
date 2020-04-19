@@ -71,9 +71,13 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                         Container(
                           width: 65,
                           alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
+                          child: IconButton(
+                            iconSize: 30,
+                            icon:Icon(Icons.arrow_back),
                             color: Colors.white,
+                            onPressed: (){
+                              Navigator.of(context).pop();
+                            },
                           ),
                         ),
                         Text(

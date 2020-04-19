@@ -73,76 +73,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 40,
-                  width: size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: 65,
-                          alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '$name',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-//                            Stack(
-//                              children: <Widget>[
-//                                Container(
-//                                  width: 50,
-//                                  child: Icon(
-//                                    Icons.new_releases,
-//                                    size: 30,
-//                                    color: Colors.white,
-//                                  ),
-//                                ),
-//                                Positioned(
-//                                  top: 0,
-//                                  right: 0,
-//                                  child: Container(
-//                                    height: 20,
-//                                    width: 20,
-//                                    alignment: Alignment.center,
-//                                    child: Text(
-//                                      '7',
-//                                      style: TextStyle(
-//                                        color: Colors.white,
-//                                        fontWeight: FontWeight.bold,
-//                                      ),
-//                                    ),
-//                                    decoration: BoxDecoration(
-//                                      color: Colors.blue,
-//                                      borderRadius: BorderRadius.circular(50),
-//                                    ),
-//                                  ),
-//                                )
-//                              ],
-//                            ),
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+
 //                Positioned(
 //                  bottom: 10,
 //                  width: size.width,
@@ -234,6 +165,80 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                   ),
                 ),
                 Positioned(
+                  top: 40,
+                  width: size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 65,
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            iconSize: 30,
+                            icon:Icon(Icons.arrow_back),
+                            color: Colors.white,
+                            onPressed: (){
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                        Text(
+                          '$name',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+//                            Stack(
+//                              children: <Widget>[
+//                                Container(
+//                                  width: 50,
+//                                  child: Icon(
+//                                    Icons.new_releases,
+//                                    size: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+//                                Positioned(
+//                                  top: 0,
+//                                  right: 0,
+//                                  child: Container(
+//                                    height: 20,
+//                                    width: 20,
+//                                    alignment: Alignment.center,
+//                                    child: Text(
+//                                      '7',
+//                                      style: TextStyle(
+//                                        color: Colors.white,
+//                                        fontWeight: FontWeight.bold,
+//                                      ),
+//                                    ),
+//                                    decoration: BoxDecoration(
+//                                      color: Colors.blue,
+//                                      borderRadius: BorderRadius.circular(50),
+//                                    ),
+//                                  ),
+//                                )
+//                              ],
+//                            ),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
                   top: 600,
                   left: 57,
                   width: size.width,
@@ -312,7 +317,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: <Widget>[
                                                     Container(
-                                                      width:150,
+                                                      width:140,
                                                       child: RaisedButton(
                                                         onPressed: (){
                                                           Navigator.of(context).pop(_selectionController.text);
@@ -328,7 +333,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                       color: Color(0x000000),
                                                     ),
                                                     Container(
-                                                      width:150,
+                                                      width:140,
                                                       child: RaisedButton(
                                                         onPressed: (){
                                                           Navigator.of(context).pop();

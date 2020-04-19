@@ -72,10 +72,6 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                         Container(
                           width: 65,
                           alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
                         ),
                         Text(
                           '门锁绑定',
@@ -263,14 +259,14 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
 //                                    ),
                                   ),
                                   onPressed: (){
-                                    Navigator.of(context).pop();
-//                                    Navigator.push(
-//                                        context, MaterialPageRoute(
-//                                        builder: (BuildContext context) {
-//                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
-//                                        }
-//                                    )
-//                                    );
+                                    //Navigator.of(context).pop();
+                                    Navigator.push(
+                                        context, MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                          return UserContainer(user: User('1','1'), child: new BingdingSearchPage());
+                                        }
+                                    )
+                                    );
                               },
                             ),
                   ),
