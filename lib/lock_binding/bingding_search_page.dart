@@ -395,27 +395,83 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                       )),
                 ),
                 Container(
-                  child: FlatButton(
-//                  color: Colors.red,
-                    child: Container(
-//                    color: Colors.white,
-                      alignment: Alignment.center,
-                      padding:
-                      EdgeInsets.only(top: 20.0, bottom: 20.0),
-                      child: Text(
-                        "bottomSheet的内容",
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('设备列表',
+                          style: TextStyle(
+                            fontSize: 30
+                          ),)
+                        ],
                       ),
-                    ),
-                    onPressed: (){
-                      Navigator.push(
-                          context, MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return UserContainer(user: User('1','1'), child: new BingdingLockPage());
-                          }
+                      Container(
+                        height: 30,
+                        color: Color(0x000000),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image(image: new AssetImage("assets/logo1.png"),
+                          width: 200,),
+                        ],
+                      ),
+                      Container(
+                        height: 30,
+                        color: Color(0x000000),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('掌音智能门锁',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.grey
+                            ),)
+                        ],
+                      ),
+                      Container(
+                        height: 30,
+                        color: Color(0x000000),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.add_circle,
+                              color: Colors.lightBlue,),
+                             iconSize: 50,
+                          onPressed: (){
+                              Navigator.of(context).pushNamed("bingding_lock_page");
+                          },
+                          )
+                        ],
                       )
-                      );
-                    },
+                    ],
                   ),
+//                  child: FlatButton(
+////                  color: Colors.red,
+//                    child: Container(
+////                    color: Colors.white,
+//                      alignment: Alignment.center,
+//                      padding:
+//                      EdgeInsets.only(top: 20.0, bottom: 20.0),
+//                      child: Text(
+//                        "bottomSheet的内容",
+//                      ),
+//                    ),
+//                    onPressed: (){
+//                      Navigator.push(
+//                          context, MaterialPageRoute(
+//                          builder: (BuildContext context) {
+//                            return UserContainer(user: User('1','1'), child: new BingdingLockPage());
+//                          }
+//                      )
+//                      );
+//                    },
+//                  ),
                 ),
               ],
             );

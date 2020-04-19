@@ -282,7 +282,7 @@ class _SignInPageState extends State<SignInPage> {
                 new SnackBar(content: new Text("登录成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-            Navigator.of(context).pushNamed("main_user_management_page");
+            Navigator.of(context).pushNamed("first_bingding_page");
 //            Navigator.push( context,
 //                MaterialPageRoute(builder: (context) {
 //                  return LockSignUpPage();

@@ -102,9 +102,13 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                     ),
                   ),
                 ),
-
                 Positioned(
-                  top:250,
+                  top:150,
+                  left: 100,
+                  child: Image(image: new AssetImage("assets/logo1.png")),
+                ),
+                Positioned(
+                  top:430,
                   left: 40,
                   width: size.width/1.2,
                   height: size.height/2.5,
@@ -115,7 +119,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                     ],
                   ),
                 ),
-                Positioned(child: buildSignInButton(), top: 500,left: 135,)
+                Positioned(child: buildSignInButton(), top: 700,left: 135,)
               ],
             ),
           ),

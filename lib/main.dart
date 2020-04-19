@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handsound/door_chain/main_door_chain_page.dart';
 import 'package:handsound/home_page.dart';
+import 'package:handsound/lock_binding/binging_lock_page.dart';
 import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/sign_in_page.dart';
 import 'package:handsound/user_provider.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         "lock_sign_up_page":(context)=>LockSignUpPage(),
         "rename_or_delete_page":(context)=>RenameOrDeletePage(),
         "main_door_chain_page":(context)=>MainDoorChainPage(),
-        "first_bingding_page":(context)=>FirstBingdingPage()
+        "first_bingding_page":(context)=>FirstBingdingPage(),
+        "bingding_lock_page":(context)=>BingdingLockPage()
       },
       home:
       /**
