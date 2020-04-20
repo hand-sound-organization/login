@@ -37,6 +37,7 @@ class _AddAlarmState extends State<AddAlarm> {
       isloaded=!isloaded;
       _selectedTime = transferDataEntity.timestart;
       _selectedTime2 = transferDataEntity.timeend;
+      chooseData = transferDataEntity.list;
     }
 
     //print(result);
@@ -117,7 +118,7 @@ class _AddAlarmState extends State<AddAlarm> {
               FlatButton(
                 color: Theme.of(context).accentColor,
                 child: Text('保存', style: TextStyle(color: Colors.white)),
-                onPressed: () => Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2))
+                onPressed: () => Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2,chooseData))
               )
             ],
           ),

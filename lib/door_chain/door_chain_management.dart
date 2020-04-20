@@ -17,9 +17,9 @@ class _DoorChainManageState extends State<DoorChainManage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
   TransferDataEntity transferDataEntity;
   // backing data
-  List<TimeOfDay> _datastart = [ TimeOfDay(hour: 9, minute: 30) ,TimeOfDay(hour: 13, minute: 30),TimeOfDay(hour: 21, minute: 30) ];
-  List<TimeOfDay> _dataend = [ TimeOfDay(hour: 12, minute: 30) ,TimeOfDay(hour: 14, minute: 30),TimeOfDay(hour: 23, minute: 30)];
-  List<List> datalist =  [ [false,true,true,true,true,true,true,],  [false,true,true,true,true,true,true,],  [false,true,true,true,true,true,true,]];
+  List<TimeOfDay> _datastart =[];
+  List<TimeOfDay> _dataend =[];
+  List<List> datalist =  [];
   List<bool> chooseData = [false,true,true,true,true,true,true,];
   List<String>  aa = ["周一","周二",'周三','周四','周五',"周六","周日"];
 
@@ -33,13 +33,17 @@ class _DoorChainManageState extends State<DoorChainManage> {
 
   String changeDate(List<bool> list){
     String data ='';
+    print(list);
     for (int i=0; i<7; i++){
       if(list[i]==true){
         data+=aa[i];
         data+="、";
       }
     }
-    data = data.substring(0, data.length-1);
+    if(data.length!=0){
+      data = data.substring(0, data.length-1);
+    }
+
     print(data);
     return data;
   }
@@ -65,7 +69,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
         key: _listKey,
         initialItemCount: _datastart.length,
         itemBuilder: (context, index, animation) {
-          return _buildItem(_datastart[index],_dataend[index],changeDate([false,true,true,true,true,true,true,]), animation, index);
+          return _buildItem(_datastart[index],_dataend[index],changeDate(datalist[index]), animation, index);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -78,8 +82,12 @@ class _DoorChainManageState extends State<DoorChainManage> {
           if (delete != null) {
 
 //            Navigator.pushNamed( context,"add_alarm");
-            var result = await Navigator.of(context).pushNamed("add_alarm");
-            _insertSingleItem();
+            var result = await Navigator.of(context).pushNamed("add_alarm",
+                arguments: TransferDataEntity(
+                    TimeOfDay.now(),TimeOfDay.now(),[true,true,true,true,true,true,true,]))
+            as TransferDataEntity;
+
+            _insertSingleItem(result);
           }
 
 //          Navigator.push(
@@ -120,7 +128,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
             onTap: () async{
               var result = await Navigator.of(context).pushNamed("add_alarm",
                 //arguments:[timestart,timeend,data],
-                arguments:TransferDataEntity(timestart,timeend)
+                arguments:TransferDataEntity(timestart,timeend,datalist[index])
                 //{"timerstart":timestart,"timed":timeend},
               )as TransferDataEntity;
               print("$result");
@@ -135,7 +143,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
   }
 
   /// Method to add an item to an index in a list
-  void _insertSingleItem() {
+  void _insertSingleItem(TransferDataEntity transferDataEntity) {
     int insertIndex;
     if (_datastart.length > 0) {
       insertIndex = _datastart.length;
@@ -143,13 +151,11 @@ class _DoorChainManageState extends State<DoorChainManage> {
       insertIndex = 0;
     }
 //    String item = "成员 ${insertIndex + 1}";
-    List<bool> data = [false,true,true,true,true,true,true,];
 
-   var timestart =  TimeOfDay.now();
-    var timeend   =   TimeOfDay.now();
-    _datastart.insert(insertIndex, timestart);
-    _dataend.insert(insertIndex,timeend);
-    datalist.insert(insertIndex, data);
+
+    _datastart.insert(insertIndex, transferDataEntity.timestart);
+    _dataend.insert(insertIndex,transferDataEntity.timeend);
+    datalist.insert(insertIndex, transferDataEntity.list);
     _listKey.currentState.insertItem(insertIndex);
   }
 
@@ -211,6 +217,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
 class TransferDataEntity {
   final TimeOfDay timestart;
   final TimeOfDay timeend;
+  final List<bool> list;
 
-  TransferDataEntity(this.timestart, this.timeend);
+  TransferDataEntity(this.timestart, this.timeend,this.list);
 }
