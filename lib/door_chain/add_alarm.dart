@@ -126,7 +126,7 @@ class _AddAlarmState extends State<AddAlarm> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>  Navigator.of(context).pop(),
+        onPressed: () =>  Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2,null)),
         backgroundColor: Colors.white,
         child: Icon(
           Icons.delete,

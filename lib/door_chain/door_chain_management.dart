@@ -20,7 +20,6 @@ class _DoorChainManageState extends State<DoorChainManage> {
   List<TimeOfDay> _datastart =[];
   List<TimeOfDay> _dataend =[];
   List<List> datalist =  [];
-  List<bool> chooseData = [false,true,true,true,true,true,true,];
   List<String>  aa = ["周一","周二",'周三','周四','周五',"周六","周日"];
 
 
@@ -86,8 +85,10 @@ class _DoorChainManageState extends State<DoorChainManage> {
                 arguments: TransferDataEntity(
                     TimeOfDay.now(),TimeOfDay.now(),[true,true,true,true,true,true,true,]))
             as TransferDataEntity;
+            if(result.list!=null){
+              _insertSingleItem(result);
+            }
 
-            _insertSingleItem(result);
           }
 
 //          Navigator.push(
@@ -132,6 +133,9 @@ class _DoorChainManageState extends State<DoorChainManage> {
                 //{"timerstart":timestart,"timed":timeend},
               )as TransferDataEntity;
               print("$result");
+              if(result.list==null){
+                _removeSingleItems(index);
+              }
               _datastart[index]=result.timestart;
               _dataend[index]=result.timeend;
 
@@ -173,19 +177,20 @@ class _DoorChainManageState extends State<DoorChainManage> {
 //    _listKey.currentState.removeItem(removeIndex, builder);
 //  }
   /// Method to remove an item at an index from the list
-//  void _removeSingleItems(int removeAt) {
-//    int removeIndex = removeAt;
-//    String removedItem = _data.removeAt(removeIndex);
-//    String removedItemdata = datalist.removeAt(removeIndex);
-//    // This builder is just so that the animation has something
-//    // to work with before it disappears from view since the original
-//    // has already been deleted.
-//    AnimatedListRemovedItemBuilder builder = (context, animation) {
-//      // A method to build the Card widget.
-//      return _buildItem(removedItem,removedItemdata, animation, removeAt);
-//    };
-//    _listKey.currentState.removeItem(removeIndex, builder);
-//  }
+  void _removeSingleItems(int removeAt) {
+    int removeIndex = removeAt;
+    TimeOfDay removedItem1 = _datastart.removeAt(removeIndex);
+    TimeOfDay removedItem2 = _dataend.removeAt(removeIndex);
+    List<bool> removedItem3 = datalist.removeAt(removeIndex);
+    // This builder is just so that the animation has something
+    // to work with before it disappears from view since the original
+    // has already been deleted.
+    AnimatedListRemovedItemBuilder builder = (context, animation) {
+      // A method to build the Card widget.
+      return _buildItem(removedItem1,removedItem2,changeDate(removedItem3), animation, removeAt);
+    };
+    _listKey.currentState.removeItem(removeIndex, builder);
+  }
 
 
   Future<bool> showDeleteConfirmDialog1() {
