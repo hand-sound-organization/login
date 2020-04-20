@@ -283,10 +283,7 @@ class _SignInPageState extends State<SignInPage> {
                 new SnackBar(content: new Text("登录成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) {
-                  return AddAlarm();
-                }));
+            Navigator.of(context).pushNamed("door_chain_management");
 //            Navigator.push( context,
 //                MaterialPageRoute(builder: (context) {
 //                  return LockSignUpPage();

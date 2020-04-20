@@ -30,7 +30,7 @@ class _AddAlarmState extends State<AddAlarm> {
         title: Column(
           children: <Widget>[
             Icon(Icons.alarm_add, color: Color(0xff65D1BA),),
-            Text('Add alarm', style: TextStyle(
+            Text('智能门链', style: TextStyle(
               color: Color(0xff65D1BA),
               fontSize: 25.0
             ))
