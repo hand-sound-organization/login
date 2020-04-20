@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'circle_day.dart';
+//import 'circle_day.dart';
 
 class AddAlarm extends StatefulWidget {
   AddAlarm({Key key}) : super(key: key);
@@ -8,7 +8,7 @@ class AddAlarm extends StatefulWidget {
 }
 
 class _AddAlarmState extends State<AddAlarm> {
-
+  List<bool> chooseData = [false,true,true,true,true,true,true,];
   TimeOfDay _selectedTime;
   TimeOfDay _selectedTime2;
   ValueChanged<TimeOfDay> selectTime;
@@ -75,17 +75,17 @@ class _AddAlarmState extends State<AddAlarm> {
                 alignment: WrapAlignment.center,
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  circleDay('周一', context, false),
-                  circleDay('周二', context, true),
-                  circleDay('周三', context, true),
-                  circleDay('周四', context, true),
-                  circleDay('周五', context, false),
-                  circleDay('周六', context, true),
-                  circleDay('周日', context, false),
+                  circleDay('周一', context, 0),
+                  circleDay('周二', context, 1),
+                  circleDay('周三', context, 2),
+                  circleDay('周四', context, 3),
+                  circleDay('周五', context, 4),
+                  circleDay('周六', context, 5),
+                  circleDay('周日', context, 6),
                 ],
               ),
               SizedBox(height: 60.0,),
-              SizedBox(height: 2.0, child: Container(color: Colors.white30,),),
+              SizedBox(height: 2.0, child: Container(color: Color(0x000000)),),
 //              ListTile(
 //                leading: Icon(Icons.notifications_none, color: Colors.white,),
 //                title: Text('Alarm Notification', style: TextStyle(color: Colors.white)),
@@ -99,7 +99,7 @@ class _AddAlarmState extends State<AddAlarm> {
 //              SizedBox(height: 60.0,),
               FlatButton(
                 color: Theme.of(context).accentColor,
-                child: Text('Save', style: TextStyle(color: Colors.white)),
+                child: Text('保存', style: TextStyle(color: Colors.white)),
                 onPressed: () => Navigator.of(context).pop()
               )
             ],
@@ -151,4 +151,33 @@ class _AddAlarmState extends State<AddAlarm> {
 //      _selectedTime = picked;
 //    });
 //  }
+  Widget circleDay(day, context, index){
+    return Container(
+      width: 70.0,
+      height: 70.0,
+      decoration: BoxDecoration(
+          color: (chooseData[index])?Theme.of(context).accentColor:Colors.transparent,
+          //(selected)?Theme.of(context).accentColor:Colors.transparent,
+          //Colors.blueAccent,
+          borderRadius: BorderRadius.circular(100.0)
+      ),
+      child: FlatButton(
+        onPressed: (){
+          setState(() {
+            chooseData[index]=!chooseData[index];
+          });
+          print('${chooseData[index]}');
+        },
+        child: Text(
+          day,
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight:FontWeight.bold
+          ),
+        ),
+        shape: CircleBorder(),
+      ),
+    );
+  }
 }
