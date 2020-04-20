@@ -94,90 +94,10 @@ class _MainDoorChainPageState extends State<MainDoorChainPage> {
   }
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    // TODO: implement build
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Image.network(
-                  'https://www.debuda.net/wp-content/uploads/2017/11/como-decorar-una-habitacion-para-meditar.jpg',
-                  fit: BoxFit.cover,
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFa06f9c).withOpacity(0.95),
-                        Color(0xFF1610a6).withOpacity(0.75),
-                      ],
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 40,
-                  width: size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: 65,
-                          alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '门锁绑定',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top:250,
-                  left: 40,
-                  width: size.width/1.2,
-                  height: size.height/2.5,
-                  child: Stack(
-                    fit:StackFit.expand,
-                    children: <Widget>[
-                      buildSignInTextForm(),
-                    ],
-                  ),
-                ),
-//                Positioned(child: buildSignInButton(), top: 500,left: 135,)
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
+
   void showPassWord() {
     setState(() {
       isShowPassWord = !isShowPassWord;
@@ -308,5 +228,91 @@ class _MainDoorChainPageState extends State<MainDoorChainPage> {
 //        },
 //
 //      );
+//  }
+
+//  Widget build(BuildContext context) {
+//    Size size = MediaQuery.of(context).size;
+//    // TODO: implement build
+//    return Scaffold(
+//      body: Column(
+//        children: <Widget>[
+//          Expanded(
+//            child: Stack(
+//              fit: StackFit.expand,
+//              children: <Widget>[
+//                Image.network(
+//                  'https://www.debuda.net/wp-content/uploads/2017/11/como-decorar-una-habitacion-para-meditar.jpg',
+//                  fit: BoxFit.cover,
+//                ),
+//                DecoratedBox(
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                      colors: [
+//                        Color(0xFFa06f9c).withOpacity(0.95),
+//                        Color(0xFF1610a6).withOpacity(0.75),
+//                      ],
+//                      begin: FractionalOffset.topCenter,
+//                      end: FractionalOffset.bottomCenter,
+//                    ),
+//                  ),
+//                ),
+//                Positioned(
+//                  top: 40,
+//                  width: size.width,
+//                  child: Padding(
+//                    padding: const EdgeInsets.symmetric(horizontal: 20),
+//                    child: Row(
+//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                      children: <Widget>[
+//                        Container(
+//                          width: 65,
+//                          alignment: Alignment.centerLeft,
+//                          child: Icon(
+//                            Icons.menu,
+//                            color: Colors.white,
+//                          ),
+//                        ),
+//                        Text(
+//                          '门锁绑定',
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                            color: Colors.white,
+//                            fontWeight: FontWeight.bold,
+//                            fontSize: 25,
+//                          ),
+//                        ),
+//                        Row(
+//                          children: <Widget>[
+//                            SizedBox(width: 10),
+//                            Icon(
+//                              Icons.edit,
+//                              color: Colors.white,
+//                            ),
+//                          ],
+//                        )
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//
+//                Positioned(
+//                  top:250,
+//                  left: 40,
+//                  width: size.width/1.2,
+//                  height: size.height/2.5,
+//                  child: Stack(
+//                    fit:StackFit.expand,
+//                    children: <Widget>[
+//                      buildSignInTextForm(),
+//                    ],
+//                  ),
+//                ),
+////                Positioned(child: buildSignInButton(), top: 500,left: 135,)
+//              ],
+//            ),
+//          ),
+//        ],
+//      ),
+//    );
 //  }
 }
