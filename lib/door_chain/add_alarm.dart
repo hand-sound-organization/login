@@ -1,13 +1,20 @@
+import 'dart:convert';
+import 'dart:typed_data';
+import 'door_chain_management.dart';
+
 import 'package:flutter/material.dart';
 //import 'circle_day.dart';
 
 class AddAlarm extends StatefulWidget {
   AddAlarm({Key key}) : super(key: key);
 
+
   _AddAlarmState createState() => _AddAlarmState();
 }
 
 class _AddAlarmState extends State<AddAlarm> {
+  bool isloaded= false;
+  TransferDataEntity transferDataEntity ;
   List<bool> chooseData = [false,true,true,true,true,true,true,];
   TimeOfDay _selectedTime;
   TimeOfDay _selectedTime2;
@@ -23,6 +30,16 @@ class _AddAlarmState extends State<AddAlarm> {
 
   @override
   Widget build(BuildContext context) {
+    transferDataEntity = ModalRoute.of(context).settings.arguments;
+
+    //Map<String, dynamic> map = json.decode(result);
+    if(isloaded==false){
+      isloaded=!isloaded;
+      _selectedTime = transferDataEntity.timestart;
+      _selectedTime2 = transferDataEntity.timeend;
+    }
+
+    //print(result);
     return Scaffold(
       backgroundColor: Color(0xff1B2C57),
       appBar: AppBar(
@@ -100,7 +117,7 @@ class _AddAlarmState extends State<AddAlarm> {
               FlatButton(
                 color: Theme.of(context).accentColor,
                 child: Text('保存', style: TextStyle(color: Colors.white)),
-                onPressed: () => Navigator.of(context).pop()
+                onPressed: () => Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2))
               )
             ],
           ),

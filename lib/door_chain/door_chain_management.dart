@@ -15,11 +15,13 @@ class DoorChainManage extends StatefulWidget {
 class _DoorChainManageState extends State<DoorChainManage> {
   // the GlobalKey is needed to animate the list
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+  TransferDataEntity transferDataEntity;
   // backing data
   List<TimeOfDay> _datastart = [ TimeOfDay(hour: 9, minute: 30) ,TimeOfDay(hour: 13, minute: 30),TimeOfDay(hour: 21, minute: 30) ];
   List<TimeOfDay> _dataend = [ TimeOfDay(hour: 12, minute: 30) ,TimeOfDay(hour: 14, minute: 30),TimeOfDay(hour: 23, minute: 30)];
-  List<String> datalist =  ['周一、周二、周三、周四、周五', '周一、周二、周三、周四、周五', '周一、周二、周三、周四、周五、周六、周日'];
+  List<List> datalist =  [ [false,true,true,true,true,true,true,],  [false,true,true,true,true,true,true,],  [false,true,true,true,true,true,true,]];
   List<bool> chooseData = [false,true,true,true,true,true,true,];
+  List<String>  aa = ["周一","周二",'周三','周四','周五',"周六","周日"];
 
 
   @override
@@ -27,6 +29,19 @@ class _DoorChainManageState extends State<DoorChainManage> {
     //Hide banner ad if it isn't already hidden
     //Ads.hideBannerAd();
     super.initState();
+  }
+
+  String changeDate(List<bool> list){
+    String data ='';
+    for (int i=0; i<7; i++){
+      if(list[i]==true){
+        data+=aa[i];
+        data+="、";
+      }
+    }
+    data = data.substring(0, data.length-1);
+    print(data);
+    return data;
   }
 
 
@@ -50,7 +65,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
         key: _listKey,
         initialItemCount: _datastart.length,
         itemBuilder: (context, index, animation) {
-          return _buildItem(_datastart[index],_dataend[index],datalist[index], animation, index);
+          return _buildItem(_datastart[index],_dataend[index],changeDate([false,true,true,true,true,true,true,]), animation, index);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -103,16 +118,14 @@ class _DoorChainManageState extends State<DoorChainManage> {
               color: Colors.grey,
             ),
             onTap: () async{
-              var result = await Navigator.of(context).pushNamed("add_alarm",arguments: "$timestart,$timeend,$data",);
+              var result = await Navigator.of(context).pushNamed("add_alarm",
+                //arguments:[timestart,timeend,data],
+                arguments:TransferDataEntity(timestart,timeend)
+                //{"timerstart":timestart,"timed":timeend},
+              )as TransferDataEntity;
               print("$result");
-//              if(result==null){
-//              }
-//              else if("$result"=="delete"){
-//                _removeSingleItems(index);
-//              }
-//              else{
-//                _data[index]="$result";
-//              }
+              _datastart[index]=result.timestart;
+              _dataend[index]=result.timeend;
 
             },
           ),
@@ -130,7 +143,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
       insertIndex = 0;
     }
 //    String item = "成员 ${insertIndex + 1}";
-    String data = '周一、周二、周三、周四、周五';
+    List<bool> data = [false,true,true,true,true,true,true,];
 
    var timestart =  TimeOfDay.now();
     var timeend   =   TimeOfDay.now();
@@ -193,4 +206,11 @@ class _DoorChainManageState extends State<DoorChainManage> {
       },
     );
   }
+}
+
+class TransferDataEntity {
+  final TimeOfDay timestart;
+  final TimeOfDay timeend;
+
+  TransferDataEntity(this.timestart, this.timeend);
 }
