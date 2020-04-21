@@ -16,6 +16,7 @@ import 'bottomsheet.dart';
 import 'bottom2.dart';
 import 'user management/main_user_management.dart';
 import 'door_chain/add_alarm.dart';
+import 'package:handsound/main_page/pages/profile.dart';
 /**
  *注册界面
  */
@@ -283,11 +284,11 @@ class _SignInPageState extends State<SignInPage> {
                 new SnackBar(content: new Text("登录成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-            Navigator.of(context).pushNamed("door_chain_management");
-//            Navigator.push( context,
-//                MaterialPageRoute(builder: (context) {
-//                  return LockSignUpPage();
-//                }));
+//            Navigator.of(context).pushNamed("door_chain_management");
+            Navigator.push( context,
+                MaterialPageRoute(builder: (context) {
+                  return Profile();
+                }));
 //            Navigator.push(
 //                context, MaterialPageRoute(
 //                builder: (BuildContext context) {
