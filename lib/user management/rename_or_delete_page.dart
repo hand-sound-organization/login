@@ -228,10 +228,10 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 //                              ],
 //                            ),
                             SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
+//                            Icon(
+//                              Icons.edit,
+//                              color: Colors.white,
+//                            ),
                           ],
                         )
                       ],

@@ -165,10 +165,10 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                         Row(
                           children: <Widget>[
                             SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
+//                            Icon(
+//                              Icons.edit,
+//                              color: Colors.white,
+//                            ),
                           ],
                         )
                       ],

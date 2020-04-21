@@ -240,10 +240,10 @@ Timer _timer2;
 //                              ],
 //                            ),
                             SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
+//                            Icon(
+//                              Icons.edit,
+//                              color: Colors.white,
+//                            ),
                           ],
                         )
                       ],

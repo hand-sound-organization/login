@@ -117,10 +117,10 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
 //                              ],
 //                            ),
                             SizedBox(width: 10),
-                            Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
+//                            Icon(
+//                              Icons.edit,
+//                              color: Colors.white,
+//                            ),
                           ],
                         )
                       ],
