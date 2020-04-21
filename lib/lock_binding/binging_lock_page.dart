@@ -106,7 +106,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                 Positioned(
                   top:150,
                   left: 100,
-                  child: Image(image: new AssetImage("assets/logo1.png")),
+                  child: Image(image: new AssetImage("assets/logo.png")),
                 ),
                 Positioned(
                   top:430,

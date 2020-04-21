@@ -413,7 +413,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Image(image: new AssetImage("assets/logo1.png"),
+                          Image(image: new AssetImage("assets/logo.png"),
                           width: 200,),
                         ],
                       ),

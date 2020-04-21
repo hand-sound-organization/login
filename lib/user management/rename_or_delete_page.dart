@@ -320,14 +320,13 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                       width:140,
                                                       child: RaisedButton(
                                                         onPressed: (){
-                                                          Navigator.of(context).pop(_selectionController.text);
+                                                          Navigator.of(context).pop();
                                                         },
                                                         color: Color(0xfff5f5f5),
                                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-                                                        child: Text('确定'),
+                                                        child: Text('取消'),
                                                       ),
                                                     ),
-
                                                     Container(
                                                       width: 20,
                                                       color: Color(0x000000),
@@ -336,11 +335,11 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                       width:140,
                                                       child: RaisedButton(
                                                         onPressed: (){
-                                                          Navigator.of(context).pop();
+                                                          Navigator.of(context).pop(_selectionController.text);
                                                         },
                                                         color: Color(0xfff5f5f5),
                                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-                                                        child: Text('取消'),
+                                                        child: Text('确定'),
                                                       ),
                                                     ),
                                                   ],
