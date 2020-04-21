@@ -47,7 +47,7 @@ class _AddAlarmState extends State<AddAlarm> {
         backgroundColor: Color(0xff1B2C57),
         title: Column(
           children: <Widget>[
-            Icon(Icons.alarm_add, color: Color(0xff65D1BA),),
+            //Icon(Icons.lock, color: Color(0xff65D1BA),),
             Text('智能门链', style: TextStyle(
               color: Color(0xff65D1BA),
               fontSize: 25.0
@@ -115,10 +115,22 @@ class _AddAlarmState extends State<AddAlarm> {
 //              ),
 //              SizedBox(height: 2.0, child: Container(color: Colors.white30,),),
 //              SizedBox(height: 60.0,),
-              FlatButton(
-                color: Theme.of(context).accentColor,
-                child: Text('保存', style: TextStyle(color: Colors.white)),
-                onPressed: () => Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2,chooseData))
+              Container(
+                height: 50,
+                width: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                ),
+                child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Text('保存', style: TextStyle(color: Colors.white,
+                    fontSize: 20),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2,chooseData))
+                ),
               )
             ],
           ),
