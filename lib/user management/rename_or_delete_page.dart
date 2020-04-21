@@ -57,10 +57,10 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
               fit: StackFit.expand,
               children: <Widget>[
 
-                Image.network(
-                  'https://www.debuda.net/wp-content/uploads/2017/11/como-decorar-una-habitacion-para-meditar.jpg',
-                  fit: BoxFit.cover,
-                ),
+//                Image.network(
+//                  'https://www.debuda.net/wp-content/uploads/2017/11/como-decorar-una-habitacion-para-meditar.jpg',
+//                  fit: BoxFit.cover,
+//                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
