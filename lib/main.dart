@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         "sign_in_page":(context)=>SignInPage(),
         "lock_sign_up_page":(context)=>LockSignUpPage(),
         "rename_or_delete_page":(context)=>RenameOrDeletePage(),
-        "main_door_chain_page":(context)=>MainDoorChainPage(),
+        //"main_door_chain_page":(context)=>MainDoorChainPage(),
         "first_bingding_page":(context)=>FirstBingdingPage(),
         "bingding_lock_page":(context)=>BingdingLockPage(),
         "door_chain_management":(context)=>DoorChainManage(),

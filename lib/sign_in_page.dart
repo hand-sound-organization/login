@@ -287,7 +287,7 @@ class _SignInPageState extends State<SignInPage> {
 //            Navigator.of(context).pushNamed("door_chain_management");
             Navigator.push( context,
                 MaterialPageRoute(builder: (context) {
-                  return Profile();
+                  return FirstBingdingPage();
                 }));
 //            Navigator.push(
 //                context, MaterialPageRoute(

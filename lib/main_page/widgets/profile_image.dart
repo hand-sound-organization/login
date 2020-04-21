@@ -14,9 +14,10 @@ class ProfileImage extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.red,
+        //color: Colors.red,
         image: DecorationImage(
-          image: CachedNetworkImageProvider(devMausam),
+          image: AssetImage("assets/logo1.png"),
+          //CachedNetworkImageProvider(devMausam),
           fit: BoxFit.contain,
         ),
         border: Border.all(

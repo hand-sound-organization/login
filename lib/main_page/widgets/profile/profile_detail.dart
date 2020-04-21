@@ -10,7 +10,7 @@ class ProfileDetail extends StatelessWidget {
       borderRadius: BorderRadius.all(
         Radius.circular(20.0),
       ),
-      elevation: 10.0,
+      elevation: 10,
       child: Container(
         height: deviceSize.height * 0.2,
         padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -40,7 +40,7 @@ class ProfileDetail extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          'Mausam Rayamajhi',
+                          '王瑞锦',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
@@ -50,15 +50,15 @@ class ProfileDetail extends StatelessWidget {
                         SizedBox(
                           width: 15.0,
                         ),
-                        Icon(
-                          Icons.border_color,
-                          color: Colors.white,
-                          size: 15.0,
-                        )
+//                        Icon(
+//                          Icons.border_color,
+//                          color: Colors.white,
+//                          size: 15.0,
+//                        )
                       ],
                     ),
                     Text(
-                      'A trendsetter',
+                      '门锁ID:ZY12138',
                       style: TextStyle(
                         color: Colors.white70,
                         fontSize: 13.0,

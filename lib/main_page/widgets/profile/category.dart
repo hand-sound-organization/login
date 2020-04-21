@@ -15,7 +15,9 @@ class Category extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (catg.name == listProfileCategories[0].name)
-                  Navigator.pushNamed(context, '/furniture');
+                  Navigator.pushNamed(context, 'door_chain_management');
+                else if(catg.name == listProfileCategories[1].name)
+                  Navigator.pushNamed(context, 'main_user_management_page');
               },
               child: Container(
                 padding: EdgeInsets.all(10.0),

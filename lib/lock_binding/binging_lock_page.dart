@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:handsound/configs/themes.dart';
 import 'package:handsound/home_page.dart';
+import 'package:handsound/main_page/pages/profile.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/theme.dart';
@@ -288,6 +289,9 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
 //                      if (value == null || value.isEmpty || value.length < 6) {
 //                        return "密码需要大于6位！";
 //                      }
+                    if(value!=PtextEditingController.text){
+                      return "两次输入密码不一致！";
+                    }
                     },
                     onSaved: (value) {
 
@@ -331,20 +335,21 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
           if (_SignInFormKey.currentState.validate()) {
             //如果输入都检验通过，则进行登录操作
 
-            Scaffold.of(context).showSnackBar(
-                new SnackBar(content: new Text("绑定成功")));
+//            Scaffold.of(context).showSnackBar(
+//                new SnackBar(content: new Text("绑定成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-
+            print('666');
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new HomePage());
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new Profile());
                 }
             )
             );
 
           }
+          print('666');
 //          debugDumpApp();
         },
 

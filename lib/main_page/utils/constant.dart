@@ -23,25 +23,25 @@ const List lampsImage = [
   {'image': 'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/mausam%2Ff.jpg?alt=media&token=c65c13ad-5b2f-494e-82eb-13d730d823ce'},
 ];
 List<ProfileMenu> lampList = [
-  ProfileMenu(title: 'Landscape', subTitle: '384'),
-  ProfileMenu(title: 'Discus Pendant', subTitle: '274'),
-  ProfileMenu(title: 'Mushroom Lamp', subTitle: '374'),
-  ProfileMenu(title: 'Titanic Pendant', subTitle: '562'),
-  ProfileMenu(title: 'Torn Lighting', subTitle: '105'),
-  ProfileMenu(title: 'Abduction Pendant', subTitle: '365'),
+  ProfileMenu(name: 'Landscape', time: '384'),
+  ProfileMenu(name: 'Discus Pendant', time: '274'),
+  ProfileMenu(name: 'Mushroom Lamp', time: '374'),
+  ProfileMenu(name: 'Titanic Pendant', time: '562'),
+  ProfileMenu(name: 'Torn Lighting', time: '105'),
+  ProfileMenu(name: 'Abduction Pendant', time: '365'),
 ];
 const List profileItems = [
-  {'count': '846', 'name': 'Collect'},
-  {'count': '51', 'name': 'Attention'},
-  {'count': '267', 'name': 'Track'},
-  {'count': '39', 'name': 'Coupons'},
+  {'count': '46', 'name': '保护天数'},
+  {'count': '51', 'name': '安全开锁次数'},
+  {'count': '3', 'name': '家庭成员人数'},
+  {'count': '100%', 'name': '安全系数'},
 ];
 
 List<Catg> listProfileCategories = [
-  Catg(name: 'Wallet', icon: CustomIcon.account_balance_wallet, number: 0),
-  Catg(name: 'Delivery', icon: CustomIcon.truck, number: 0),
-  Catg(name: 'Message', icon: CustomIcon.chat, number: 2),
-  Catg(name: 'Service', icon: CustomIcon.money, number: 0),
+  Catg(name: '智能门链', icon: Icons.vpn_key, number: 0),
+  Catg(name: '用户管理', icon: Icons.person, number: 0),
+  //Catg(name: 'Message', icon: CustomIcon.chat, number: 2),
+  //Catg(name: 'Service', icon: CustomIcon.money, number: 0),
 ];
 
 List<FurnitureCatg> furnitureCategoriesList = [
@@ -54,37 +54,88 @@ List<FurnitureCatg> furnitureCategoriesList = [
 
 List<ProfileMenu> profileMenuList = [
   ProfileMenu(
-    title: 'Address',
-    subTitle: 'Ensure your harvesting address',
-    iconColor: profile_info_address,
-    icon: Icons.location_on,
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
   ),
   ProfileMenu(
-    title: 'Privacy',
-    subTitle: 'System permission change',
-    iconColor: profile_info_privacy,
-    icon: Icons.lock,
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
   ),
   ProfileMenu(
-    title: 'General',
-    subTitle: 'Basic functional settings',
-    iconColor: profile_info_general,
-    icon: Icons.layers,
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
   ),
   ProfileMenu(
-    title: 'Notification',
-    subTitle: 'Take over the news in time',
-    iconColor: profile_info_notification,
-    icon: Icons.notifications,
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
   ),
+  ProfileMenu(
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
+  ),
+  ProfileMenu(
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
+  ),
+  ProfileMenu(
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
+  ),
+  ProfileMenu(
+    name: '用户 1',
+    event: '开门',
+    time: 'April,21,15:34',
+    iconColor: Colors.green,
+    icon: Icons.check,
+  ),
+//  ProfileMenu(
+//    name: 'Privacy',
+//    time: 'System permission change',
+//    iconColor: profile_info_privacy,
+//    icon: Icons.lock,
+//  ),
+//  ProfileMenu(
+//    name: 'General',
+//    time: 'Basic functional settings',
+//    iconColor: profile_info_general,
+//    icon: Icons.layers,
+//  ),
+//  ProfileMenu(
+//    name: 'Notification',
+//    time: 'Take over the news in time',
+//    iconColor: profile_info_notification,
+//    icon: Icons.notifications,
+//  ),
 ];
 
 class ProfileMenu {
-  String title;
-  String subTitle;
+  String name;
+  String event;
+  String time;
   IconData icon;
   Color iconColor;
-  ProfileMenu({this.icon, this.title, this.iconColor, this.subTitle});
+  ProfileMenu({this.name,this.event,this.time,this.icon, this.iconColor, });
 }
 
 class Catg {
