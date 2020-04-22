@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,6 +19,8 @@ import 'bottom2.dart';
 import 'user management/main_user_management.dart';
 import 'door_chain/add_alarm.dart';
 import 'package:handsound/main_page/pages/profile.dart';
+import 'dart:io';
+import 'dart:convert';
 /**
  *注册界面
  */
@@ -40,6 +44,31 @@ class _SignInPageState extends State<SignInPage> {
 
   bool isShowPassWord = false;
 
+  /**
+   * 访问远端数据库进行验证
+   */
+  verify(String username,String password)async{
+    bool result;
+    String responseBody;
+    try{
+      HttpClient httpClient = new HttpClient();
+      HttpClientRequest request = await httpClient.getUrl(
+          Uri(scheme: "http",path: "/app/login",host:"10.0.2.2",port:5000));
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
+      Map data = jsonDecode(responseBody);
+      return data['isTrue'];
+      httpClient.close();
+//      responseBody = await response.transform(utf8.decoder).join();
+//      var data = jsonDecode(responseBody);
+//      result = data['isTrue'];
+//      print(data);
+      //return result;
+    }catch(e){
+      print("666");
+        return null;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -273,22 +302,32 @@ class _SignInPageState extends State<SignInPage> {
 //          new Text(
 //            "登录", style: new TextStyle(fontSize: 25, color: Colors.black),),
         ),
-        onTap: () {
+        onTap: () async{
           /**利用key来获取widget的状态FormState
               可以用过FormState对Form的子孙FromField进行统一的操作
            */
           if (_SignInFormKey.currentState.validate()) {
             //如果输入都检验通过，则进行登录操作
 
-            Scaffold.of(context).showSnackBar(
-                new SnackBar(content: new Text("登录成功")));
+
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
+            //bool result = verify(EtextEditingController.text,PtextEditingController.text) as bool;
+            bool result = await verify(EtextEditingController.text,PtextEditingController.text)as bool;
 //            Navigator.of(context).pushNamed("door_chain_management");
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) {
-                  return FirstBingdingPage();
-                }));
+            if(result==true){
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text("登录成功")));
+              Navigator.push( context,
+                  MaterialPageRoute(builder: (context) {
+                    return FirstBingdingPage();
+                  }));
+            }
+            else{
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text("用户名或者密码输入错误")));
+            }
+
 //            Navigator.push(
 //                context, MaterialPageRoute(
 //                builder: (BuildContext context) {
