@@ -39,6 +39,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
     Size size = MediaQuery.of(context).size;
     // TODO: implement build
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: <Widget>[
           Expanded(
