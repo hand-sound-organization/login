@@ -147,7 +147,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                               Navigator.of(context).pop();
                             },
                           ),
-                      title: Text("门锁注册",style: TextStyle(
+                      title: Text("设备搜索",style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
