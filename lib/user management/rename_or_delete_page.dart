@@ -168,7 +168,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 //                  top: 40,
                   width: size.width,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:  EdgeInsets.symmetric(horizontal:size.width*0.05),
                     child:AppBar(
                       leading: IconButton(
                         iconSize: 30,
@@ -257,8 +257,8 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                   ),
                 ),
                 Positioned(
-                  top: 600,
-                  left: 57,
+                  top:size.height*0.7466,
+                  left: size.width*0.12,
                   width: size.width,
                   height: size.height - size.height * .3,
                   child: Column(
@@ -269,8 +269,8 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              width:300,
-                              height: 50,
+                              width:size.width*0.7639,
+                              height: size.height*0.0622,
                               child: FlatButton(
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(25))),
@@ -285,7 +285,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                       child:Dialog(
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
                                         child: Container(
-                                            height: 180,
+                                            height: size.height*0.22398,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.all(Radius.circular(25)),
                                               color: Colors.white,
@@ -308,7 +308,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
                                                   children: <Widget>[
                                                     Container(
-                                                      width: 300,
+                                                      width: size.width*0.7639,
                                                       padding: EdgeInsets.only(
                                                         left: 10, right: 10, ),
                                                       decoration: BoxDecoration(
@@ -327,7 +327,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                   ],
                                                 ),
                                                 Container(
-                                                  height: 20,
+                                                  height: size.height*0.02488,
                                                   color: Color(0x000000),
                                                 ),
                                                 Row(
@@ -335,7 +335,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: <Widget>[
                                                     Container(
-                                                      width:140,
+                                                      width:size.width*0.3571,
                                                       child: RaisedButton(
                                                         onPressed: (){
                                                           Navigator.of(context).pop();
@@ -346,11 +346,11 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      width: 20,
+                                                      width: size.width*0.05,
                                                       color: Color(0x000000),
                                                     ),
                                                     Container(
-                                                      width:140,
+                                                      width:size.width*0.3571,
                                                       child: RaisedButton(
                                                         onPressed: (){
                                                           Navigator.of(context).pop(_selectionController.text);
@@ -380,15 +380,15 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                           ],
                       ),
                       Container(
-                        height: 20,
+                        height: size.height*0.024,
                         color: Color(0x000000),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            width:300,
-                            height: 50,
+                            width:size.width*0.7653,
+                            height: size.height*0.0622,
                             child: FlatButton(
                               color: Colors.white,
                               shape: RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(25))),
@@ -541,78 +541,6 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
       },
     );
   }
-//  showHasInputDialog({@required String name1}) {
-//
-//    var widget = Center(
-//        child:Dialog(
-//            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-//            child: Container(
-//              height: 300,
-//               decoration: BoxDecoration(
-//                 borderRadius: BorderRadius.all(Radius.circular(25)),
-//                 color: Colors.blueAccent,
-//               ),
-//
-//               child: Column(
-//                 children: <Widget>[
-//                   Row(
-//                     mainAxisSize: MainAxisSize.max,
-//                     mainAxisAlignment:MainAxisAlignment.center,
-//                     children: <Widget>[
-//                       Text("重命名",
-//                         style: TextStyle(
-//                             fontSize: 40
-//                         ),)
-//                     ],
-//                   ),
-//                   Row(
-//                     mainAxisSize: MainAxisSize.min,
-////                  mainAxisAlignment:MainAxisAlignment.center,
-//                     children: <Widget>[
-//                       Container(
-//                         width: 250,
-//                         padding: EdgeInsets.only(
-//                           left: 10, right: 10, ),
-//                         decoration: BoxDecoration(
-//                           color: Colors.grey,
-//                           borderRadius: BorderRadius.all(Radius.circular(25)),
-//                         ),
-//                         child: TextField(
-//                           decoration: InputDecoration(
-//                             hintText: "$name1",
-//                           ),
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                   Container(
-//                     height: 100,
-//                     color: Colors.white,
-//                   ),
-//                   Row(
-//                     mainAxisSize: MainAxisSize.max,
-//                     children: <Widget>[
-//                       RaisedButton(
-//                         onPressed: (){},
-//                         color: Colors.white,
-//                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-//                         child: Text('确定'),
-//                       ),
-//                       RaisedButton(
-//                         onPressed: (){},
-//                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-//                         child: Text('取消'),
-//                       )
-//                     ],
-//
-//                   )
-//                 ],
-//               )
-//           ),
-//
-//        )
-//    );
-//    showDialog(context: context, builder: (context) => widget);
-//  }
+
 }
 

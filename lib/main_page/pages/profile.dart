@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Material(
       color: Colors.white,
       child: DecoratedBox(
@@ -23,10 +26,10 @@ class Profile extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20.0,
-            right: 20.0,
-            top: 30.0,
+          padding:  EdgeInsets.only(
+            left: size.width*0.05093,
+            right: size.width*0.05093,
+            top: size.height*0.03733,
           ),
           child: Column(
             //mainAxisSize: MainAxisSize.max,
@@ -36,15 +39,15 @@ class Profile extends StatelessWidget {
                 title: '掌音管家',
               ),
               SizedBox(
-                height: 20.0,
+                height: size.width*0.05093,
               ),
               ProfileDetail(),
               SizedBox(
-                height: 30.0,
+                height: size.height*0.03733,
               ),
               ProfileCategories(),
               SizedBox(
-                height: 30.0,
+                height: size.height*0.03733,
               ),
               Flexible(child: ProfileMenu()),
             ],

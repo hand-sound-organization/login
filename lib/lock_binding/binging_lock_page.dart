@@ -67,7 +67,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
 //                  top: 40,
                   width: size.width,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:  EdgeInsets.symmetric(horizontal: size.width*0.05),
                     child: AppBar(
                       leading: IconButton(
                         iconSize: 30,
@@ -125,23 +125,23 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                   ),
                 ),
                 Positioned(
-                  top:150,
-                  left: 100,
+                  top:size.height*0.2,
+                  left: size.width*0.213,
                   child: Image(image: new AssetImage("assets/logo.png")),
                 ),
                 Positioned(
-                  top:430,
-                  left: 40,
+                  top:size.height*0.535,
+                  left: size.width*0.08,
                   width: size.width/1.2,
                   height: size.height/2.5,
                   child: Stack(
                     fit:StackFit.expand,
                     children: <Widget>[
-                      buildSignInTextForm()
+                      buildSignInTextForm(size)
                     ],
                   ),
                 ),
-                Positioned(child: buildSignInButton(), top: 700,left: 135,)
+                Positioned(child: buildSignInButton(), top: size.height*0.87,left: size.width*.31,)
               ],
             ),
           ),
@@ -154,7 +154,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
       isShowPassWord = !isShowPassWord;
     });
   }
-  Widget buildSignInTextForm() {
+  Widget buildSignInTextForm(Size size) {
     return new Container(
 
       decoration:
@@ -221,7 +221,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             ),
             new Container(
               height: 1,
-              width: 250,
+              width:  size.width*.637,
               color: Color(0x000000),
             ),
             Flexible(
@@ -272,7 +272,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             ),
             new Container(
               height: 1,
-              width: 250,
+              width:  size.width*.637,
               color: Color(0x000000),
             ),
             Flexible(
@@ -328,7 +328,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             ),
             new Container(
               height: 1,
-              width: 250,
+              width:  size.width*.637,
               color: Color(0x000000),
             ),
 

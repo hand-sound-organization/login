@@ -3,6 +3,7 @@ import '../../widgets/profile/menu_item.dart';
 import 'package:flutter/material.dart';
 
 class ProfileMenu extends StatelessWidget {
+
   Widget divider = Container(
     height: 10,
     color: Color(0x00000000),
