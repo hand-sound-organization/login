@@ -6,7 +6,11 @@ import '../widgets/profile/profile_menu.dart';
 import '../widgets/title_large.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => new _ProfileState();
+}
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Material(

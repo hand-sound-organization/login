@@ -26,8 +26,6 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
     Size size = MediaQuery
         .of(context)
         .size;
-    print(size.height);
-    print(size.width);
     return Scaffold(
       body: Column(
         children: <Widget>[

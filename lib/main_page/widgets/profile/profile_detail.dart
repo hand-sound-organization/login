@@ -2,7 +2,12 @@ import '../../utils/constant.dart';
 import '../../widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 
-class ProfileDetail extends StatelessWidget {
+class ProfileDetail extends StatefulWidget {
+  @override
+  _ProfileDetailState createState() => new _ProfileDetailState();
+}
+
+class _ProfileDetailState extends State<ProfileDetail> {
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
