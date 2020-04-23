@@ -39,7 +39,8 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
     Size size = MediaQuery.of(context).size;
     // TODO: implement build
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding:false,
+      //resizeToAvoidBottomInset: false,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -190,10 +191,11 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                     controller: EtextEditingController,
                     focusNode: emailFocusNode,
                     onEditingComplete: () {
-                      if (focusScopeNode == null) {
-                        focusScopeNode = FocusScope.of(context);
-                      }
-                      focusScopeNode.requestFocus(passwordFocusNode);
+//                      if (focusScopeNode == null) {
+//                        focusScopeNode = FocusScope.of(context);
+//                      }
+//                      focusScopeNode.requestFocus(passwordFocusNode);
+                      FocusScope.of(context).requestFocus(passwordFocusNode);
                     },
 
                     decoration: new InputDecoration(
@@ -237,10 +239,11 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                     controller: PtextEditingController,
                     focusNode: passwordFocusNode,
                     onEditingComplete: () {
-                      if (focusScopeNode == null) {
-                        focusScopeNode = FocusScope.of(context);
-                      }
-                      focusScopeNode.requestFocus(passwordVerFocusNode);
+//                      if (focusScopeNode == null) {
+//                        focusScopeNode = FocusScope.of(context);
+//                      }
+//                      focusScopeNode.requestFocus(passwordVerFocusNode);
+                      FocusScope.of(context).requestFocus(passwordVerFocusNode);
                     },
                     decoration: new InputDecoration(
                         icon: new Icon(Icons.lock, color: Colors.black,),
@@ -291,6 +294,9 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
 //                        focusScopeNode = FocusScope.of(context);
 //                      }
 //                      focusScopeNode.requestFocus(passwordVerFocusNode);
+                    emailFocusNode.unfocus();
+                    passwordFocusNode.unfocus();
+                    passwordVerFocusNode.unfocus();
                     },
                     decoration: new InputDecoration(
                         icon: new Icon(Icons.lock, color: Colors.black,),

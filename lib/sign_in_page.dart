@@ -209,10 +209,11 @@ class _SignInPageState extends State<SignInPage> {
                   controller: EtextEditingController,
                   focusNode: emailFocusNode,
                   onEditingComplete: () {
-                    if (focusScopeNode == null) {
-                      focusScopeNode = FocusScope.of(context);
-                    }
-                    focusScopeNode.requestFocus(passwordFocusNode);
+                    FocusScope.of(context).requestFocus(passwordFocusNode);
+//                    if (focusScopeNode == null) {
+//                      focusScopeNode = FocusScope.of(context);
+//                    }
+//                    focusScopeNode.requestFocus(passwordFocusNode);
                   },
 
                   decoration: new InputDecoration(
@@ -313,21 +314,24 @@ class _SignInPageState extends State<SignInPage> {
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
             //bool result = verify(EtextEditingController.text,PtextEditingController.text) as bool;
-            bool result = await verify(EtextEditingController.text,PtextEditingController.text)as bool;
+//            bool result = await verify(EtextEditingController.text,PtextEditingController.text)as bool;
 //            Navigator.of(context).pushNamed("door_chain_management");
-            if(result==true){
-              Scaffold.of(context).showSnackBar(
-                  new SnackBar(content: new Text("登录成功")));
-              Navigator.push( context,
-                  MaterialPageRoute(builder: (context) {
-                    return FirstBingdingPage();
-                  }));
-            }
-            else{
-              Scaffold.of(context).showSnackBar(
-                  new SnackBar(content: new Text("用户名或者密码输入错误")));
-            }
-
+//            if(result==true){
+//              Scaffold.of(context).showSnackBar(
+//                  new SnackBar(content: new Text("登录成功")));
+//              Navigator.push( context,
+//                  MaterialPageRoute(builder: (context) {
+//                    return FirstBingdingPage();
+//                  }));
+//            }
+//            else{
+//              Scaffold.of(context).showSnackBar(
+//                  new SnackBar(content: new Text("用户名或者密码输入错误")));
+//            }
+            Navigator.push( context,
+                MaterialPageRoute(builder: (context) {
+                  return FirstBingdingPage();
+                }));
 //            Navigator.push(
 //                context, MaterialPageRoute(
 //                builder: (BuildContext context) {
