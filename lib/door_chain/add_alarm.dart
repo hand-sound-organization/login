@@ -30,6 +30,9 @@ class _AddAlarmState extends State<AddAlarm> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
     transferDataEntity = ModalRoute.of(context).settings.arguments;
 
     //Map<String, dynamic> map = json.decode(result);
@@ -60,7 +63,7 @@ class _AddAlarmState extends State<AddAlarm> {
         child: Container(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 60.0,),
+              SizedBox(height:size.height*0.07466,),
               new GestureDetector(
                 child: Text(_selectedTime.format(context), style: TextStyle(
                   fontSize: 60.0,
@@ -86,7 +89,7 @@ class _AddAlarmState extends State<AddAlarm> {
                   _selectTime2(context);
                 },
               ),
-              SizedBox(height: 30.0,),
+              SizedBox(height: size.height*0.037,),
               Wrap(
                 spacing: 20.0,
                 runSpacing: 4.0,
@@ -102,7 +105,7 @@ class _AddAlarmState extends State<AddAlarm> {
                   circleDay('周日', context, 6),
                 ],
               ),
-              SizedBox(height: 60.0,),
+              SizedBox(height: size.height*0.07466,),
               SizedBox(height: 2.0, child: Container(color: Color(0x000000)),),
 //              ListTile(
 //                leading: Icon(Icons.notifications_none, color: Colors.white,),
@@ -116,8 +119,8 @@ class _AddAlarmState extends State<AddAlarm> {
 //              SizedBox(height: 2.0, child: Container(color: Colors.white30,),),
 //              SizedBox(height: 60.0,),
               Container(
-                height: 50,
-                width: 200,
+                height: size.height*0.0622,
+                width: size.width*0.509268,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                 ),
@@ -181,7 +184,7 @@ class _AddAlarmState extends State<AddAlarm> {
 //      _selectedTime = picked;
 //    });
 //  }
-  Widget circleDay(day, context, index){
+  Widget circleDay(day, context, index,){
     return Container(
       width: 70.0,
       height: 70.0,

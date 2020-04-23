@@ -71,8 +71,11 @@ class _SignInPageState extends State<SignInPage> {
   }
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return new Container(
-      padding: EdgeInsets.only(top: 23),
+      padding: EdgeInsets.only(top: size.height*0.0286),
       child: new Stack(
         alignment: Alignment.center,
 //        /**
@@ -84,10 +87,10 @@ class _SignInPageState extends State<SignInPage> {
           new Column(
             children: <Widget>[
               //创建表单
-              buildSignInTextForm(),
+              buildSignInTextForm(size),
 
               Padding(
-                padding: const EdgeInsets.only(top: 100),
+                padding:  EdgeInsets.only(top: size.height*0.25),
                 child: new Text("忘记密码？",
                   style: new TextStyle(
                       fontSize: 16,
@@ -162,7 +165,7 @@ class _SignInPageState extends State<SignInPage> {
 
             ],
           ),
-          new Positioned(child: buildSignInButton(), top: 200,)
+          new Positioned(child: buildSignInButton(), top: size.height*0.28,)
         ],
       ),
     );
@@ -180,15 +183,15 @@ class _SignInPageState extends State<SignInPage> {
   /**
    * 创建登录界面的TextForm
    */
-  Widget buildSignInTextForm() {
+  Widget buildSignInTextForm(Size size) {
     return new Container(
       decoration:
       new BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8))
           , color: Colors.white
       ),
-      width: 300,
-      height: 190,
+      width: size.width*.77,
+      height: size.height*.24,
       /**
        * Flutter提供了一个Form widget，它可以对输入框进行分组，
        * 然后进行一些统一操作，如输入内容校验、输入框重置以及输入内容保存。
@@ -238,7 +241,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             new Container(
               height: 1,
-              width: 250,
+              width: size.width*.637,
               color: Colors.grey[400],
             ),
             Flexible(
@@ -274,7 +277,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             new Container(
               height: 1,
-              width: 250,
+              width: size.width*.637,
               color: Colors.grey[400],
             ),
 

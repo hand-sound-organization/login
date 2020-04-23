@@ -26,7 +26,6 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
     _openModalBottomSheet();
-
   }
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,6 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                   width: size.width,
                   height: size.height - size.height * .3,
                   child: Stack(
-
                     fit: StackFit.loose,
                     children: <Widget>[
                       new FlareActor(
@@ -73,71 +71,10 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                   ),
                 ),
                 Positioned(
-//                  bottom: 100,
-//                  left: 40,
-//                    child:Card(
-//                      color: Colors.blueAccent,
-//                      //z轴的高度，设置card的阴影
-//                      elevation: 20.0,
-//                      //设置shape，这里设置成了R角
-//                      shape: RoundedRectangleBorder(
-//                        borderRadius: BorderRadius.only(
-//                            topLeft: Radius.circular(5.0),
-//                            topRight: Radius.circular(40.0),
-//                            bottomLeft: Radius.circular(5.0),
-//                            bottomRight: Radius.circular(5.0)),
-//                      ),
-//                      clipBehavior: Clip.antiAlias,
-//                      semanticContainer: false,
-//                      child: getChild(),
-//                    )
-
-                child: Container(
-//                  padding: EdgeInsets.all(16),
-//                  child: Center(
-//                    child: Row(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      children: <Widget>[
-//                        FlatButton(
-//                          child: Text('Modal BottomSheet'),
-//                          onPressed: _openModalBottomSheet,
-////                  onPressed: () {
-////                    showDialog<Null>(
-////                      context: context,
-////                      builder: (BuildContext context) {
-////                        return new SimpleDialog(
-////                          title: new Text('选择'),
-////                          children: <Widget>[
-////                            new SimpleDialogOption(
-////                              child: new Text('选项 1'),
-////                              onPressed: () {
-////                                Navigator.of(context).pop();
-////                              },
-////                            ),
-////                            new SimpleDialogOption(
-////                              child: new Text('选项 2'),
-////                              onPressed: () {
-////                                Navigator.of(context).pop();
-////                              },
-////                            ),
-////                          ],
-////                        );
-////                      },
-////                    ).then((val) {
-////                      print(val);
-////                    });
-////                  },
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-                ),
-                ),
-                Positioned(
 //                  top: 40,
                   width: size.width,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:  EdgeInsets.symmetric(horizontal: size.width*0.05),
                     child: AppBar(
                       leading: IconButton(
                             iconSize: 30,
@@ -156,81 +93,13 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                       backgroundColor: Color(0x000000),
                       elevation: 0,
                     ),
-//                    Row(
-//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                      children: <Widget>[
-//                        Container(
-//                          width: 65,
-//                          alignment: Alignment.centerLeft,
-//                          child: IconButton(
-//                            iconSize: 30,
-//                            icon:Icon(Icons.arrow_back),
-//                            color: Colors.white,
-//                            onPressed: (){
-//                              Navigator.of(context).pop();
-//                            },
-//                          ),
-//                        ),
-//                        Text(
-//                          '门锁注册',
-//                          textAlign: TextAlign.center,
-//                          style: TextStyle(
-//                            color: Colors.white,
-//                            fontWeight: FontWeight.bold,
-//                            fontSize: 25,
-//                          ),
-//                        ),
-//                        Row(
-//                          children: <Widget>[
-//                            SizedBox(width: 10),
-////                            Icon(
-////                              Icons.edit,
-////                              color: Colors.white,
-////                            ),
-//                          ],
-//                        )
-//                      ],
-//                    ),
+
                   ),
                 ),
               ],
             ),
           ),
 
-
-//          Container(
-//            width: size.width,
-//            height: size.height * .28,
-//            child: Row(
-//              children: <Widget>[
-//                _buildDashboardItem(
-//                  Color(0xFF23BFFF),
-//                  Icons.local_drink,
-//                  70,
-//                  '0.58',
-//                  'LTRS',
-//                  'DRINK',
-//                ),
-//                _buildDashboardItem(
-//                  Color(0xFF9CDD5D),
-//                  Icons.fastfood,
-//                  50,
-//                  '458',
-//                  'GRMS.',
-//                  'FOOD',
-//                  true,
-//                ),
-//                _buildDashboardItem(
-//                  Color(0xFFEF453C),
-//                  Icons.hotel,
-//                  30,
-//                  '7.30',
-//                  'HRS',
-//                  'SLEEP',
-//                ),
-//              ],
-//            ),
-//          ),
 
 
         ],
@@ -242,168 +111,18 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
 
   }
 
-  Widget _buildDashboardItem(Color color, IconData icon,
-      double completedPercentage, String value, String unit, String name,
-      [bool useLight = false]) {
-    List<Color> colors = [
-      Color(0xFF311b5b),
-      Color(0xFF221441),
-    ];
-
-    if (useLight) {
-      colors = [
-        Color(0xFF311b5b),
-        Color(0xFF321c5c),
-      ];
-    }
-
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: colors,
-            begin: FractionalOffset.topLeft,
-            end: FractionalOffset.bottomRight,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: CustomPaint(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          value,
-                          style: TextStyle(
-                            color: color,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 23,
-                          ),
-                        ),
-                        SizedBox(height: 2),
-                        Text(
-                          unit,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  foregroundPainter: ProgressPainter(
-                    percentageCompletedCircleColor: color,
-                    completedPercentage: completedPercentage,
-                    circleWidth: 10.0,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 60,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Icon(
-                    icon,
-                    color: Colors.white,
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    name,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   _openModalBottomSheet(){
-//    showModalBottomSheet(
-//        context: context,
-//        builder: (BuildContext context){
-//          return Container(
-//            decoration: BoxDecoration(
-//              boxShadow: [
-//                BoxShadow(
-//                  color: Colors.white,
-//                  offset: Offset(0.0, -2.0),
-//                  blurRadius: 4.0,
-//                ),
-//              ],
-//              borderRadius: BorderRadius.only(
-//                topLeft: Radius.circular(24.0),
-//                topRight: Radius.circular(24.0),
-//              ),
-//
-//            ),
-//            height: 100,
-////            child: Column(
-////              children: <Widget>[
-////                ListTile(
-////                  title: Text('Option A'),
-////                ),
-////                ListTile(
-////                  title: Text('Option B'),
-////                ),
-////                ListTile(
-////                  title: Text('Option C'),
-////                ),
-////              ],
-////            ),
-////              child:Card(
-////                color: Colors.blueAccent,
-////                //z轴的高度，设置card的阴影
-////                elevation: 20.0,
-////                //设置shape，这里设置成了R角
-////                shape: RoundedRectangleBorder(
-////                  borderRadius: BorderRadius.only(
-////                      topLeft: Radius.circular(40.0),
-////                      topRight: Radius.circular(40.0),
-////                      bottomLeft: Radius.circular(5.0),
-////                      bottomRight: Radius.circular(5.0)),
-////                ),
-////                clipBehavior: Clip.antiAlias,
-////                semanticContainer: false,
-////                child: getChild(),
-////              )
-//          );
-//        }
-//    );
     Future.delayed(Duration(seconds: 2), (){
-//      Navigator.of(context).pop();
-//      print('延时1s执行');
+    Size size = MediaQuery.of(context).size;
+
+
       showModalBottomSheet(
           backgroundColor: Color(0x000000),
           context: context,
           builder: (BuildContext bc) {
             return Stack(
               children: <Widget>[
-//              Container(
-//                height: 30.0,
-//                width: double.infinity,
-////                color: Colors.black54,
-//              color: Color(0xFF382d4f),
-//              ),
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -425,18 +144,18 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                         ],
                       ),
                       Container(
-                        height: 30,
+                        height: size.height*0.037,
                         color: Color(0x000000),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image(image: new AssetImage("assets/logo.png"),
-                          width: 200,),
+                          width: size.width*0.51,),
                         ],
                       ),
                       Container(
-                        height: 30,
+                        height: size.height*0.037,
                         color: Color(0x000000),
                       ),
                       Row(
@@ -450,7 +169,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                         ],
                       ),
                       Container(
-                        height: 30,
+                        height: size.height*0.037,
                         color: Color(0x000000),
                       ),
                       Row(
@@ -469,61 +188,11 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                       )
                     ],
                   ),
-//                  child: FlatButton(
-////                  color: Colors.red,
-//                    child: Container(
-////                    color: Colors.white,
-//                      alignment: Alignment.center,
-//                      padding:
-//                      EdgeInsets.only(top: 20.0, bottom: 20.0),
-//                      child: Text(
-//                        "bottomSheet的内容",
-//                      ),
-//                    ),
-//                    onPressed: (){
-//                      Navigator.push(
-//                          context, MaterialPageRoute(
-//                          builder: (BuildContext context) {
-//                            return UserContainer(user: User('1','1'), child: new BingdingLockPage());
-//                          }
-//                      )
-//                      );
-//                    },
-//                  ),
                 ),
               ],
             );
           });
     });
-
-
-  }
-
-  getChild() {
-    return Container(
-      width:300,
-      height: 140,
-      alignment: Alignment.center,
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(
-              builder: (BuildContext context) {
-                return UserContainer(user: User('1','1'), child: new LockSignUpPage());
-              }
-          )
-          );
-        },
-        // Generally, material cards use onSurface with 12% opacity for the pressed state.
-//        splashColor:
-//        Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
-//        // Generally, material cards do not have a highlight overlay.
-//        highlightColor: Colors.transparent,),
-        child: new Container(
-        //设置child 居中
-        alignment: Alignment(0, 0),
-        child: Text("开始注册",style: TextStyle(color: Colors.white,fontSize: 16.0),),
-      ),),);
   }
 }
 
