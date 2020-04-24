@@ -2,7 +2,7 @@ import '../../utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class MenuItem extends StatelessWidget {
-  final ProfileMenu menu;
+  final ProfileMenuConst menu;
   MenuItem({this.menu});
   @override
   Widget build(BuildContext context) {

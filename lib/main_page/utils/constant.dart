@@ -22,13 +22,13 @@ const List lampsImage = [
   {'image': 'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/mausam%2Fe.jpg?alt=media&token=a9342ee6-9dc6-452d-ade7-4a1d7783e7fe'},
   {'image': 'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/mausam%2Ff.jpg?alt=media&token=c65c13ad-5b2f-494e-82eb-13d730d823ce'},
 ];
-List<ProfileMenu> lampList = [
-  ProfileMenu(name: 'Landscape', time: '384'),
-  ProfileMenu(name: 'Discus Pendant', time: '274'),
-  ProfileMenu(name: 'Mushroom Lamp', time: '374'),
-  ProfileMenu(name: 'Titanic Pendant', time: '562'),
-  ProfileMenu(name: 'Torn Lighting', time: '105'),
-  ProfileMenu(name: 'Abduction Pendant', time: '365'),
+List<ProfileMenuConst> lampList = [
+  ProfileMenuConst(name: 'Landscape', time: '384'),
+  ProfileMenuConst(name: 'Discus Pendant', time: '274'),
+  ProfileMenuConst(name: 'Mushroom Lamp', time: '374'),
+  ProfileMenuConst(name: 'Titanic Pendant', time: '562'),
+  ProfileMenuConst(name: 'Torn Lighting', time: '105'),
+  ProfileMenuConst(name: 'Abduction Pendant', time: '365'),
 ];
 const List profileItems = [
   {'count': '46', 'name': '保护天数'},
@@ -52,63 +52,8 @@ List<FurnitureCatg> furnitureCategoriesList = [
   FurnitureCatg(icon: CustomIcon.money, elivation: false),
 ];
 
-List<ProfileMenu> profileMenuList = [
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
-  ProfileMenu(
-    name: '用户 1',
-    event: '开门',
-    time: 'April,21,15:34',
-    iconColor: Colors.green,
-    icon: Icons.check,
-  ),
+List<ProfileMenuConst> profileMenuList = [
+
 //  ProfileMenu(
 //    name: 'Privacy',
 //    time: 'System permission change',
@@ -129,13 +74,13 @@ List<ProfileMenu> profileMenuList = [
 //  ),
 ];
 
-class ProfileMenu {
+class ProfileMenuConst {
   String name;
   String event;
   String time;
   IconData icon;
   Color iconColor;
-  ProfileMenu({this.name,this.event,this.time,this.icon, this.iconColor, });
+  ProfileMenuConst({this.name,this.event,this.time,this.icon, this.iconColor, });
 }
 
 class Catg {

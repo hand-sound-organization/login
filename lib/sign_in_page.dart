@@ -333,7 +333,7 @@ class _SignInPageState extends State<SignInPage> {
 //            }
             Navigator.push( context,
                 MaterialPageRoute(builder: (context) {
-                  return MainUserManage();
+                  return Profile();
                 }));
 //            Navigator.push(
 //                context, MaterialPageRoute(
