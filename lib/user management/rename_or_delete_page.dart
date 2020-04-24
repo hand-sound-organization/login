@@ -38,14 +38,15 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
     Size size = MediaQuery.of(context).size;
     String name = ModalRoute.of(context).settings.arguments;
-    setState(() {
-      _selectionController.text="$name";
-      _selectionController.selection=TextSelection(
-          baseOffset: 0,
-          extentOffset: _selectionController.text.length
-      );
+    Future.delayed(Duration(milliseconds: 0)).then((e) {
+      setState(() {
+        _selectionController.text = "$name";
+        _selectionController.selection = TextSelection(
+            baseOffset: 0,
+            extentOffset: _selectionController.text.length
+        );
+      });
     });
-
 
     //print(name);
 

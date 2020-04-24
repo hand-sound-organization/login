@@ -97,7 +97,11 @@ class _MainUserManageState extends State<MainUserManage> {
                 _removeSingleItems(index);
               }
               else{
-                _data[index]="$result";
+                Future.delayed(Duration(milliseconds: 1000)).then((e) {
+                  setState(() {
+                    _data[index] = "$result";
+                  });
+                });
               }
 
             },
