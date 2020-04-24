@@ -12,7 +12,7 @@ import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
 import 'binging_lock_page.dart';
-
+import 'dart:convert';
 class BingdingSearchPage extends StatefulWidget {
   BingdingSearchPage({Key key}) : super(key: key);
 
@@ -180,8 +180,16 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                               Icons.add_circle,
                               color: Colors.lightBlue,),
                              iconSize: 50,
-                          onPressed: (){
-                              Navigator.of(context).pushNamed("bingding_lock_page");
+                          onPressed: () async{
+                            RawDatagramSocket.bind(InternetAddress("192.168.0.100"), 0)
+                                .then((RawDatagramSocket socket) {
+                            print('Sending from ${socket.address.address}:${socket.port}');
+                            int port = 1901;
+                            socket.broadcastEnabled = true;
+                            socket.send("LOCK-SEARCH".codeUnits,
+                            InternetAddress("192.168.0.103"), port);
+                            });
+//                              Navigator.of(context).pushNamed("bingding_lock_page");
                           },
                           )
                         ],
