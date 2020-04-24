@@ -87,7 +87,7 @@ class _ProfileMenuState extends State<ProfileMenu> {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               // 请求失败，显示错误
-              return Text("Error: ${snapshot.error}");
+              return Center(child: Text("未连接到互联网"),);
             } else {
               // 请求成功，显示数据
               List profileMenuList = snapshot.data;

@@ -39,122 +39,134 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
     Size size = MediaQuery.of(context).size;
     // TODO: implement build
     return Scaffold(
-      resizeToAvoidBottomPadding:false,
-      //resizeToAvoidBottomInset: false,
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-//                Image.network(
-//                  'https://www.debuda.net/wp-content/uploads/2017/11/como-decorar-una-habitacion-para-meditar.jpg',
-//                  fit: BoxFit.cover,
-//                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFa06f9c).withOpacity(0.95),
-                        Color(0xFF1610a6).withOpacity(0.75),
-                      ],
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter,
-                    ),
-                  ),
-                ),
-                Positioned(
-//                  top: 40,
-                  width: size.width,
-                  child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: size.width*0.05),
-                    child: AppBar(
-                      leading: IconButton(
-                        iconSize: 30,
-                        icon:Icon(Icons.arrow_back),
-                        color: Colors.white,
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      title: Text("设备搜索",style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),),
-                      centerTitle: true,
-                      backgroundColor: Color(0x000000),
-                      elevation: 0,
-                    ),
-//                    Row(
-//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                      children: <Widget>[
-//                        Container(
-//                          width: 65,
-//                          alignment: Alignment.centerLeft,
-//                          child: IconButton(
-//                            iconSize: 30,
-//                            icon:Icon(Icons.arrow_back),
-//                            color: Colors.white,
-//                            onPressed: (){
-//                              Navigator.of(context).pop();
-//                            },
-//                          ),
-//                        ),
-//                        Text(
-//                          '门锁绑定',
-//                          textAlign: TextAlign.center,
-//                          style: TextStyle(
-//                            color: Colors.white,
-//                            fontWeight: FontWeight.bold,
-//                            fontSize: 25,
-//                          ),
-//                        ),
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.center,
-//                          children: <Widget>[
-//                            SizedBox(width: 10),
-////                            Icon(
-////                              Icons.edit,
-////                              color: Colors.white,
-////                            ),
-//                          ],
-//                        )
-//                      ],
-//                    ),
-                  ),
-                ),
-                Positioned(
-                  top:size.height*0.2,
-                  left: size.width*0.213,
-                  child: Image(image: new AssetImage("assets/logo.png")),
-                ),
-                Positioned(
-                  top:size.height*0.535,
-                  left: size.width*0.08,
-                  width: size.width/1.2,
-                  height: size.height/2.5,
-                  child: Stack(
-                    fit:StackFit.expand,
-                    children: <Widget>[
-                      buildSignInTextForm(size)
-                    ],
-                  ),
-                ),
-                Positioned(child: buildSignInButton(), top: size.height*0.87,left: size.width*.31,)
+      body: SingleChildScrollView(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFFa06f9c).withOpacity(0.95),
+                Color(0xFF1610a6).withOpacity(0.75),
               ],
+              begin: FractionalOffset.topCenter,
+              end: FractionalOffset.bottomCenter,
             ),
           ),
-        ],
+          child: Column(
+            children: <Widget>[
+              AppBar(
+                title: Text("门锁注册",style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
+                ),),
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  iconSize: 30,
+                  icon:Icon(Icons.arrow_back),
+                  color: Colors.white,
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  },
+                ),
+                elevation: 0,
+                centerTitle: true,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: size.height*0.05),
+                child: Image(image: new AssetImage("assets/logo.png")),
+              ),
+              SizedBox(height: size.height*0.08,),
+              SizedBox(width:size.width*0.8,height:size.height*0.3,child: buildSignInTextForm(),),
+              SizedBox(height: size.height*0.02,),
+              buildSignInButton()
+//            buildSignInTextForm()
+              //buildSignInTextForm(size)
+
+              //buildSignInButton()
+            ],
+          ),
+        ),
       ),
     );
+
+//      Scaffold(
+//      resizeToAvoidBottomPadding:false,
+//      //resizeToAvoidBottomInset: false,
+//      body: Column(
+//        children: <Widget>[
+//          Expanded(
+//            child: Stack(
+//              fit: StackFit.expand,
+//              children: <Widget>[
+//                DecoratedBox(
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                      colors: [
+//                        Color(0xFFa06f9c).withOpacity(0.95),
+//                        Color(0xFF1610a6).withOpacity(0.75),
+//                      ],
+//                      begin: FractionalOffset.topCenter,
+//                      end: FractionalOffset.bottomCenter,
+//                    ),
+//                  ),
+//                ),
+//                Positioned(
+////                  top: 40,
+//                  width: size.width,
+//                  child: Padding(
+//                    padding:  EdgeInsets.symmetric(horizontal: size.width*0.05),
+//                    child: AppBar(
+//                      leading: IconButton(
+//                        iconSize: 30,
+//                        icon:Icon(Icons.arrow_back),
+//                        color: Colors.white,
+//                        onPressed: (){
+//                          Navigator.of(context).pop();
+//                        },
+//                      ),
+//                      title: Text("设备搜索",style: TextStyle(
+//                        color: Colors.white,
+//                        fontWeight: FontWeight.bold,
+//                        fontSize: 25,
+//                      ),),
+//                      centerTitle: true,
+//                      backgroundColor: Color(0x000000),
+//                      elevation: 0,
+//                    ),
+//                  ),
+//                ),
+//                Positioned(
+//                  top:size.height*0.2,
+//                  left: size.width*0.213,
+//                  child: Image(image: new AssetImage("assets/logo.png")),
+//                ),
+//                Positioned(
+//                  top:size.height*0.535,
+//                  left: size.width*0.08,
+//                  width: size.width/1.2,
+//                  height: size.height/2.5,
+//                  child: Stack(
+//                    fit:StackFit.expand,
+//                    children: <Widget>[
+//                      buildSignInTextForm(size)
+//                    ],
+//                  ),
+//                ),
+//                Positioned(child: buildSignInButton(), top: size.height*0.87,left: size.width*.31,)
+//              ],
+//            ),
+//          ),
+//        ],
+//      ),
+//    );
   }
   void showPassWord() {
     setState(() {
       isShowPassWord = !isShowPassWord;
     });
   }
-  Widget buildSignInTextForm(Size size) {
+  Widget buildSignInTextForm() {
     return new Container(
 
       decoration:
@@ -221,7 +233,8 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             ),
             new Container(
               height: 1,
-              width:  size.width*.637,
+              //width:  20,
+              //size.width*.637,
               color: Color(0x000000),
             ),
             Flexible(
@@ -272,7 +285,8 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             ),
             new Container(
               height: 1,
-              width:  size.width*.637,
+              //width:  30,
+              //size.width*.637,
               color: Color(0x000000),
             ),
             Flexible(
@@ -328,7 +342,8 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             ),
             new Container(
               height: 1,
-              width:  size.width*.637,
+              //width:30,
+              //size.width*.637,
               color: Color(0x000000),
             ),
 
