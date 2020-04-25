@@ -181,14 +181,27 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                               color: Colors.lightBlue,),
                              iconSize: 50,
                           onPressed: () async{
-                            RawDatagramSocket.bind(InternetAddress("192.168.0.100"), 0)
-                                .then((RawDatagramSocket socket) {
-                            print('Sending from ${socket.address.address}:${socket.port}');
-                            int port = 1901;
-                            socket.broadcastEnabled = true;
-                            socket.send("LOCK-SEARCH".codeUnits,
-                            InternetAddress("192.168.0.103"), port);
-                            });
+//                            RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+//                                .then((RawDatagramSocket socket) {
+//                            print('Sending from ${socket.address.address}:${socket.port}');
+//                            int port = 1901;
+////                            socket.broadcastEnabled = true;
+//                              //监听套接字事件
+//
+//                            socket.send("LOCK-SEARCH".codeUnits,
+//                            InternetAddress("192.168.0.109"), port);
+//                            });
+                            RawDatagramSocket rawDgramSocket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
+
+                            rawDgramSocket.send(utf8.encode("LOCK-SEARCH"), InternetAddress('192.168.0.109'), 1901);
+
+                            //监听套接字事件
+                            await for (RawSocketEvent event in rawDgramSocket) {
+                              if(event == RawSocketEvent.read) {
+                                // 接收数据
+                                print(utf8.decode(rawDgramSocket.receive().data));
+                              }
+                            }
 //                              Navigator.of(context).pushNamed("bingding_lock_page");
                           },
                           )
