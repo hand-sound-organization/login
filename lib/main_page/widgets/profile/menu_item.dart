@@ -8,6 +8,7 @@ class MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Material(
+      color: Colors.transparent,
       borderRadius: BorderRadius.all(
         Radius.circular(20.0),
       ),
@@ -23,7 +24,7 @@ class MenuItem extends StatelessWidget {
 //            spreadRadius: 5.0, // has the effect of extending the shadow
 //          ),
           ],
-          color: Color(0xFF5b3fa1),
+          color: Colors.white70,
           borderRadius: BorderRadius.circular(
             20.0,
           ),
@@ -67,8 +68,7 @@ class MenuItem extends StatelessWidget {
                           '${menu.time}',
                           style: TextStyle(
                             fontSize: 14.0,
-                            color: profile_item_color,
-                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
                         ),
                       ],

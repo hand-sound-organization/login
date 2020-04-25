@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:handsound/login_page.dart';
 import 'package:handsound/sign_in_page.dart';
 import '../bloc/theme.bloc.dart';
@@ -150,8 +151,18 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Image(image: new AssetImage("assets/logo.png"),
-                          width: size.width*0.51,),
+                          Container(
+                            height: size.height*0.25,
+//                            width: size.width,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: size.height*0.02,left: size.width*0.1,right: size.width*0.1),
+                              child: Image(image: new AssetImage("assets/lock2.png"),
+//                              height: size.height*.1,
+                                fit: BoxFit.contain,),
+                            ),
+                          ),
+//                          Image(image: new AssetImage("assets/lock2.png"),
+//                          width: size.width*0.51,),
                         ],
                       ),
                       Container(
@@ -169,7 +180,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                         ],
                       ),
                       Container(
-                        height: size.height*0.037,
+                        height: size.height*0.017,
                         color: Color(0x000000),
                       ),
                       Row(
@@ -181,6 +192,16 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                               color: Colors.lightBlue,),
                              iconSize: 50,
                           onPressed: () async{
+                            RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+                                .then((RawDatagramSocket socket) {
+                            print('Sending from ${socket.address.address}:${socket.port}');
+                            int port = 1901;
+                            socket.broadcastEnabled = true;
+                            Future.doWhile(() async {
+                              await Future.delayed(Duration(seconds: 1));
+                              socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+                              return true;
+                            });
 //                            RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
 //                                .then((RawDatagramSocket socket) {
 //                            print('Sending from ${socket.address.address}:${socket.port}');
@@ -190,19 +211,19 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
 //
 //                            socket.send("LOCK-SEARCH".codeUnits,
 //                            InternetAddress("192.168.0.109"), port);
-//                            });
-                            RawDatagramSocket rawDgramSocket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
-
-                            rawDgramSocket.send(utf8.encode("LOCK-SEARCH"), InternetAddress('192.168.0.109'), 1901);
+                            });
+//                            RawDatagramSocket rawDgramSocket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
+//
+//                            rawDgramSocket.send(utf8.encode("LOCK-SEARCH"), InternetAddress('10.0.2.2'), 1901);
 
                             //监听套接字事件
-                            await for (RawSocketEvent event in rawDgramSocket) {
-                              if(event == RawSocketEvent.read) {
-                                // 接收数据
-                                print(utf8.decode(rawDgramSocket.receive().data));
-                              }
-                            }
-//                              Navigator.of(context).pushNamed("bingding_lock_page");
+//                            await for (RawSocketEvent event in rawDgramSocket) {
+//                              if(event == RawSocketEvent.read) {
+//                                // 接收数据
+//                                print(utf8.decode(rawDgramSocket.receive().data));
+//                              }
+//                            }
+                             // Navigator.of(context).pushNamed("bingding_lock_page");
                           },
                           )
                         ],

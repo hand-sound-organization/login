@@ -17,7 +17,7 @@ class _ProfileState extends State<Profile> {
         .of(context)
         .size;
     return Material(
-      color: Colors.white,
+      //color: Colors.white,
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -39,9 +39,9 @@ class _ProfileState extends State<Profile> {
             //mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              TitleLarge(
-                title: '掌音管家',
-              ),
+//              TitleLarge(
+//                title: '掌音管家',
+//              ),
               SizedBox(
                 height: size.width*0.05093,
               ),

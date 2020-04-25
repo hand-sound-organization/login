@@ -52,7 +52,8 @@ class _AddAlarmState extends State<AddAlarm> {
           children: <Widget>[
             //Icon(Icons.lock, color: Color(0xff65D1BA),),
             Text('智能门链', style: TextStyle(
-              color: Color(0xff65D1BA),
+              color: Colors.white,
+//              Color(0xff65D1BA),
               fontSize: 25.0
             ))
           ],

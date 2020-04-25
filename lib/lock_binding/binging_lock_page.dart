@@ -72,11 +72,17 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                 elevation: 0,
                 centerTitle: true,
               ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height*0.05),
-                child: Image(image: new AssetImage("assets/logo.png")),
+              Container(
+                height: size.height*0.4,
+                width: size.width,
+
+                child: Padding(
+                  padding: EdgeInsets.only(top: size.height*0.02,left: size.width*0.1,right: size.width*0.1),
+                  child: Image(image: new AssetImage("assets/login_logo.png")),
+                ),
               ),
-              SizedBox(height: size.height*0.08,),
+
+//              SizedBox(height: size.height*0.03,),
               SizedBox(width:size.width*0.8,height:size.height*0.3,child: buildSignInTextForm(),),
               SizedBox(height: size.height*0.02,),
               buildSignInButton()

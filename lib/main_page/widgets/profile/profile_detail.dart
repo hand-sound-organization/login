@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../utils/constant.dart';
 import '../../widgets/profile_image.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +14,16 @@ class _ProfileDetailState extends State<ProfileDetail> {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Material(
+      color: Colors.transparent,
       borderRadius: BorderRadius.all(
         Radius.circular(20.0),
       ),
-      elevation: 10,
+      elevation: 0,
       child: Container(
         height: deviceSize.height * 0.2,
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         decoration: BoxDecoration(
-          color: profile_info_background,
+          color: Colors.white70,
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
@@ -47,7 +50,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                         Text(
                           '王瑞锦',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -65,7 +68,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     Text(
                       '门锁ID:ZY12138',
                       style: TextStyle(
-                        color: Colors.white70,
+                        color: Colors.black,
                         fontSize: 13.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -87,7 +90,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                       Text(
                         item['count'],
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -98,7 +101,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                       Text(
                         item['name'],
                         style: TextStyle(
-                          color: Colors.white70,
+                          color: Colors.black,
                           fontSize: 13.0,
                           fontWeight: FontWeight.bold,
                         ),

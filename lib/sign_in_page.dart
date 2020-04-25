@@ -90,7 +90,7 @@ class _SignInPageState extends State<SignInPage> {
               buildSignInTextForm(size),
 
               Padding(
-                padding:  EdgeInsets.only(top: size.height*0.25),
+                padding:  EdgeInsets.only(top: size.height*0.2),
                 child: new Text("忘记密码？",
                   style: new TextStyle(
                       fontSize: 16,

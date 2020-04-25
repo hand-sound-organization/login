@@ -23,7 +23,7 @@ class Category extends StatelessWidget {
                 padding: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: profile_info_categories_background,
+                  color: Colors.white70,
                 ),
                 child: Icon(
                   catg.icon,
@@ -58,7 +58,8 @@ class Category extends StatelessWidget {
         Text(
           catg.name,
           style: TextStyle(
-            fontSize: 13.0,
+            fontSize: 15.0,
+            color: Colors.white
           ),
         )
       ],

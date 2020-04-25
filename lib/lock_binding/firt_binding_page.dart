@@ -41,8 +41,8 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0xFFa06f9c).withOpacity(0.95), //原色(0xFF422479)
-                        Color(0xFF1610a6).withOpacity(0.75), //原色(0xFF1C0746)
+                        Color(0xFFa06f9c).withOpacity(0.95),
+                        Color(0xFF1610a6).withOpacity(0.75),
                       ],
                       begin: FractionalOffset.topLeft,
                       end: FractionalOffset.bottomRight,
@@ -63,6 +63,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                           '门锁绑定',
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            letterSpacing: 3,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
@@ -94,7 +95,8 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                             right: size.width * 0.115),
                           child: RaisedButton(
                             shape: CircleBorder(),
-                            color: Color(0xbbffffff),
+                            color: Colors.white,
+//                            Color(0xbbffffff),
                             child: Container(
                               //color: Colors.blue,
                               //height: size.width/1.5,

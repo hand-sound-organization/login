@@ -6,7 +6,7 @@ class ProfileImage extends StatelessWidget {
   final double height, width;
   final Color color;
   ProfileImage(
-      {this.height = 100.0, this.width = 100.0, this.color = Colors.white});
+      {this.height = 100.0, this.width = 100.0, this.color = Colors.transparent});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class ProfileImage extends StatelessWidget {
         shape: BoxShape.circle,
         //color: Colors.red,
         image: DecorationImage(
-          image: AssetImage("assets/logo1.png"),
+          image: AssetImage("assets/profile_image.png"),
           //CachedNetworkImageProvider(devMausam),
           fit: BoxFit.contain,
         ),

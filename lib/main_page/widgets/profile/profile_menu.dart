@@ -64,7 +64,7 @@ class _ProfileMenuState extends State<ProfileMenu> {
       }
       else if(profileMenuList[index].event=="试错"){
         profileMenuList[index].icon = Icons.warning;
-        profileMenuList[index].iconColor = Colors.yellow;
+        profileMenuList[index].iconColor = Colors.yellow[700];
       }
       else{
         profileMenuList[index].icon = Icons.cancel;
