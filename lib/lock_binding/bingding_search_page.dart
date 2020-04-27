@@ -116,6 +116,8 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
   _openModalBottomSheet(){
     Future.delayed(Duration(seconds: 2), (){
     Size size = MediaQuery.of(context).size;
+    String IP;
+    int PORT;
 
 
       showModalBottomSheet(
@@ -191,40 +193,32 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                               Icons.add_circle,
                               color: Colors.lightBlue,),
                              iconSize: 50,
-                          onPressed: () async{
-                            RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
-                                .then((RawDatagramSocket socket) {
-                            print('Sending from ${socket.address.address}:${socket.port}');
-                            int port = 1901;
-                            socket.broadcastEnabled = true;
-                            Future.doWhile(() async {
-                              await Future.delayed(Duration(seconds: 1));
-                              socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
-                              return true;
-                            });
-//                            RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
-//                                .then((RawDatagramSocket socket) {
-//                            print('Sending from ${socket.address.address}:${socket.port}');
-//                            int port = 1901;
-////                            socket.broadcastEnabled = true;
-//                              //监听套接字事件
-//
-//                            socket.send("LOCK-SEARCH".codeUnits,
-//                            InternetAddress("192.168.0.109"), port);
-                            });
-//                            RawDatagramSocket rawDgramSocket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
-//
-//                            rawDgramSocket.send(utf8.encode("LOCK-SEARCH"), InternetAddress('10.0.2.2'), 1901);
-
-                            //监听套接字事件
-//                            await for (RawSocketEvent event in rawDgramSocket) {
-//                              if(event == RawSocketEvent.read) {
-//                                // 接收数据
-//                                print(utf8.decode(rawDgramSocket.receive().data));
-//                              }
-//                            }
-                             // Navigator.of(context).pushNamed("bingding_lock_page");
-                          },
+                            onPressed: () async{
+                              await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+                                  .then((RawDatagramSocket socket) {
+                                print('Sending from ${socket.address.address}:${socket.port}');
+                                int port = 1901;
+                                socket.broadcastEnabled = true;
+                                Future.delayed(Duration(seconds: 1));
+                                socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+                                socket.listen((event) {
+                                  if(event == RawSocketEvent.read) {
+                                    var  data = Utf8Codec().decode(socket.receive().data);
+                                    print(data);
+                                    if( data.contains("Touch Voice SSDP Standard Response")){
+                                      IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+                                      PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+                                      print(IP);
+                                      print(PORT);
+                                    }
+                                  }
+                                });
+                              });
+                              Future.delayed(Duration(seconds: 1), () async{
+                                var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+                                Psocket.add("LOCK".codeUnits);});
+//                              Navigator.of(context).pushNamed("bingding_lock_page");
+                            },
                           )
                         ],
                       )
