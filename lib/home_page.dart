@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/login_page.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
      */
     User user = UserContainer.of(context).user;
     if (user == null) {
-      return new LoginPage();
+      return new FirstBingdingPage();
     } else {
       return new Scaffold(
         body: new Container(

@@ -21,7 +21,10 @@ class BingdingSearchPage extends StatefulWidget {
 }
 
 class _BingdingSearchPage extends State<BingdingSearchPage> {
-
+  bool xunhuan = true;
+  bool backBoolean = false;
+  String IP;
+  int PORT;
   @override
   void initState() {
     super.initState();
@@ -112,123 +115,135 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
 
   }
 
-
-  _openModalBottomSheet(){
-    Future.delayed(Duration(seconds: 2), (){
-    Size size = MediaQuery.of(context).size;
-    String IP;
-    int PORT;
-
-
-      showModalBottomSheet(
-          backgroundColor: Color(0x000000),
-          context: context,
-          builder: (BuildContext bc) {
-            return Stack(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
-                      )),
-                ),
-                Container(
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text('设备列表',
-                          style: TextStyle(
-                            fontSize: 30
-                          ),)
-                        ],
-                      ),
-                      Container(
-                        height: size.height*0.037,
-                        color: Color(0x000000),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            height: size.height*0.25,
-//                            width: size.width,
-                            child: Padding(
-                              padding: EdgeInsets.only(top: size.height*0.02,left: size.width*0.1,right: size.width*0.1),
-                              child: Image(image: new AssetImage("assets/lock2.png"),
-//                              height: size.height*.1,
-                                fit: BoxFit.contain,),
-                            ),
-                          ),
-//                          Image(image: new AssetImage("assets/lock2.png"),
-//                          width: size.width*0.51,),
-                        ],
-                      ),
-                      Container(
-                        height: size.height*0.037,
-                        color: Color(0x000000),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text('掌音智能门锁',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.grey
-                            ),)
-                        ],
-                      ),
-                      Container(
-                        height: size.height*0.017,
-                        color: Color(0x000000),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              Icons.add_circle,
-                              color: Colors.lightBlue,),
-                             iconSize: 50,
-                            onPressed: () async{
-                              await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
-                                  .then((RawDatagramSocket socket) {
-                                print('Sending from ${socket.address.address}:${socket.port}');
-                                int port = 1901;
-                                socket.broadcastEnabled = true;
-                                Future.delayed(Duration(seconds: 1));
-                                socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
-                                socket.listen((event) {
-                                  if(event == RawSocketEvent.read) {
-                                    var  data = Utf8Codec().decode(socket.receive().data);
-                                    print(data);
-                                    if( data.contains("Touch Voice SSDP Standard Response")){
-                                      IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
-                                      PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
-                                      print(IP);
-                                      print(PORT);
-                                    }
-                                  }
-                                });
-                              });
-                              Future.delayed(Duration(seconds: 1), () async{
-                                var Psocket = await Socket.connect(InternetAddress(IP), PORT);
-                                Psocket.add("LOCK".codeUnits);});
-//                              Navigator.of(context).pushNamed("bingding_lock_page");
-                            },
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            );
-          });
+  Search()async{
+    await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+        .then((RawDatagramSocket socket) {
+      print('Sending from ${socket.address.address}:${socket.port}');
+      int port = 1901;
+      socket.broadcastEnabled = true;
+      Future.delayed(Duration(seconds: 1));
+      socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+      socket.listen((event) {
+        if(event == RawSocketEvent.read) {
+          var  data = Utf8Codec().decode(socket.receive().data);
+          print(data);
+          if( data.contains("Touch Voice SSDP Standard Response")){
+            IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+            PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+            print(IP);
+            print(PORT);
+//            print(data.contains("Touch Voice SSDP Standard Response"));
+            backBoolean = data.contains("Touch Voice SSDP Standard Response");
+            print('1'+backBoolean.toString());
+          }
+        }
+      }
+      );
     });
+  }
+
+  _openModalBottomSheet()async{
+    Search();
+    Future.delayed(Duration(seconds: 5), (){
+      if(backBoolean){
+        Size size = MediaQuery.of(context).size;
+        showModalBottomSheet(
+            backgroundColor: Color(0x000000),
+            context: context,
+            builder: (BuildContext bc) {
+              return Stack(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        )),
+                  ),
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('设备列表',
+                              style: TextStyle(
+                                  fontSize: 30
+                              ),)
+                          ],
+                        ),
+                        Container(
+                          height: size.height*0.037,
+                          color: Color(0x000000),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              height: size.height*0.25,
+                              //                            width: size.width,
+                              child: Padding(
+                                padding: EdgeInsets.only(top: size.height*0.02,left: size.width*0.1,right: size.width*0.1),
+                                child: Image(image: new AssetImage("assets/lock2.png"),
+                                  //                              height: size.height*.1,
+                                  fit: BoxFit.contain,),
+                              ),
+                            ),
+                            //                          Image(image: new AssetImage("assets/lock2.png"),
+                            //                          width: size.width*0.51,),
+                          ],
+                        ),
+                        Container(
+                          height: size.height*0.037,
+                          color: Color(0x000000),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('掌音智能门锁',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.grey
+                              ),)
+                          ],
+                        ),
+                        Container(
+                          height: size.height*0.017,
+                          color: Color(0x000000),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              icon: Icon(
+                                Icons.add_circle,
+                                color: Colors.lightBlue,),
+                              iconSize: 50,
+                              onPressed: () async{
+
+                                Future.delayed(Duration(seconds: 0), () async{
+                                  var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+                                  Psocket.add("End".codeUnits);
+                                  Navigator.of(context).pushNamed("bingding_lock_page");
+                                });
+
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            });
+      }
+
+
+
+
+          });
   }
 }
 

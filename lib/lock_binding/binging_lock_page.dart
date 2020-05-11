@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,6 +11,7 @@ import 'package:handsound/user.dart';
 import 'package:handsound/theme.dart';
 import '../bloc/theme.bloc.dart';
 import 'package:handsound/login_page.dart';
+import 'dart:io';
 
 class BingdingLockPage extends StatefulWidget {
   BingdingLockPage({Key key}) : super(key: key);
@@ -28,6 +31,38 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
   GlobalKey<FormState> _SignInFormKey = new GlobalKey();
 
   bool isShowPassWord = false;
+  String IP;
+  int PORT;
+
+  SearchAndLink()async{
+    await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+        .then((RawDatagramSocket socket) {
+      print('Sending from ${socket.address.address}:${socket.port}');
+      int port = 1901;
+      socket.broadcastEnabled = true;
+      Future.delayed(Duration(seconds: 1));
+      socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+      socket.listen((event) {
+        if(event == RawSocketEvent.read) {
+          var  data = Utf8Codec().decode(socket.receive().data);
+          print(data);
+          if( data.contains("Touch Voice SSDP Standard Response")){
+            IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+            PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+            print(IP);
+            print(PORT);
+//            print(data.contains("Touch Voice SSDP Standard Response"));
+          }
+        }
+      }
+      );
+    });
+    Future.delayed(Duration(seconds: 1), () async{
+      var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+      Psocket.add("${PtextEditingController.text}".codeUnits);
+      //Navigator.of(context).pushNamed("bingding_lock_page");z
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -375,18 +410,17 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
 //          new Text(
 //            "登录", style: new TextStyle(fontSize: 25, color: Colors.black),),
         ),
-        onTap: () {
+        onTap: () async{
           /**利用key来获取widget的状态FormState
               可以用过FormState对Form的子孙FromField进行统一的操作
            */
           if (_SignInFormKey.currentState.validate()) {
             //如果输入都检验通过，则进行登录操作
-
+            SearchAndLink();
 //            Scaffold.of(context).showSnackBar(
 //                new SnackBar(content: new Text("绑定成功")));
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-            print('666');
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
