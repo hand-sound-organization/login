@@ -33,8 +33,9 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
   bool isShowPassWord = false;
   String IP;
   int PORT;
-
+  User user;
   SearchAndLink()async{
+    User user = UserContainer.of(context).user;
     await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
         .then((RawDatagramSocket socket) {
       print('Sending from ${socket.address.address}:${socket.port}');
@@ -59,7 +60,19 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
     });
     Future.delayed(Duration(seconds: 1), () async{
       var Psocket = await Socket.connect(InternetAddress(IP), PORT);
-      Psocket.add("${PtextEditingController.text}".codeUnits);
+      Psocket.add(
+          '{"PAGEID":1,'
+          '"USERNAME":"${user.username}",'
+          '"LOCKID":"${EtextEditingController.text}",'
+          '"TOKEN":"${PtextEditingController.text}",'
+          '"MEMBERLIST":[],'
+          '"DATASTART":[],'
+          '"DATAEND":[],'
+          '"DATALIST":[],'
+          '"IsOver":"True"'
+          '}'
+          .codeUnits);
+//      Psocket.add("END".codeUnits);
       //Navigator.of(context).pushNamed("bingding_lock_page");z
     });
   }
@@ -71,6 +84,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
   }
   @override
   Widget build(BuildContext context) {
+    user = UserContainer.of(context).user;
     Size size = MediaQuery.of(context).size;
     // TODO: implement build
     return Scaffold(

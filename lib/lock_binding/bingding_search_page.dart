@@ -25,6 +25,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
   bool backBoolean = false;
   String IP;
   int PORT;
+  User user;
   @override
   void initState() {
     super.initState();
@@ -34,6 +35,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    user = UserContainer.of(context).user;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -224,8 +226,27 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
 
                                 Future.delayed(Duration(seconds: 0), () async{
                                   var Psocket = await Socket.connect(InternetAddress(IP), PORT);
-                                  Psocket.add("End".codeUnits);
-                                  Navigator.of(context).pushNamed("bingding_lock_page");
+                                  Psocket.add(
+                                      '{"PAGEID":"",'
+                                          '"USERNAME":"",'
+                                          '"LOCKID":"",'
+                                          '"TOKEN":"",'
+                                          '"MEMBERLIST":"[1]",'
+                                          '"DATASTART":"[2]",'
+                                          '"DATAEND":"[3]",'
+                                          '"DATALIST":"[4]",'
+                                          '"IsOver":"True"'
+                                          '}'
+                                          .codeUnits);
+                                  //Navigator.of(context).pushNamed("bingding_lock_page");
+                                  Navigator.push(
+                                      context, MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                        return UserContainer(user: user,
+                                            child: new BingdingLockPage());
+                                      }
+                                  )
+                                  );
                                 });
 
                               },

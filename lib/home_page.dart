@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
      */
     User user = UserContainer.of(context).user;
     if (user == null) {
-      return new FirstBingdingPage();
+      return new LoginPage();
     } else {
       return new Scaffold(
         body: new Container(

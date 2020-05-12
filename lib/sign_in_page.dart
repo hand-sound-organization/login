@@ -53,11 +53,17 @@ class _SignInPageState extends State<SignInPage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/login",host:"10.0.2.2",port:5000));
+          Uri(scheme: "http",path: "/app/login",host: "192.168.0.107",port: 5000,queryParameters: {
+            "username":username
+          })
+          );
+
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
+      print(responseBody);
       Map data = jsonDecode(responseBody);
-      return data['isTrue'];
+      print(data);
+      return data;
       httpClient.close();
 //      responseBody = await response.transform(utf8.decoder).join();
 //      var data = jsonDecode(responseBody);
@@ -316,25 +322,38 @@ class _SignInPageState extends State<SignInPage> {
 
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
-            //bool result = verify(EtextEditingController.text,PtextEditingController.text) as bool;
-//            bool result = await verify(EtextEditingController.text,PtextEditingController.text)as bool;
-//            Navigator.of(context).pushNamed("door_chain_management");
-//            if(result==true){
-//              Scaffold.of(context).showSnackBar(
-//                  new SnackBar(content: new Text("登录成功")));
-//              Navigator.push( context,
-//                  MaterialPageRoute(builder: (context) {
-//                    return FirstBingdingPage();
-//                  }));
-//            }
-//            else{
-//              Scaffold.of(context).showSnackBar(
-//                  new SnackBar(content: new Text("用户名或者密码输入错误")));
-//            }
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) {
-                  return FirstBingdingPage();
-                }));
+            Map result = await verify(EtextEditingController.text,PtextEditingController.text)as Map;
+            if(result['UserIsTrue']==true){
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text("登录成功")));
+              if(result['LockIsTrue']==true){
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new Profile());
+                    }
+                )
+                );
+              }
+              else{
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
+                    }
+                )
+                );
+              }
+
+            }
+            else{
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text("用户名或者密码输入错误")));
+            }
+//            Navigator.push( context,
+//                MaterialPageRoute(builder: (context) {
+//                  return FirstBingdingPage();
+//                }));
 //            Navigator.push(
 //                context, MaterialPageRoute(
 //                builder: (BuildContext context) {

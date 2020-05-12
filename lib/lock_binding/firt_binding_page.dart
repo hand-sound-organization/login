@@ -26,6 +26,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
     Size size = MediaQuery
         .of(context)
         .size;
+    User user = UserContainer.of(context).user;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -111,7 +112,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                               Navigator.push(
                                   context, MaterialPageRoute(
                                   builder: (BuildContext context) {
-                                    return UserContainer(user: User('1', '1'),
+                                    return UserContainer(user: User(user.username, user.password),
                                         child: new BingdingSearchPage());
                                   }
                               )
