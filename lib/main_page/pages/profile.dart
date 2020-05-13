@@ -1,5 +1,9 @@
 
 
+import 'package:handsound/user.dart';
+
+
+import '../../user_provider.dart';
 import '../widgets/profile/profile_categories.dart';
 import '../widgets/profile/profile_detail.dart';
 import '../widgets/profile/profile_menu.dart';
@@ -13,6 +17,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    User user = UserContainer.of(context).user;
     Size size = MediaQuery
         .of(context)
         .size;
@@ -45,7 +50,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: size.width*0.05093,
               ),
-              ProfileDetail(),
+              ProfileDetail(username: user.username,),
               SizedBox(
                 height: size.height*0.03733,
               ),

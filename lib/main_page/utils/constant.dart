@@ -31,10 +31,10 @@ List<ProfileMenuConst> lampList = [
   ProfileMenuConst(name: 'Abduction Pendant', time: '365'),
 ];
 List profileItems = [
-  {'count': '46', 'name': '保护天数'},
-  {'count': '51', 'name': '安全开锁次数'},
-  {'count': '3', 'name': '家庭成员人数'},
-  {'count': '100%', 'name': '安全系数'},
+  {'count': 0, 'name': '保护天数'},
+  {'count': 0, 'name': '安全开锁次数'},
+  {'count': 0, 'name': '家庭成员人数'},
+  {'count': "", 'name': '安全系数'},
 ];
 
 List<String> memList = ['成员 1', '成员 2', '成员 3', '成员 4', '成员 5'];

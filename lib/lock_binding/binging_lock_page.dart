@@ -90,7 +90,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
     Future.delayed(Duration(seconds: 1), () async{
       var Psocket = await Socket.connect(InternetAddress(IP), PORT);
       Psocket.add(
-          '{"PAGEID":1,'
+          '{"PAGEID":"bind",'
           '"USERNAME":"${user.username}",'
           '"LOCKID":"${EtextEditingController.text}",'
           '"TOKEN":"${PtextEditingController.text}",'
