@@ -22,11 +22,21 @@ class RenameOrDeletePage extends StatefulWidget {
 
 class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
   TextEditingController _selectionController =  TextEditingController();
+  String name;
 
   @override
   void initState() {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
+    Future.delayed(Duration(milliseconds: 0)).then((e) {
+      setState(() {
+        _selectionController.text = "$name";
+        _selectionController.selection = TextSelection(
+            baseOffset: 0,
+            extentOffset: _selectionController.text.length
+        );
+      });
+    });
   }
 
 
@@ -37,16 +47,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
   Widget build(BuildContext context) {
 
     Size size = MediaQuery.of(context).size;
-    String name = ModalRoute.of(context).settings.arguments;
-    Future.delayed(Duration(milliseconds: 0)).then((e) {
-      setState(() {
-        _selectionController.text = "$name";
-        _selectionController.selection = TextSelection(
-            baseOffset: 0,
-            extentOffset: _selectionController.text.length
-        );
-      });
-    });
+    name = ModalRoute.of(context).settings.arguments;
 
     //print(name);
 
