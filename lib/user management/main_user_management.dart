@@ -55,11 +55,13 @@ class _MainUserManageState extends State<MainUserManage> {
   }
   HTTPpost()async{
     try{
+
+
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
           Uri(scheme: "http",path: "/app/updatamemberlist",host:"192.168.0.107",port:5000,queryParameters: {
             "username":"xgy",
-            "memberlist": memListStr
+            "memberlist": memList.join(",")
           }));
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
