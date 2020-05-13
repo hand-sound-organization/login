@@ -1,9 +1,16 @@
+import 'package:handsound/door_chain/door_chain_management.dart';
+import 'package:handsound/door_chain/main_door_chain_page.dart';
+import 'package:handsound/user%20management/main_user_management.dart';
+import 'package:handsound/user_provider.dart';
+
+import '../../../user.dart';
 import '../../utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
+  final String username;
   final Catg catg;
-  Category({this.catg});
+  Category({Key key,@required this.catg,@required this.username}):super(key:key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,9 +22,21 @@ class Category extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (catg.name == listProfileCategories[0].name)
-                  Navigator.pushNamed(context, 'door_chain_management');
+                  Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return UserContainer(user: User(this.username,"1"), child: new DoorChainManage());
+                      }
+                  )
+                  );
                 else if(catg.name == listProfileCategories[1].name)
-                  Navigator.pushNamed(context, 'main_user_management_page');
+                  Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return UserContainer(user: User(this.username,"1"), child: new MainUserManage());
+                      }
+                  )
+                  );
               },
               child: Container(
                 padding: EdgeInsets.all(10.0),

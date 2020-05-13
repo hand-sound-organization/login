@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -22,10 +23,11 @@ class _DoorChainManageState extends State<DoorChainManage> {
   // backing data
   List<TimeOfDay> _datastart =[];
   List<TimeOfDay> _dataend =[];
-  List<List> datalist =  [];
+  List<List<String>> datalist =  [];
   List<String>  aa = ["周一","周二",'周三','周四','周五',"周六","周日"];
   String IP;
   int PORT;
+  User user;
 
   @override
   void initState() {
@@ -34,11 +36,11 @@ class _DoorChainManageState extends State<DoorChainManage> {
     super.initState();
   }
 
-  String changeDate(List<bool> list){
+  String changeDate(List<String> list){
     String data ='';
-    print(list);
+
     for (int i=0; i<7; i++){
-      if(list[i]==true){
+      if(list[i]=="1"){
         data+=aa[i];
         data+="、";
       }
@@ -47,13 +49,148 @@ class _DoorChainManageState extends State<DoorChainManage> {
       data = data.substring(0, data.length-1);
     }
 
-    print(data);
+
     return data;
   }
 
+  HTTPget(String username)async{
+    try{
+      HttpClient httpClient = new HttpClient();
+      HttpClientRequest request = await httpClient.getUrl(
+          Uri(scheme: "http",path: "/app/getchain",host: "192.168.0.107",port: 5000,queryParameters: {
+            "username":username,
+          })
+      );
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
 
+      Map data = jsonDecode(responseBody);
+      List list=[];
+
+      splitTimeStart(data['timestart']);
+      splitTimeEnd(data['timeend']);
+      splitTimeDataList(data['datalist']);
+      return list;
+      httpClient.close();
+//      responseBody = await response.transform(utf8.decoder).join();
+//      var data = jsonDecode(responseBody);
+//      result = data['isTrue'];
+//      print(data);
+      //return result;
+    }catch(e){
+      print("出错666");
+      return null;
+    }
+  }
+  HTTPpost(String username)async{
+    try{
+      HttpClient httpClient = new HttpClient();
+      Uri uri;
+      if(datalist.length==0){
+        uri = Uri(scheme: "http",path: "/app/updatachain",host: "192.168.0.107",port: 5000,queryParameters: {
+          "username":user.username,
+          "timestart":"",
+          "timeend":"",
+          "datalist":""
+        });
+      }
+      else{
+        Uri(scheme: "http",path: "/app/updatachain",host: "192.168.0.107",port: 5000,queryParameters: {
+          "username":user.username,
+          "timestart":joinTimeStart(),
+          "timeend":joinTimeEnd(),
+          "datalist":joinTimeDataList()
+        });
+      }
+      HttpClientRequest request = await httpClient.getUrl(uri);
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
+
+      Map data = jsonDecode(responseBody);
+
+      return data;
+      httpClient.close();
+//      responseBody = await response.transform(utf8.decoder).join();
+//      var data = jsonDecode(responseBody);
+//      result = data['isTrue'];
+//      print(data);
+      //return result;
+    }catch(e){
+      print("出错");
+      return null;
+    }
+  }
+
+
+  splitTimeStart(String timestart){
+    List timeStartList = timestart.split(",");
+    List<TimeOfDay> list=[];
+
+    for(var i=0; i < timeStartList.length; i+=2) {
+      list.add(new TimeOfDay(hour: int.parse(timeStartList[i]), minute: int.parse(timeStartList[i+1])));
+
+    }
+    _datastart = list;
+  }
+  splitTimeEnd(String timeend){
+    List timeEndList = timeend.split(",");
+    List<TimeOfDay> list=[];
+    for(var i=0;i<timeEndList.length;){
+      list.add(new TimeOfDay(hour: int.parse(timeEndList[i]), minute: int.parse(timeEndList[i+1])));
+
+      i+=2;
+    }
+    _dataend = list;
+  }
+  splitTimeDataList(String _datalist){
+    List timeDataList = _datalist.split(",");
+    List<List<String>> _list=[];
+    for(var i=0;i<timeDataList.length;){
+      List<String> list =[];
+      for(int j=0;j<7;j++){
+        list.add(timeDataList[i+j]);
+      }
+      _list.add(list);
+      i+=7;
+    }
+    datalist = _list;
+  }
+
+  joinTimeStart(){
+    String timeStart="";
+    for(var item in _datastart){
+      timeStart += "${item.hour}" + "," + "${item.minute}" + ",";
+    }
+    timeStart = timeStart.substring(0,timeStart.length-1);
+    return timeStart;
+  }
+  joinTimeEnd(){
+    String timeEnd="";
+    for(var item in _dataend){
+      timeEnd += "${item.hour}" + "," + "${item.minute}" + ",";
+    }
+    timeEnd = timeEnd.substring(0,timeEnd.length-1);
+    return timeEnd;
+  }
+  joinTimeDataList(){
+    String _datalist = "";
+    for(var item1 in datalist){
+      for(var item2 in item1){
+        _datalist += item2 + ",";
+      }
+    }
+    _datalist = _datalist.substring(0,_datalist.length-1);
+    return _datalist;
+  }
+  Future<List> mockNetworkData() async {
+    List dataList = await HTTPget(user.username) as List;
+
+    return Future.delayed(Duration(seconds: 1), ()=>dataList) ;
+  }
   @override
   Widget build(BuildContext context) {
+    user = UserContainer.of(context).user;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF5b3fa1),
@@ -67,14 +204,34 @@ class _DoorChainManageState extends State<DoorChainManage> {
           ),
         ),
       ),
-      body: AnimatedList(
-        /// Key to call remove and insert item methods from anywhere
-        key: _listKey,
-        initialItemCount: _datastart.length,
-        itemBuilder: (context, index, animation) {
-          return _buildItem(_datastart[index],_dataend[index],changeDate(datalist[index]), animation, index);
+      body: FutureBuilder<List>(
+        future: mockNetworkData(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          // 请求已结束
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              // 请求失败，显示错误
+              return Center(child: Text("未连接到互联网"),);
+            } else {
+              // 请求成功，显示数据
+              List memberList = snapshot.data;
+              return AnimatedList(
+                /// Key to call remove and insert item methods from anywhere
+                key: _listKey,
+                initialItemCount: _datastart.length,
+                itemBuilder: (context, index, animation) {
+                  return _buildItem(_datastart[index],_dataend[index],changeDate(datalist[index]), animation, index);
+                },
+              );
+            }
+          }
+          else {
+            // 请求未结束，显示loading
+            return Center(child:CircularProgressIndicator());
+          }
         },
       ),
+      
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.black,
@@ -87,10 +244,12 @@ class _DoorChainManageState extends State<DoorChainManage> {
 //            Navigator.pushNamed( context,"add_alarm");
             var result = await Navigator.of(context).pushNamed("add_alarm",
                 arguments: TransferDataEntity(
-                    TimeOfDay.now(),TimeOfDay.now(),[true,true,true,true,true,true,true,]))
+                    TimeOfDay.now(),TimeOfDay.now(),["1","1","1","1","1","1","1"]))
             as TransferDataEntity;
             if(result.list!=null){
+              print("+++++++++++++++++++++++++++++++++++++++++++++++++");
               _insertSingleItem(result);
+              HTTPpost(user.username);
             }
 
           }
@@ -138,7 +297,10 @@ class _DoorChainManageState extends State<DoorChainManage> {
               )as TransferDataEntity;
               print("$result");
               if(result.list==null){
+
                 _removeSingleItems(index);
+
+                HTTPpost(user.username);
                 await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
                     .then((RawDatagramSocket socket) {
                   print('Sending from ${socket.address.address}:${socket.port}');
@@ -149,7 +311,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
                   socket.listen((event) {
                     if(event == RawSocketEvent.read) {
                       var  data = Utf8Codec().decode(socket.receive().data);
-                      print(data);
+
                       if( data.contains("Touch Voice SSDP Standard Response")){
                         IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
                         PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
@@ -179,8 +341,12 @@ class _DoorChainManageState extends State<DoorChainManage> {
                   //Navigator.of(context).pushNamed("bingding_lock_page");z
                 });
               }
-              _datastart[index]=result.timestart;
-              _dataend[index]=result.timeend;
+              else{
+                datalist[index] =result.list;
+                _datastart[index]=result.timestart;
+                _dataend[index]=result.timeend;
+              }
+
 
             },
           ),
@@ -224,7 +390,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
     int removeIndex = removeAt;
     TimeOfDay removedItem1 = _datastart.removeAt(removeIndex);
     TimeOfDay removedItem2 = _dataend.removeAt(removeIndex);
-    List<bool> removedItem3 = datalist.removeAt(removeIndex);
+    List<String> removedItem3 = datalist.removeAt(removeIndex);
     // This builder is just so that the animation has something
     // to work with before it disappears from view since the original
     // has already been deleted.
@@ -265,7 +431,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
 class TransferDataEntity {
   final TimeOfDay timestart;
   final TimeOfDay timeend;
-  final List<bool> list;
+  final List<String> list;
 
   TransferDataEntity(this.timestart, this.timeend,this.list);
 }

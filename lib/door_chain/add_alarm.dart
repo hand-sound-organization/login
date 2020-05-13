@@ -16,7 +16,7 @@ class AddAlarm extends StatefulWidget {
 class _AddAlarmState extends State<AddAlarm> {
   bool isloaded= false;
   TransferDataEntity transferDataEntity ;
-  List<bool> chooseData = [false,true,true,true,true,true,true,];
+  List<String> chooseData = ["1","1","1","1","1","1","1"];
   TimeOfDay _selectedTime;
   TimeOfDay _selectedTime2;
   ValueChanged<TimeOfDay> selectTime;
@@ -234,7 +234,7 @@ class _AddAlarmState extends State<AddAlarm> {
       width: 70.0,
       height: 70.0,
       decoration: BoxDecoration(
-          color: (chooseData[index])?Theme.of(context).accentColor:Colors.transparent,
+          color: ("1"==chooseData[index])?Theme.of(context).accentColor:Colors.transparent,
           //(selected)?Theme.of(context).accentColor:Colors.transparent,
           //Colors.blueAccent,
           borderRadius: BorderRadius.circular(100.0)
@@ -242,7 +242,7 @@ class _AddAlarmState extends State<AddAlarm> {
       child: FlatButton(
         onPressed: (){
           setState(() {
-            chooseData[index]=!chooseData[index];
+            chooseData[index]=("1"==chooseData[index])?"0":"1";
           });
           print('${chooseData[index]}');
         },

@@ -3,6 +3,8 @@ import '../../widgets/profile/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 class ProfileCategories extends StatefulWidget {
+  ProfileCategories({Key key,@required this.username}):super(key:key);
+  final String username;
   @override
   _ProfileCategoriesState createState() => new _ProfileCategoriesState();
 }
@@ -17,6 +19,7 @@ class _ProfileCategoriesState extends State<ProfileCategories> {
           for (Catg catg in listProfileCategories)
             Category(
               catg: catg,
+              username: widget.username,
             )
         ],
       ),

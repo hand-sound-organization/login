@@ -54,7 +54,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: size.height*0.03733,
               ),
-              ProfileCategories(),
+              ProfileCategories(username: user.username,),
               SizedBox(
                 height: size.height*0.03733,
               ),
