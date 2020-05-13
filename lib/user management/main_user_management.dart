@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:handsound/main_page/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/user_provider.dart';
@@ -20,7 +20,6 @@ class _MainUserManageState extends State<MainUserManage> {
   String IP;
   int PORT;
   // backing data
-  List<String> _data = ['成员 1', '成员 2', '成员 3', '成员 4', '成员 5'];
 
   @override
   void initState() {
@@ -28,7 +27,98 @@ class _MainUserManageState extends State<MainUserManage> {
     //Ads.hideBannerAd();
     super.initState();
   }
+  HTTPget()async{
+    try{
 
+      HttpClient httpClient = new HttpClient();
+      HttpClientRequest request = await httpClient.getUrl(
+          Uri(scheme: "http",path: "/app/usermanagement",host:"192.168.0.107",port:5000,queryParameters: {
+            "username":"xgy"
+          }));
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
+      Map returnInfo = jsonDecode(responseBody);
+      String data = returnInfo['memberlist'];
+      print(data);
+      memList= data.split(",");
+      if(data.length==0){
+        memList=[];
+      }
+      print(memList);
+      return memList;
+      httpClient.close();
+
+    }catch(e){
+      print("666");
+      return null;
+    }
+  }
+  HTTPpost()async{
+    try{
+      HttpClient httpClient = new HttpClient();
+      HttpClientRequest request = await httpClient.getUrl(
+          Uri(scheme: "http",path: "/app/updatamemberlist",host:"192.168.0.107",port:5000,queryParameters: {
+            "username":"xgy",
+            "memberlist": memListStr
+          }));
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
+      Map returnInfo = jsonDecode(responseBody);
+      print(returnInfo);
+      return returnInfo;
+      httpClient.close();
+
+    }catch(e){
+      print("666");
+      return null;
+    }
+  }
+  searchAndLink()async{
+    await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+        .then((RawDatagramSocket socket) {
+      print('Sending from ${socket.address.address}:${socket.port}');
+      int port = 1901;
+      socket.broadcastEnabled = true;
+      Future.delayed(Duration(seconds: 1));
+      socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+      socket.listen((event) {
+        if(event == RawSocketEvent.read) {
+          var  data = Utf8Codec().decode(socket.receive().data);
+          print(data);
+          if( data.contains("Touch Voice SSDP Standard Response")){
+            IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+            PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+            print(IP);
+            print(PORT);
+//            print(data.contains("Touch Voice SSDP Standard Response"));
+          }
+        }
+      }
+      );
+    });
+    Future.delayed(Duration(seconds: 1), () async{
+      var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+      Psocket.add(
+          '{"PAGEID":"vibration",'
+              '"USERNAME":"",'
+              '"LOCKID":"",'
+              '"TOKEN":"",'
+              '"MEMBERLIST":[],'
+              '"DATASTART":[],'
+              '"DATAEND":[],'
+              '"DATALIST":[],'
+              '"IsOver":"True"'
+              '}'
+              .codeUnits);
+//      Psocket.add("END".codeUnits);
+      //Navigator.of(context).pushNamed("bingding_lock_page");z
+    });
+  }
+  Future<List> mockNetworkData() async {
+    List dataList = await HTTPget() as List;
+
+    return Future.delayed(Duration(seconds: 1), ()=>dataList) ;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,14 +134,38 @@ class _MainUserManageState extends State<MainUserManage> {
           ),
         ),
       ),
-      body: AnimatedList(
-        /// Key to call remove and insert item methods from anywhere
-        key: _listKey,
-        initialItemCount: _data.length,
-        itemBuilder: (context, index, animation) {
-          return _buildItem(_data[index], animation, index);
+      body: FutureBuilder<List>(
+        future: mockNetworkData(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          // 请求已结束
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              // 请求失败，显示错误
+              return Center(child: Text("未连接到互联网"),);
+            } else {
+              // 请求成功，显示数据
+              List memberList = snapshot.data;
+              return MediaQuery.removePadding(
+                removeTop: true,
+                context: context,
+                child: AnimatedList(
+                  /// Key to call remove and insert item methods from anywhere
+                  key: _listKey,
+                  initialItemCount: memList.length,
+                  itemBuilder: (context, index, animation) {
+                    return _buildItem(memList[index], animation, index);
+                  },
+                ),
+              );
+            }
+          }
+          else {
+            // 请求未结束，显示loading
+            return Center(child:CircularProgressIndicator());
+          }
         },
       ),
+
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.black,
@@ -62,6 +176,7 @@ class _MainUserManageState extends State<MainUserManage> {
           if (delete != null) {
             Navigator.pushNamed( context,"lock_sign_up_page");
             _insertSingleItem();
+            HTTPpost();
           }
 
 //          Navigator.push(
@@ -99,11 +214,13 @@ class _MainUserManageState extends State<MainUserManage> {
               }
               else if("$result"=="delete"){
                 _removeSingleItems(index);
+                HTTPpost();
               }
               else{
                 Future.delayed(Duration(milliseconds: 1000)).then((e) {
                   setState(() {
-                    _data[index] = "$result";
+                    memList[index] = "$result";
+                    HTTPpost();
                   });
                 });
               }
@@ -118,13 +235,13 @@ class _MainUserManageState extends State<MainUserManage> {
   /// Method to add an item to an index in a list
   void _insertSingleItem() {
     int insertIndex;
-    if (_data.length > 0) {
-      insertIndex = _data.length;
+    if (memList.length > 0) {
+      insertIndex = memList.length;
     } else {
       insertIndex = 0;
     }
     String item = "成员 ${insertIndex + 1}";
-    _data.insert(insertIndex, item);
+    memList.insert(insertIndex, item);
     _listKey.currentState.insertItem(insertIndex);
   }
 
@@ -140,7 +257,7 @@ class _MainUserManageState extends State<MainUserManage> {
 //  }
   void _rename(int removeAt){
     int removeIndex = removeAt;
-    String removedItem = _data.removeAt(removeIndex);
+    String removedItem = memList.removeAt(removeIndex);
     // This builder is just so that the animation has something
     // to work with before it disappears from view since the original
     // has already been deleted.
@@ -153,7 +270,7 @@ class _MainUserManageState extends State<MainUserManage> {
   /// Method to remove an item at an index from the list
   void _removeSingleItems(int removeAt) {
     int removeIndex = removeAt;
-    String removedItem = _data.removeAt(removeIndex);
+    String removedItem = memList.removeAt(removeIndex);
     // This builder is just so that the animation has something
     // to work with before it disappears from view since the original
     // has already been deleted.
@@ -190,45 +307,7 @@ class _MainUserManageState extends State<MainUserManage> {
             FlatButton(
               child: Text("确定"),
               onPressed: () async{
-                await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
-                    .then((RawDatagramSocket socket) {
-                  print('Sending from ${socket.address.address}:${socket.port}');
-                  int port = 1901;
-                  socket.broadcastEnabled = true;
-                  Future.delayed(Duration(seconds: 1));
-                  socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
-                  socket.listen((event) {
-                    if(event == RawSocketEvent.read) {
-                      var  data = Utf8Codec().decode(socket.receive().data);
-                      print(data);
-                      if( data.contains("Touch Voice SSDP Standard Response")){
-                        IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
-                        PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
-                        print(IP);
-                        print(PORT);
-//            print(data.contains("Touch Voice SSDP Standard Response"));
-                      }
-                    }
-                  }
-                  );
-                });
-                Future.delayed(Duration(seconds: 1), () async{
-                  var Psocket = await Socket.connect(InternetAddress(IP), PORT);
-                  Psocket.add(
-                      '{"PAGEID":"vibration",'
-                          '"USERNAME":"",'
-                          '"LOCKID":"",'
-                          '"TOKEN":"",'
-                          '"MEMBERLIST":[],'
-                          '"DATASTART":[],'
-                          '"DATAEND":[],'
-                          '"DATALIST":[],'
-                          '"IsOver":"True"'
-                          '}'
-                          .codeUnits);
-//      Psocket.add("END".codeUnits);
-                  //Navigator.of(context).pushNamed("bingding_lock_page");z
-                });
+                searchAndLink();
                 //关闭对话框并返回true
                 Navigator.of(context).pop(true);
               },

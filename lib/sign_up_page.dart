@@ -37,12 +37,15 @@ class _SignUpPageState extends State<SignUpPage> {
    */
   FocusNode emailFocusNode = new FocusNode();
   FocusNode passwordFocusNode = new FocusNode();
+  FocusNode VpasswordFocusNode = new FocusNode();
   FocusScopeNode focusScopeNode = new FocusScopeNode();
   TextEditingController EtextEditingController = new TextEditingController();
   TextEditingController PtextEditingController = new TextEditingController();
+  TextEditingController P2textEditingController = new TextEditingController();
   GlobalKey<FormState> _SignInFormKey = new GlobalKey();
 
   bool isShowPassWord = false;
+  bool isShowPassWord2 = false;
 
   /**
    * 访问远端数据库进行验证
@@ -53,11 +56,13 @@ class _SignUpPageState extends State<SignUpPage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/login",host:"10.0.2.2",port:5000));
+          Uri(scheme: "http",path: "/app/signup",host:"192.168.0.107",port:5000,queryParameters: {
+            "username":username
+          }));
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
       Map data = jsonDecode(responseBody);
-      return data['isTrue'];
+      return data;
       httpClient.close();
 //      responseBody = await response.transform(utf8.decoder).join();
 //      var data = jsonDecode(responseBody);
@@ -171,7 +176,11 @@ class _SignUpPageState extends State<SignUpPage> {
       isShowPassWord = !isShowPassWord;
     });
   }
-
+  void showPassWord2() {
+    setState(() {
+      isShowPassWord2 = !isShowPassWord2;
+    });
+  }
   /**
    * 创建登录界面的TextForm
    */
@@ -308,12 +317,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.only(
                     left: 25, right: 25, top: 20,bottom: 20),
                 child: new TextFormField(
-                  controller: PtextEditingController,
-                  focusNode: passwordFocusNode,
+                  controller: P2textEditingController,
+                  focusNode: VpasswordFocusNode,
                   decoration: new InputDecoration(
                     suffixIcon: new IconButton(icon: new Icon(
                       Icons.remove_red_eye, color: Colors.black,),
-                        onPressed: showPassWord),
+                        onPressed: showPassWord2),
                       icon: new Icon(Icons.lock, color: Colors.black,),
                       hintStyle: new TextStyle(color: Colors.black),
                       hintText: "确认密码",
@@ -321,9 +330,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       border: InputBorder.none,
                   ),
                   //输入密码，需要用*****显示
+                  obscureText: !isShowPassWord2,
                   style: new TextStyle(fontSize: 16, color: Colors.black),
                   validator: (value) {
-
+                    if(value!=PtextEditingController.text){
+                      return "两次输入密码不一致！";
+                    }
                   },
                   onSaved: (value) {
 
@@ -373,6 +385,35 @@ class _SignUpPageState extends State<SignUpPage> {
 
             //调用所有自孩子的save回调，保存表单内容
             _SignInFormKey.currentState.save();
+            Map result = await verify(EtextEditingController.text,PtextEditingController.text)as Map;
+            print(result);
+            if(result['UserIsTrue']==true){
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text("登录成功")));
+              if(result['LockIsTrue']==true){
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new Profile());
+                    }
+                )
+                );
+              }
+              else{
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
+                    }
+                )
+                );
+              }
+
+            }
+            else{
+              Scaffold.of(context).showSnackBar(
+                  new SnackBar(content: new Text("用户名或者密码输入错误")));
+            }
             //bool result = verify(EtextEditingController.text,PtextEditingController.text) as bool;
 //            bool result = await verify(EtextEditingController.text,PtextEditingController.text)as bool;
 //            Navigator.of(context).pushNamed("door_chain_management");
@@ -388,10 +429,13 @@ class _SignUpPageState extends State<SignUpPage> {
 //              Scaffold.of(context).showSnackBar(
 //                  new SnackBar(content: new Text("用户名或者密码输入错误")));
 //            }
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) {
-                  return FirstBingdingPage();
-                }));
+            Navigator.push(
+                context, MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
+                }
+            )
+            );
 //            Navigator.push(
 //                context, MaterialPageRoute(
 //                builder: (BuildContext context) {

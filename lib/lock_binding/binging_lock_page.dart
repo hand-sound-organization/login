@@ -34,6 +34,35 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
   String IP;
   int PORT;
   User user;
+  verify(String lockid,String username,String password)async{
+    bool result;
+    String responseBody;
+    try{
+      HttpClient httpClient = new HttpClient();
+      HttpClientRequest request = await httpClient.getUrl(
+          Uri(scheme: "http",path: "/app/locksignup",host: "192.168.0.107",port: 5000,queryParameters: {
+            "username":username,
+            "lock_id":lockid,
+          })
+      );
+
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
+      print(responseBody);
+      Map data = jsonDecode(responseBody);
+      print(data);
+      return data;
+      httpClient.close();
+//      responseBody = await response.transform(utf8.decoder).join();
+//      var data = jsonDecode(responseBody);
+//      result = data['isTrue'];
+//      print(data);
+      //return result;
+    }catch(e){
+      print("666");
+      return null;
+    }
+  }
   SearchAndLink()async{
     User user = UserContainer.of(context).user;
     await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
@@ -430,7 +459,9 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
            */
           if (_SignInFormKey.currentState.validate()) {
             //如果输入都检验通过，则进行登录操作
+            verify(EtextEditingController.text, user.username, user.password);
             SearchAndLink();
+
 //            Scaffold.of(context).showSnackBar(
 //                new SnackBar(content: new Text("绑定成功")));
             //调用所有自孩子的save回调，保存表单内容

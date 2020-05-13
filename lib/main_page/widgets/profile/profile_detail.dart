@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 
 import '../../utils/constant.dart';
@@ -10,6 +13,34 @@ class ProfileDetail extends StatefulWidget {
 }
 
 class _ProfileDetailState extends State<ProfileDetail> {
+  verify(String lockid,String username,String password)async{
+    bool result;
+    String responseBody;
+    try{
+      HttpClient httpClient = new HttpClient();
+      HttpClientRequest request = await httpClient.getUrl(
+          Uri(scheme: "http",path: "/app/profile",host: "192.168.0.107",port: 5000,queryParameters: {
+            "username":username,
+          })
+      );
+
+      HttpClientResponse response = await request.close();
+      String responseBody = await response.transform(utf8.decoder).join();
+      print(responseBody);
+      Map data = jsonDecode(responseBody);
+      print(data);
+      return data;
+      httpClient.close();
+//      responseBody = await response.transform(utf8.decoder).join();
+//      var data = jsonDecode(responseBody);
+//      result = data['isTrue'];
+//      print(data);
+      //return result;
+    }catch(e){
+      print("666");
+      return null;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;

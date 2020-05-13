@@ -30,12 +30,14 @@ List<ProfileMenuConst> lampList = [
   ProfileMenuConst(name: 'Torn Lighting', time: '105'),
   ProfileMenuConst(name: 'Abduction Pendant', time: '365'),
 ];
-const List profileItems = [
+List profileItems = [
   {'count': '46', 'name': '保护天数'},
   {'count': '51', 'name': '安全开锁次数'},
   {'count': '3', 'name': '家庭成员人数'},
   {'count': '100%', 'name': '安全系数'},
 ];
+
+List<String> memList = ['成员 1', '成员 2', '成员 3', '成员 4', '成员 5'];
 
 List<Catg> listProfileCategories = [
   Catg(name: '智能门链', icon: Icons.vpn_key, number: 0),
