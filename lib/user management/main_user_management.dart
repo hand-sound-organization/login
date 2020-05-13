@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/user_provider.dart';
@@ -14,7 +17,8 @@ class MainUserManage extends StatefulWidget {
 class _MainUserManageState extends State<MainUserManage> {
   // the GlobalKey is needed to animate the list
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
-
+  String IP;
+  int PORT;
   // backing data
   List<String> _data = ['成员 1', '成员 2', '成员 3', '成员 4', '成员 5'];
 
@@ -185,7 +189,46 @@ class _MainUserManageState extends State<MainUserManage> {
             ),
             FlatButton(
               child: Text("确定"),
-              onPressed: () {
+              onPressed: () async{
+                await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+                    .then((RawDatagramSocket socket) {
+                  print('Sending from ${socket.address.address}:${socket.port}');
+                  int port = 1901;
+                  socket.broadcastEnabled = true;
+                  Future.delayed(Duration(seconds: 1));
+                  socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+                  socket.listen((event) {
+                    if(event == RawSocketEvent.read) {
+                      var  data = Utf8Codec().decode(socket.receive().data);
+                      print(data);
+                      if( data.contains("Touch Voice SSDP Standard Response")){
+                        IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+                        PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+                        print(IP);
+                        print(PORT);
+//            print(data.contains("Touch Voice SSDP Standard Response"));
+                      }
+                    }
+                  }
+                  );
+                });
+                Future.delayed(Duration(seconds: 1), () async{
+                  var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+                  Psocket.add(
+                      '{"PAGEID":"vibration",'
+                          '"USERNAME":"",'
+                          '"LOCKID":"",'
+                          '"TOKEN":"",'
+                          '"MEMBERLIST":[],'
+                          '"DATASTART":[],'
+                          '"DATAEND":[],'
+                          '"DATALIST":[],'
+                          '"IsOver":"True"'
+                          '}'
+                          .codeUnits);
+//      Psocket.add("END".codeUnits);
+                  //Navigator.of(context).pushNamed("bingding_lock_page");z
+                });
                 //关闭对话框并返回true
                 Navigator.of(context).pop(true);
               },

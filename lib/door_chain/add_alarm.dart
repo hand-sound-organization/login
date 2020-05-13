@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 import 'door_chain_management.dart';
 
@@ -20,6 +21,8 @@ class _AddAlarmState extends State<AddAlarm> {
   TimeOfDay _selectedTime2;
   ValueChanged<TimeOfDay> selectTime;
   ValueChanged<TimeOfDay> selectTime2;
+  String IP;
+  int PORT;
   @override
   void initState() {
      _selectedTime = new TimeOfDay(hour: 12, minute: 30);
@@ -133,7 +136,48 @@ class _AddAlarmState extends State<AddAlarm> {
                     child: Text('保存', style: TextStyle(color: Colors.white,
                     fontSize: 20),
                     ),
-                    onPressed: () => Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2,chooseData))
+                    onPressed: ()async{
+                      await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+                          .then((RawDatagramSocket socket) {
+                        print('Sending from ${socket.address.address}:${socket.port}');
+                        int port = 1901;
+                        socket.broadcastEnabled = true;
+                        Future.delayed(Duration(seconds: 1));
+                        socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+                        socket.listen((event) {
+                          if(event == RawSocketEvent.read) {
+                            var  data = Utf8Codec().decode(socket.receive().data);
+                            print(data);
+                            if( data.contains("Touch Voice SSDP Standard Response")){
+                              IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+                              PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+                              print(IP);
+                              print(PORT);
+//            print(data.contains("Touch Voice SSDP Standard Response"));
+                            }
+                          }
+                        }
+                        );
+                      });
+                      Future.delayed(Duration(seconds: 1), () async{
+                        var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+                        Psocket.add(
+                            '{"PAGEID":"createClock",'
+                                '"USERNAME":"",'
+                                '"LOCKID":"",'
+                                '"TOKEN":"",'
+                                '"MEMBERLIST":[],'
+                                '"DATASTART":[],'
+                                '"DATAEND":[],'
+                                '"DATALIST":[],'
+                                '"IsOver":"True"'
+                                '}'
+                                .codeUnits);
+//      Psocket.add("END".codeUnits);
+                        //Navigator.of(context).pushNamed("bingding_lock_page");z
+                      });
+                      Navigator.of(context).pop(TransferDataEntity(_selectedTime,_selectedTime2,chooseData));
+                    }
                 ),
               )
             ],

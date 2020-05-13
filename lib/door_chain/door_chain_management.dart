@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/user_provider.dart';
@@ -21,7 +24,8 @@ class _DoorChainManageState extends State<DoorChainManage> {
   List<TimeOfDay> _dataend =[];
   List<List> datalist =  [];
   List<String>  aa = ["周一","周二",'周三','周四','周五',"周六","周日"];
-
+  String IP;
+  int PORT;
 
   @override
   void initState() {
@@ -135,6 +139,45 @@ class _DoorChainManageState extends State<DoorChainManage> {
               print("$result");
               if(result.list==null){
                 _removeSingleItems(index);
+                await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
+                    .then((RawDatagramSocket socket) {
+                  print('Sending from ${socket.address.address}:${socket.port}');
+                  int port = 1901;
+                  socket.broadcastEnabled = true;
+                  Future.delayed(Duration(seconds: 1));
+                  socket.send("LOCK-SEARCH".codeUnits, InternetAddress("255.255.255.255"), port);
+                  socket.listen((event) {
+                    if(event == RawSocketEvent.read) {
+                      var  data = Utf8Codec().decode(socket.receive().data);
+                      print(data);
+                      if( data.contains("Touch Voice SSDP Standard Response")){
+                        IP = data.substring(data.indexOf('//') + ('//').length, data.indexOf('::'));
+                        PORT = int.parse(data.substring( data.indexOf('::') + ('::').length,data.indexOf('|') ));
+                        print(IP);
+                        print(PORT);
+//            print(data.contains("Touch Voice SSDP Standard Response"));
+                      }
+                    }
+                  }
+                  );
+                });
+                Future.delayed(Duration(seconds: 1), () async{
+                  var Psocket = await Socket.connect(InternetAddress(IP), PORT);
+                  Psocket.add(
+                      '{"PAGEID":"deleteClock",'
+                          '"USERNAME":"",'
+                          '"LOCKID":"",'
+                          '"TOKEN":"",'
+                          '"MEMBERLIST":[],'
+                          '"DATASTART":[],'
+                          '"DATAEND":[],'
+                          '"DATALIST":[],'
+                          '"IsOver":"True"'
+                          '}'
+                          .codeUnits);
+//      Psocket.add("END".codeUnits);
+                  //Navigator.of(context).pushNamed("bingding_lock_page");z
+                });
               }
               _datastart[index]=result.timestart;
               _dataend[index]=result.timeend;

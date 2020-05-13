@@ -35,7 +35,7 @@ class _ProfileMenuState extends State<ProfileMenu> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/WarningInfo",host:"10.0.2.2",port:5000));
+          Uri(scheme: "http",path: "/app/WarningInfo",host:"192.168.0.103",port:5000));
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
       Map returnInfo = jsonDecode(responseBody);
@@ -75,7 +75,7 @@ class _ProfileMenuState extends State<ProfileMenu> {
       index++;
     }
     print(profileMenuList.length);
-    return Future.delayed(Duration(seconds: 2), ()=>profileMenuList) ;
+    return Future.delayed(Duration(seconds: 0), ()=>profileMenuList) ;
   }
   @override
   Widget build(BuildContext context)  {
@@ -106,7 +106,8 @@ class _ProfileMenuState extends State<ProfileMenu> {
                 ),
               );
             }
-          } else {
+          }
+          else {
             // 请求未结束，显示loading
             return Center(child:CircularProgressIndicator());
           }
