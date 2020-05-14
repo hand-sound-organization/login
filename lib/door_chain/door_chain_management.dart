@@ -95,15 +95,18 @@ class _DoorChainManageState extends State<DoorChainManage> {
         });
       }
       else{
-        Uri(scheme: "http",path: "/app/updatachain",host: "192.168.0.107",port: 5000,queryParameters: {
+        uri = Uri(scheme: "http",path: "/app/updatachain",host: "192.168.0.107",port: 5000,queryParameters: {
           "username":user.username,
           "timestart":joinTimeStart(),
           "timeend":joinTimeEnd(),
           "datalist":joinTimeDataList()
         });
       }
+
       HttpClientRequest request = await httpClient.getUrl(uri);
+      print("123123123123123123123123");
       HttpClientResponse response = await request.close();
+
       String responseBody = await response.transform(utf8.decoder).join();
 
       Map data = jsonDecode(responseBody);
@@ -116,7 +119,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
 //      print(data);
       //return result;
     }catch(e){
-      print("出错");
+      print("出错66");
       return null;
     }
   }
@@ -248,6 +251,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
             as TransferDataEntity;
             if(result.list!=null){
               print("+++++++++++++++++++++++++++++++++++++++++++++++++");
+              print(result);
               _insertSingleItem(result);
               HTTPpost(user.username);
             }
@@ -345,6 +349,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
                 datalist[index] =result.list;
                 _datastart[index]=result.timestart;
                 _dataend[index]=result.timeend;
+                HTTPpost(user.username);
               }
 
 
