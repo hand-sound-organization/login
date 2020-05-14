@@ -6,6 +6,8 @@ import 'package:handsound/lock_binding/firt_binding_page.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/user.dart';
 import 'package:handsound/lock_sign_up/lock_sign_up_page.dart';
+
+import '../user_provider.dart';
 //import '../Ads.dart';
 
 
@@ -19,6 +21,7 @@ class _MainUserManageState extends State<MainUserManage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
   String IP;
   int PORT;
+  User user;
   // backing data
 
   @override
@@ -33,7 +36,7 @@ class _MainUserManageState extends State<MainUserManage> {
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
           Uri(scheme: "http",path: "/app/usermanagement",host:"192.168.0.107",port:5000,queryParameters: {
-            "username":"xgy"
+            "username":user.username
           }));
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
@@ -123,6 +126,7 @@ class _MainUserManageState extends State<MainUserManage> {
   }
   @override
   Widget build(BuildContext context) {
+    user = UserContainer.of(context).user;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF5b3fa1),

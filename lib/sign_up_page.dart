@@ -16,6 +16,8 @@ import 'lock_sign_up/lock_sign_up_page.dart';
 import 'firstpage.dart';
 import 'bottomsheet.dart';
 import 'bottom2.dart';
+import 'login_page.dart';
+import 'sign_in_page.dart';
 import 'user management/main_user_management.dart';
 import 'door_chain/add_alarm.dart';
 import 'package:handsound/main_page/pages/profile.dart';
@@ -387,32 +389,21 @@ class _SignUpPageState extends State<SignUpPage> {
             _SignInFormKey.currentState.save();
             Map result = await verify(EtextEditingController.text,PtextEditingController.text)as Map;
             print(result);
-            if(result['UserIsTrue']==true){
+            if(result['IsTrue']==true){
               Scaffold.of(context).showSnackBar(
-                  new SnackBar(content: new Text("登录成功")));
-              if(result['LockIsTrue']==true){
-                Navigator.push(
-                    context, MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new Profile());
-                    }
-                )
-                );
-              }
-              else{
-                Navigator.push(
-                    context, MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
-                    }
-                )
-                );
-              }
-
+                  new SnackBar(content: new Text("注册成功")));
+                  print("123123123123123123123");
+                  Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new LoginPage());
+                      }
+                  )
+                  );
             }
             else{
               Scaffold.of(context).showSnackBar(
-                  new SnackBar(content: new Text("用户名或者密码输入错误")));
+                  new SnackBar(content: new Text("连接错误")));
             }
             //bool result = verify(EtextEditingController.text,PtextEditingController.text) as bool;
 //            bool result = await verify(EtextEditingController.text,PtextEditingController.text)as bool;
@@ -429,13 +420,6 @@ class _SignUpPageState extends State<SignUpPage> {
 //              Scaffold.of(context).showSnackBar(
 //                  new SnackBar(content: new Text("用户名或者密码输入错误")));
 //            }
-            Navigator.push(
-                context, MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new FirstBingdingPage());
-                }
-            )
-            );
 //            Navigator.push(
 //                context, MaterialPageRoute(
 //                builder: (BuildContext context) {

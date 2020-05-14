@@ -124,7 +124,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                                 ],
                               ),
                               Text(
-                                '门锁ID:${_data["lock_id"]}',
+                                "门锁ID:${_data['lock_id']}",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13.0,

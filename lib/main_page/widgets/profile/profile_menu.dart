@@ -7,6 +7,8 @@ import 'dart:io';
 import 'dart:convert';
 
 class ProfileMenu extends StatefulWidget {
+  final String username;
+  ProfileMenu({Key key,@required this.username}):super(key:key);
   @override
   _ProfileMenuState createState() => new _ProfileMenuState();
 }
@@ -35,7 +37,9 @@ class _ProfileMenuState extends State<ProfileMenu> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/WarningInfo",host:"192.168.0.107",port:5000));
+          Uri(scheme: "http",path: "/app/WarningInfo",host:"192.168.0.107",port:5000 ,queryParameters: {
+            "username":widget.username
+          }));
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
       Map returnInfo = jsonDecode(responseBody);

@@ -469,7 +469,8 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return UserContainer(user: User(EtextEditingController.text,PtextEditingController.text), child: new Profile());
+                  return UserContainer(user: User(user.username,PtextEditingController.text), child: new Profile());
+
                 }
             )
             );

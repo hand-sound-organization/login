@@ -58,7 +58,8 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: size.height*0.03733,
               ),
-              Flexible(child: ProfileMenu()),
+              Flexible(child: ProfileMenu(username: user.username,)),
+
             ],
           ),
         ),
