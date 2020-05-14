@@ -101,6 +101,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
           '"IsOver":"True"'
           '}'
           .codeUnits);
+      Psocket.close();
 //      Psocket.add("END".codeUnits);
       //Navigator.of(context).pushNamed("bingding_lock_page");z
     });

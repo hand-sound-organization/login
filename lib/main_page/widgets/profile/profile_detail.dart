@@ -123,6 +123,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
 //                        )
                                 ],
                               ),
+                              Container(height: 2,color: Colors.transparent,),
                               Text(
                                 "门锁ID:${_data['lock_id']}",
                                 style: TextStyle(

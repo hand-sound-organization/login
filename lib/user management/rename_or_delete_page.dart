@@ -301,7 +301,8 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                                   children: <Widget>[
                                                     Text("重命名",
                                                       style: TextStyle(
-                                                          fontSize: 40
+                                                          fontSize: 40,
+                                                          fontFamily: "NotoSerifSC"
                                                       ),)
                                                   ],
                                                 ),

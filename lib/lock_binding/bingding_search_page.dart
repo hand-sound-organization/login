@@ -146,7 +146,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
 
   _openModalBottomSheet()async{
     Search();
-    Future.delayed(Duration(seconds: 5), (){
+    Future.delayed(Duration(seconds: 2), (){
       if(backBoolean){
         Size size = MediaQuery.of(context).size;
         showModalBottomSheet(
@@ -238,6 +238,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                                           '"IsOver":"True"'
                                           '}'
                                           .codeUnits);
+                                  Psocket.close();
                                   //Navigator.of(context).pushNamed("bingding_lock_page");
                                   Navigator.push(
                                       context, MaterialPageRoute(
