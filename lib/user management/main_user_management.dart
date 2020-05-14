@@ -63,7 +63,7 @@ class _MainUserManageState extends State<MainUserManage> {
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
           Uri(scheme: "http",path: "/app/updatamemberlist",host:"192.168.0.107",port:5000,queryParameters: {
-            "username":"xgy",
+            "username":user.username,
             "memberlist": memList.join(",")
           }));
       HttpClientResponse response = await request.close();
