@@ -27,6 +27,7 @@ Timer _timer2;
   void initState() {
     super.initState();
     themeBloc.changeTheme(Themes.stayfit);
+
     settime();
   }
 
@@ -38,7 +39,8 @@ Timer _timer2;
   }
 
   void settime()async{
-    _timer = Timer.periodic(Duration(milliseconds: 50),(timer){
+    await Future.delayed(Duration(seconds: 2));
+    _timer = Timer.periodic(Duration(milliseconds: 170),(timer){
         if(nownumber<100){
           setState(() {
             nownumber++;
@@ -123,7 +125,7 @@ Timer _timer2;
                             textBaseline: TextBaseline.alphabetic,
                             children: <Widget>[
                               Text(
-                                '$nownumber/100',
+                                '$nownumber',
                                 style: TextStyle(
                                   fontSize: 35,
                                   letterSpacing: 0.2,
@@ -133,9 +135,9 @@ Timer _timer2;
                               ),
                               SizedBox(width: 10),
                               Text(
-                                '对',
+                                '%',
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 30,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -190,7 +192,7 @@ Timer _timer2;
                           Navigator.of(context).pop();
                         },
                       ),
-                      title: Text("设备搜索",style: TextStyle(
+                      title: Text("掌音注册",style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
