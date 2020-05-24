@@ -82,6 +82,39 @@ class _ProfileMenuState extends State<ProfileMenu> {
     print(profileMenuList.length);
     return Future.delayed(Duration(seconds: 1), ()=>profileMenuList) ;
   }
+  Future<List> _mockNetworkData() async {
+    profileMenuList = [];
+    List dataList = await verify() as List;
+    int profileMenuListLength = profileMenuList.length;
+    print(profileMenuList.length);
+    int index = 0;
+    setState(() {
+      for(var item in dataList){
+        if(index>=profileMenuListLength){
+          profileMenuList.add(ProfileMenuConst());
+        }
+        profileMenuList[index].event = item['event'];
+        if(profileMenuList[index].event=="开门"){
+          profileMenuList[index].icon = Icons.check;
+          profileMenuList[index].iconColor = Colors.green;
+        }
+        else if(profileMenuList[index].event=="试错"){
+          profileMenuList[index].icon = Icons.warning;
+          profileMenuList[index].iconColor = Colors.yellow[700];
+        }
+        else{
+          profileMenuList[index].icon = Icons.cancel;
+          profileMenuList[index].iconColor = Colors.red;
+        }
+        profileMenuList[index].name = item['name'];
+        profileMenuList[index].time = item['occur_time'];
+        index++;
+      }
+    });
+
+    print(profileMenuList.length);
+    return Future.delayed(Duration(seconds: 1), ()=>profileMenuList) ;
+  }
   @override
   Widget build(BuildContext context)  {
 
@@ -95,10 +128,10 @@ class _ProfileMenuState extends State<ProfileMenu> {
               return Center(child: Text("未连接到互联网"),);
             } else {
               // 请求成功，显示数据
-              List profileMenuList = snapshot.data;
-              return MediaQuery.removePadding(
-                removeTop: true,
-                context: context,
+              //List profileMenuList = snapshot.data;
+              return RefreshIndicator(
+                onRefresh: _mockNetworkData,
+                backgroundColor: Colors.blue,
                 child: ListView.separated(
                   itemCount: profileMenuList.length,
                   //itemExtent: 80.0, //强制高度为50.0
@@ -110,6 +143,20 @@ class _ProfileMenuState extends State<ProfileMenu> {
                   },
                 ),
               );
+//                MediaQuery.removePadding(
+//                removeTop: true,
+//                context: context,
+//                child: ListView.separated(
+//                  itemCount: profileMenuList.length,
+//                  //itemExtent: 80.0, //强制高度为50.0
+//                  itemBuilder: (BuildContext context, int index) {
+//                    return  MenuItem(menu: profileMenuList[index],);
+//                  },
+//                  separatorBuilder: (BuildContext context, int index) {
+//                    return divider;
+//                  },
+//                ),
+//              );
             }
           }
           else {
