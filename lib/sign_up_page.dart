@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/signup",host:"192.168.0.107",port:5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/signup",host:"192.168.101.10",port:5000,queryParameters: {
             "username":username
           }));
       HttpClientResponse response = await request.close();
