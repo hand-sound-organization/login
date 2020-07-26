@@ -48,6 +48,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
   bool isShowPassWord = false;
   bool isShowPassWord2 = false;
+  final String regexEmail = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$";
+  bool isEmail(String input) {
+    if (input == null || input.isEmpty) return false;
+    return new RegExp(regexEmail).hasMatch(input);
+  }
 
   /**
    * 访问远端数据库进行验证
@@ -58,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/signup",host:"192.168.101.10",port:5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/signup",host:"152.136.116.37",port:5000,queryParameters: {
             "username":username
           }));
       HttpClientResponse response = await request.close();
@@ -82,20 +87,22 @@ class _SignUpPageState extends State<SignUpPage> {
         .of(context)
         .size;
     return new Container(
+      height: size.height*1.5,
       padding: EdgeInsets.only(top: size.height*0.0286),
-      child: new Stack(
+      child: new Container(
         alignment: Alignment.center,
 //        /**
 //         * 注意这里要设置溢出如何处理，设置为visible的话，可以看到孩子，
 //         * 设置为clip的话，若溢出会进行裁剪
 //         */
 //        overflow: Overflow.visible,
-        children: <Widget>[
+        child:
           new Column(
             children: <Widget>[
               //创建表单
               buildSignInTextForm(size),
-
+              SizedBox(height: 10,),
+              buildSignInButton()
 
               /**
                * Or所在的一行
@@ -164,8 +171,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
             ],
           ),
-          new Positioned(child: buildSignInButton(), top: size.height*0.45,)
-        ],
       ),
     );
   }
@@ -194,7 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
           , color: Colors.white
       ),
       width: size.width*.77,
-      height: size.height*.4,
+      height: size.height*.5,
       /**
        * Flutter提供了一个Form widget，它可以对输入框进行分组，
        * 然后进行一些统一操作，如输入内容校验、输入框重置以及输入内容保存。
@@ -226,6 +231,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   //输入密码，需要用*****显示
                   style: new TextStyle(fontSize: 16, color: Colors.black),
                   validator: (value) {
+                    if(!isEmail(value)){
+                      return "请输入正确邮箱地址！";
+                    }
                   },
                   onSaved: (value) {
                   },

@@ -128,8 +128,8 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                     left: size.width * 0.182,
                     width: size.width / 1.5,
                     height: size.height - size.height * .28,
-                    child:
-                    new Text('请先绑定门锁再使用完整功能',
+                    child: new Text('请将手机与智能门锁放置于同一WiFi下'
+                        '，绑定门锁后再使用完整功能',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,

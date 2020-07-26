@@ -57,7 +57,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/getchain",host: "192.168.101.10",port: 5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/getchain",host: "192.168.1.100",port: 5000,queryParameters: {
             "username":username,
           })
       );
@@ -87,7 +87,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
       HttpClient httpClient = new HttpClient();
       Uri uri;
       if(datalist.length==0){
-        uri = Uri(scheme: "http",path: "/app/updatachain",host: "192.168.101.10",port: 5000,queryParameters: {
+        uri = Uri(scheme: "http",path: "/app/updatachain",host: "192.168.1.100",port: 5000,queryParameters: {
           "username":user.username,
           "timestart":"",
           "timeend":"",
@@ -95,7 +95,7 @@ class _DoorChainManageState extends State<DoorChainManage> {
         });
       }
       else{
-        uri = Uri(scheme: "http",path: "/app/updatachain",host: "192.168.101.10",port: 5000,queryParameters: {
+        uri = Uri(scheme: "http",path: "/app/updatachain",host: "192.168.1.100",port: 5000,queryParameters: {
           "username":user.username,
           "timestart":joinTimeStart(),
           "timeend":joinTimeEnd(),

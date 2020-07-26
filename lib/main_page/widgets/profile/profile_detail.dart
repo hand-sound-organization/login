@@ -22,7 +22,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/profile",host: "192.168.101.10",port: 5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/profile",host: "192.168.1.100",port: 5000,queryParameters: {
             "username":username,
           })
       );

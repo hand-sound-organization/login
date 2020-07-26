@@ -53,7 +53,7 @@ class _SignInPageState extends State<SignInPage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/login",host: "192.168.101.10",port: 5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/login",host: "152.136.116.37",port: 5000,queryParameters: {
             "username":username
           })
           );
@@ -95,14 +95,14 @@ class _SignInPageState extends State<SignInPage> {
               //创建表单
               buildSignInTextForm(size),
 
-              Padding(
-                padding:  EdgeInsets.only(top: size.height*0.2),
-                child: new Text("忘记密码？",
-                  style: new TextStyle(
-                      fontSize: 16,
-                      color: Color(0xaaffffff),
-                      decoration: TextDecoration.underline),),
-              ),
+//              Padding(
+//                padding:  EdgeInsets.only(top: size.height*0.2),
+//                child: new Text("忘记密码？",
+//                  style: new TextStyle(
+//                      fontSize: 16,
+//                      color: Color(0xaaffffff),
+//                      decoration: TextDecoration.underline),),
+//              ),
 
               /**
                * Or所在的一行

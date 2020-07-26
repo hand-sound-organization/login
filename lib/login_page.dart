@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 /**这里要手动设置container的高度和宽度，不然显示不了
                  * 利用MediaQuery可以获取到跟屏幕信息有关的数据
                  */
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height*1.2,
                   width: MediaQuery.of(context).size.width,
                   //设置渐变的背景
                   decoration: new BoxDecoration(

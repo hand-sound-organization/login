@@ -37,7 +37,7 @@ class _ProfileMenuState extends State<ProfileMenu> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/WarningInfo",host:"192.168.101.10",port:5000 ,queryParameters: {
+          Uri(scheme: "http",path: "/app/WarningInfo",host:"192.168.1.100",port:5000 ,queryParameters: {
             "username":widget.username
           }));
       HttpClientResponse response = await request.close();
