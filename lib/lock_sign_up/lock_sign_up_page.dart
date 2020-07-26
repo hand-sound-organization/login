@@ -105,12 +105,13 @@ Timer _timer2;
                               Icon(
                                 Icons.vpn_key,
                                 color: Colors.white,
+                                size:12,
                               ),
                               SizedBox(width: 10),
                               Text(
                                 '已注册CRP',
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 15,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -127,7 +128,7 @@ Timer _timer2;
                               Text(
                                 '$nownumber',
                                 style: TextStyle(
-                                  fontSize: 35,
+                                  fontSize: 25,
                                   letterSpacing: 0.2,
                                   color: Color(0xFFF83B6D),
                                   fontWeight: FontWeight.bold,
@@ -137,7 +138,7 @@ Timer _timer2;
                               Text(
                                 '%',
                                 style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 15,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -151,9 +152,10 @@ Timer _timer2;
                 ),
 
                 Positioned(
-                  top: 0,
-                  width: size.width,
-                  height: size.height - size.height * .3,
+                  top: size.height*0.1,
+                  left: size.width*0.1,
+                  width: size.width*0.8,
+                  height: size.height*0.6,
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
@@ -185,7 +187,7 @@ Timer _timer2;
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: AppBar(
                       leading: IconButton(
-                        iconSize: 30,
+                        iconSize: 25,
                         icon:Icon(Icons.arrow_back),
                         color: Colors.white,
                         onPressed: (){
@@ -195,7 +197,7 @@ Timer _timer2;
                       title: Text("掌音注册",style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                        fontSize: 20,
                       ),),
                       centerTitle: true,
                       backgroundColor: Color(0x000000),

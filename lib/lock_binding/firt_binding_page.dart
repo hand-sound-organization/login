@@ -75,7 +75,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                   ),
                 ),
                 Positioned(
-                  top: size.height * 0.31,
+                  top: size.height * 0.26,//原0.31
                   left: size.width * 0.17,
                   width: size.width / 1.5,
                   height: size.width / 1.5,
@@ -124,7 +124,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                   ),
                 ),
                 Positioned(
-                    top: size.height * 0.752,
+                    top: size.height * 0.8,//原0.752
                     left: size.width * 0.182,
                     width: size.width / 1.5,
                     height: size.height - size.height * .28,
@@ -133,7 +133,7 @@ class _FirstBingdingPageState extends State<FirstBingdingPage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 15,//原20
                       ),)
                 )
               ],

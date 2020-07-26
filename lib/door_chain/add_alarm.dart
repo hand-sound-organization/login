@@ -57,7 +57,7 @@ class _AddAlarmState extends State<AddAlarm> {
             Text('智能门链', style: TextStyle(
               color: Colors.white,
 //              Color(0xff65D1BA),
-              fontSize: 25.0
+              fontSize: 18.0
             ))
           ],
         ),
@@ -70,7 +70,7 @@ class _AddAlarmState extends State<AddAlarm> {
               SizedBox(height:size.height*0.07466,),
               new GestureDetector(
                 child: Text(_selectedTime.format(context), style: TextStyle(
-                  fontSize: 60.0,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),),
@@ -85,7 +85,7 @@ class _AddAlarmState extends State<AddAlarm> {
               ),
               new GestureDetector(
                 child: Text(_selectedTime2.format(context), style: TextStyle(
-                  fontSize: 60.0,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),),
@@ -93,9 +93,9 @@ class _AddAlarmState extends State<AddAlarm> {
                   _selectTime2(context);
                 },
               ),
-              SizedBox(height: size.height*0.037,),
+              SizedBox(height: size.height*0.1,),
               Wrap(
-                spacing: 20.0,
+                spacing: 10,
                 runSpacing: 4.0,
                 alignment: WrapAlignment.center,
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +124,7 @@ class _AddAlarmState extends State<AddAlarm> {
 //              SizedBox(height: 60.0,),
               Container(
                 height: size.height*0.0622,
-                width: size.width*0.509268,
+                width: size.width*0.4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                 ),
@@ -134,7 +134,7 @@ class _AddAlarmState extends State<AddAlarm> {
                     ),
                     color: Theme.of(context).accentColor,
                     child: Text('保存', style: TextStyle(color: Colors.white,
-                    fontSize: 20),
+                    fontSize: 15),
                     ),
                     onPressed: ()async{
                       await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0)
@@ -232,8 +232,8 @@ class _AddAlarmState extends State<AddAlarm> {
 //  }
   Widget circleDay(day, context, index,){
     return Container(
-      width: 70.0,
-      height: 70.0,
+      width: 55.0,
+      height: 55.0,
       decoration: BoxDecoration(
           color: ("1"==chooseData[index])?Theme.of(context).accentColor:Colors.transparent,
           //(selected)?Theme.of(context).accentColor:Colors.transparent,
@@ -251,7 +251,7 @@ class _AddAlarmState extends State<AddAlarm> {
           day,
           style: TextStyle(
               color: Colors.white,
-              fontSize: 15,
+              fontSize: 11,
               fontWeight:FontWeight.bold
           ),
         ),

@@ -5,6 +5,8 @@ import 'package:handsound/user.dart';
 import 'package:handsound/user_provider.dart';
 import 'package:handsound/login_page.dart';
 
+import 'lock_binding/binging_lock_page.dart';
+
 class HomePage extends StatefulWidget {
 //  HomePage(Key key ,this.user):super(key:key);
 //  final String user;
@@ -21,8 +23,9 @@ class _HomePageState extends State<HomePage> {
      */
     User user = UserContainer.of(context).user;
     if (user == null) {
-      return new LoginPage();
-    } else {
+      return LoginPage();
+    }
+    else {
       return new Scaffold(
         body: new Container(
           child: new Center(

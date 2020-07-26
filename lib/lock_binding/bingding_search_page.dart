@@ -61,16 +61,17 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                 ),
 
                 Positioned(
-                  top: 0,
-                  width: size.width,
-                  height: size.height - size.height * .3,
+                  top: size.height*0.2,
+                  left: size.width*0.15,//无
+                  width: size.width*0.7,//size.width
+                  height: size.height*0.35,//size.height - size.height * .3
                   child: Stack(
                     fit: StackFit.loose,
                     children: <Widget>[
                       new FlareActor(
                         "assets/wifi.flr",
                         alignment: Alignment.center,
-                        fit: BoxFit.none,
+                        fit: BoxFit.contain,
                         animation: "wifi",
                       ),
                     ],
@@ -147,7 +148,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
   _openModalBottomSheet()async{
     Search();
     Future.delayed(Duration(seconds: 2), (){
-      if(backBoolean){
+      if(!backBoolean){
         Size size = MediaQuery.of(context).size;
         showModalBottomSheet(
             backgroundColor: Color(0x000000),
@@ -169,9 +170,13 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
+                            Container(
+                              height: 35,
+                              color: Color(0x000000),
+                            ),
                             Text('设备列表',
                               style: TextStyle(
-                                  fontSize: 30
+                                  fontSize: 25
                               ),)
                           ],
                         ),

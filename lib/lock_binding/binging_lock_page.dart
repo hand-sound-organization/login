@@ -40,7 +40,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/locksignup",host: "192.168.1.100",port: 5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/locksignup",host: "152.136.116.37",port: 5000,queryParameters: {
             "username":username,
             "lock_id":lockid,
           })
@@ -152,14 +152,16 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                 centerTitle: true,
               ),
               Container(
-                height: size.height*0.4,
-                width: size.width,
+                height: size.height*0.35,
+                width: size.width*0.8,
 
                 child: Padding(
                   padding: EdgeInsets.only(top: size.height*0.02,left: size.width*0.1,right: size.width*0.1),
                   child: Image(image: new AssetImage("assets/login_logo.png")),
                 ),
               ),
+Container(height: size.height*0.05,
+color: Color(0x000000),),
 
 //              SizedBox(height: size.height*0.03,),
               SizedBox(width:size.width*0.8,height:size.height*0.3,child: buildSignInTextForm(),),
@@ -325,10 +327,10 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 0, right: 0, top: 10,bottom: 10),
+                    left: 0, right: 0,top: 10,bottom: 10),
                 child: Container(
                   padding: EdgeInsets.only(
-                    left: 10, right: 10, ),
+                    left: 10, right: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     color: Colors.white,
@@ -351,7 +353,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                         border: InputBorder.none,
                         suffixIcon: new IconButton(icon: new Icon(
                           Icons.remove_red_eye, color: Colors.black,),
-                            onPressed: showPassWord)
+                            onPressed: showPassWord),
                     ),
                     //输入密码，需要用*****显示
                     obscureText: !isShowPassWord,
@@ -361,6 +363,7 @@ class _BingdingLockPageState extends State<BingdingLockPage> {
                         return "密码需要大于6位！";
                       }
                     },
+
                     onSaved: (value) {
 
                     },

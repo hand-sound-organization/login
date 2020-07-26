@@ -139,9 +139,10 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 //                  ),
 //                ),
                 Positioned(
-                  top: 0,
-                  width: size.width,
-                  height: size.height - size.height * .3,
+                  top: size.height*0.1,
+                  left: size.width*0.1,
+                  width: size.width*0.8,
+                  height: size.height*0.6,
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
@@ -173,7 +174,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                     padding:  EdgeInsets.symmetric(horizontal:size.width*0.05),
                     child:AppBar(
                       leading: IconButton(
-                        iconSize: 30,
+                        iconSize: 25,
                         icon:Icon(Icons.arrow_back),
                         color: Colors.white,
                         onPressed: (){
@@ -183,7 +184,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                       title: Text('$name',style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                        fontSize: 20,
                       ),),
                       centerTitle: true,
                       backgroundColor: Color(0x000000),
@@ -260,7 +261,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                 ),
                 Positioned(
                   top:size.height*0.7466,
-                  left: size.width*0.12,
+                  left: size.width*0.2,
                   width: size.width,
                   height: size.height - size.height * .3,
                   child: Column(
@@ -271,7 +272,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              width:size.width*0.7639,
+                              width:size.width*0.6,
                               height: size.height*0.0622,
                               child: FlatButton(
                                 color: Colors.white,
@@ -279,7 +280,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                 child: Text(
                                   "重命名",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 15,
                                   ),
                                 ),
                                 onPressed: () async {
@@ -287,7 +288,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                                       child:Dialog(
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
                                         child: Container(
-                                            height: size.height*0.22398,
+                                            height: size.height*0.25,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.all(Radius.circular(25)),
                                               color: Colors.white,
@@ -295,16 +296,22 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
 
                                             child: Column(
                                               children: <Widget>[
+                                                Container(
+                                                  height: 5,
+                                                ),
                                                 Row(
                                                   mainAxisSize: MainAxisSize.max,
                                                   mainAxisAlignment:MainAxisAlignment.center,
                                                   children: <Widget>[
                                                     Text("重命名",
                                                       style: TextStyle(
-                                                          fontSize: 40,
+                                                          fontSize: 20,
                                                           fontFamily: "NotoSerifSC"
                                                       ),)
                                                   ],
+                                                ),
+                                                Container(
+                                                  height: 5,
                                                 ),
                                                 Row(
                                                   mainAxisSize: MainAxisSize.min,
@@ -390,7 +397,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            width:size.width*0.7653,
+                            width:size.width*0.6,
                             height: size.height*0.0622,
                             child: FlatButton(
                               color: Colors.white,
@@ -398,7 +405,7 @@ class _RenameOrDeletePageState extends State<RenameOrDeletePage> {
                               child: Text(
                                 "删除",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                 ),
                               ),
                               onPressed: ()async{

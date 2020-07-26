@@ -70,8 +70,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
                       //顶部图片
                       new Image(
-                          width: 250,
-                          height: 191,
+                          width: 200,
+                          height: 170,
                           image: new AssetImage("assets/login_logo.png")),
                       new SizedBox(
                         height: 20,

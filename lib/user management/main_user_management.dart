@@ -32,10 +32,9 @@ class _MainUserManageState extends State<MainUserManage> {
   }
   HTTPget()async{
     try{
-
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/usermanagement",host:"192.168.1.100",port:5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/usermanagement",host:"152.136.116.37",port:5000,queryParameters: {
             "username":user.username
           }));
       HttpClientResponse response = await request.close();
@@ -62,7 +61,7 @@ class _MainUserManageState extends State<MainUserManage> {
 
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/updatamemberlist",host:"192.168.1.100",port:5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/updatamemberlist",host:"152.136.116.37",port:5000,queryParameters: {
             "username":user.username,
             "memberlist": memList.join(",")
           }));
@@ -135,7 +134,7 @@ class _MainUserManageState extends State<MainUserManage> {
         title: Text(
           '用户管理',
           style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 18.0,
               fontWeight: FontWeight.bold,
               //fontFamily: Utils.ubuntuRegularFont
           ),
