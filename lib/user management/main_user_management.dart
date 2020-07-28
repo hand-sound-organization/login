@@ -34,7 +34,7 @@ class _MainUserManageState extends State<MainUserManage> {
     try{
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/usermanagement",host:"152.136.116.37",port:5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/usermanagement",host:"192.168.1.102",port:5000,queryParameters: {
             "username":user.username
           }));
       HttpClientResponse response = await request.close();
@@ -61,7 +61,7 @@ class _MainUserManageState extends State<MainUserManage> {
 
       HttpClient httpClient = new HttpClient();
       HttpClientRequest request = await httpClient.getUrl(
-          Uri(scheme: "http",path: "/app/updatamemberlist",host:"152.136.116.37",port:5000,queryParameters: {
+          Uri(scheme: "http",path: "/app/updatamemberlist",host:"192.168.1.102",port:5000,queryParameters: {
             "username":user.username,
             "memberlist": memList.join(",")
           }));

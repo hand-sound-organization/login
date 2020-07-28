@@ -148,7 +148,7 @@ class _BingdingSearchPage extends State<BingdingSearchPage> {
   _openModalBottomSheet()async{
     Search();
     Future.delayed(Duration(seconds: 2), (){
-      if(!backBoolean){
+      if(backBoolean){
         Size size = MediaQuery.of(context).size;
         showModalBottomSheet(
             backgroundColor: Color(0x000000),
